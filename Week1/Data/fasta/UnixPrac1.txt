@@ -1,0 +1,19 @@
+#1 wc -l *fasta
+Decription: This lists the number of lines in all files eding with .fasta
+
+#2 tail -n +2 E.coli.fasta
+Description: This list all the lines in the file E.coli.fasta stating from the second line
+
+#3 tail -n +2 E.coli.fasta | tr -d "\n" | wc -m
+Description: This counts the sequence length of E.coli.fasta. The first pipe excludes
+the first line which details the sequence name, the second pipe removes new line 
+characters, the final pipe counts the number of characters in the sequence left.
+
+#4 tail -n +2 E.coli.fasta | tr -d "\n" | grep -o "ATCG" | wc -l
+Description: This counts the number of matches of sequence "ATGC". The first 2 pipes
+are the same as for answer 3 (see above), the 3rd pipe uses grep to return each instance
+of ATCG found in the remaining sequence and place them on a seperate line, the final 
+pipe counts each of these lines to show how many times the sequence occured.
+
+#5 ???
+Description: This computes the AT/CG ratio 
