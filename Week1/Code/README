@@ -1,9 +1,12 @@
-README file for 
+README file for Week1/Code
 
-[Decription Here]
+- Scripts and descriptions -
 
 boilerplate.sh:
  Desc: simple boilerplate for shell scripts 
+
+CompileLatex.sh:
+ Desc: Compiles . document to pdf  and cleans up files 
 
 ConcatonateTwoFiles.sh:
  Desc: Concatonates two files 

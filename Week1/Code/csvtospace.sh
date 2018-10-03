@@ -6,7 +6,10 @@
 # Date: Oct 2018
 
 echo "Creating a space seperated file from a comma seperated file"
-cat $1 | tr -s "," "  " >> $2
 
+# replace .csv with .txt in the file name
+filename="${1//.csv/.txt}"
+
+cat $1 | tr -s "," "  " >> $filename
 echo "Done!"
 exit
