@@ -10,4 +10,6 @@ echo "Creating a comma deliminated file"
 cat $1 | tr -s "\t" "," >> $1.csv
 
 echo "Done!"
+
+# the output is saved to the same location as the input file as $1
 exit

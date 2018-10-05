@@ -9,14 +9,14 @@
 filename="${1//.tex/}"
 
 # compile pdf
-pdflatex $1
+#pdflatex $1
 pdflatex $1
 bibtex $filename
 pdflatex $1 
-pdflatex $1 
+#pdflatex $1 
 
 # open pdf in viewer
-evince "$filename.pdf" &
+evince $filename.pdf &
 
 ## Cleanup
 rm *~

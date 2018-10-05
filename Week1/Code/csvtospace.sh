@@ -8,7 +8,9 @@
 echo "Creating a space seperated file from a comma seperated file"
 
 # replace .csv with .txt in the file name
-filename="${1//.csv/.txt}"
+filename="${1//.csv/_new.txt}"
+
+for 
 
 cat $1 | tr -s "," "  " >> $filename
 echo "Done!"

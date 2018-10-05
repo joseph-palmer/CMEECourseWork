@@ -1,25 +1,25 @@
 # 1 Count how many lines are in each file 
-wc -l *fasta
+wc -l ../Data/fasta/*fasta
 
 #2 Print everything starting from the second line for the genome of E. Coli
-tail -n +2 E.coli.fasta
+tail -n +2 ../Data/fasta/E.coli.fasta
 
 #3 Count the secuence length of this genome
-tail -n +2 E.coli.fasta | tr -d "\n" | wc -m
+tail -n +2 ../Data/fasta/E.coli.fasta | tr -d "\n" | wc -m
 # Description: This counts the sequence length of E.coli.fasta. The first pipe excludes
 # the first line which details the sequence name, the second pipe removes new line 
 # characters, the final pipe counts the number of characters in the sequence left.
 
 #4 Count the matches of a particular sequence 'ATCG' in the genome of E. Coli
-tail -n +2 E.coli.fasta | tr -d "\n" | grep -o "ATCG" | wc -l
+tail -n +2 ../Data/fasta/E.coli.fasta | tr -d "\n" | grep -o "ATCG" | wc -l
 # Description: This counts the number of matches of sequence "ATGC". The first 2 pipes
 # are the same as for answer 3 (see above), the 3rd pipe uses grep to return each instance
 # of ATCG found in the remaining sequence and place them on a seperate line, the final 
 # pipe counts each of these lines to show how many times the sequence occured.
 
 #5 Compute the AT/GC ratio
-echo $(tail -n+2 E.coli.fasta | tr -d "\n" | grep -o [A,T] | wc -l) / $(tail -n+2 E.coli.fasta | tr -d "\n" | grep -o [G,C] | wc -l) | bc -l
-# Description:  The echo commands run a section together to format the output. Within the echo $(  ) command are# 2 commands which get a count of all occurances of A and T and C and G. The echo formats them around a '/' to
+echo $(tail -n+2 ../Data/fasta/E.coli.fasta | tr -d "\n" | grep -o [A,T] | wc -l) / $(tail -n+2 ../Data/fasta/E.coli.fasta | tr -d "\n" | grep -o [G,C] | wc -l) | bc -l
+# Description:  The echo commands run a section together to format the output. Within the echo $(  ) command are# # 2 commands which get a count of all occurances of A and T and C and G. The echo formats them around a '/' to
 # show a division equation which is computed by bc -l
 
 
