@@ -8,10 +8,13 @@
 echo "Creating a space seperated file from a comma seperated file"
 
 # replace .csv with .txt in the file name
-filename="${1//.csv/_new.txt}"
+filename="${1//.csv/_space.txt}"
 
-for 
+# replace the file path with path to the results directory
+fname=`echo $filename | rev | cut -d/ -f1 | rev`
+outname="../Results/$fname"
 
-cat $1 | tr -s "," "  " >> $filename
-echo "Done!"
+# replace commas with spaces in file and save to new location in results
+cat $1 | tr -s "," "  " >> $outname
+echo "Done! The file has been saved as $outname"
 exit

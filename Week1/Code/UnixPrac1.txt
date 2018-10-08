@@ -1,4 +1,4 @@
-# 1 Count how many lines are in each file 
+ount how many lines are in each file 
 wc -l ../Data/fasta/*fasta
 
 #2 Print everything starting from the second line for the genome of E. Coli
@@ -20,6 +20,4 @@ tail -n +2 ../Data/fasta/E.coli.fasta | tr -d "\n" | grep -o "ATCG" | wc -l
 #5 Compute the AT/GC ratio
 echo $(tail -n+2 ../Data/fasta/E.coli.fasta | tr -d "\n" | grep -o [A,T] | wc -l) / $(tail -n+2 ../Data/fasta/E.coli.fasta | tr -d "\n" | grep -o [G,C] | wc -l) | bc -l
 # Description:  The echo commands run a section together to format the output. Within the echo $(  ) command are# # 2 commands which get a count of all occurances of A and T and C and G. The echo formats them around a '/' to
-# show a division equation which is computed by bc -l
-
-
+# show a division equation which is computed by bc -l )

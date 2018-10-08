@@ -8,15 +8,12 @@
 # get the filename without the extention for bibtex
 filename="${1//.tex/}"
 
-# compile pdf
-#pdflatex $1
+# compile pdf (multiple times required!)
+pdflatex $1
 pdflatex $1
 bibtex $filename
 pdflatex $1 
-#pdflatex $1 
-
-# open pdf in viewer
-evince $filename.pdf &
+pdflatex $1 
 
 ## Cleanup
 rm *~
@@ -28,3 +25,10 @@ rm *.snm
 rm *.toc
 rm *.bbl
 rm *.blg
+
+# move pdf into results
+mv $filename.pdf "../Results/"
+
+# Open pdf in Viewer
+evince "../Results/$filename.pdf"
+
