@@ -10,7 +10,6 @@ README document for CMEECourseWork Week1 > README
 │   ├── FirstExample.tex
 │   ├── MyExampleScript.sh : a further example of variables for the current user
 │   ├── tabtocsv.sh : converts tabs in given file to commas
-│   ├── TestPy.py : Description of this program or app [can be over several lines]
 │   ├── tiff2png.sh : Convert tiff to png.
 │   ├── UnixPrac1.txt
 │   └── variables.sh : Shows the use of variables
@@ -26,7 +25,6 @@ README document for CMEECourseWork Week1 > README
 │       ├── 1802.csv
 │       └── 1803.csv
 ├── README
-├── README.txt
 ├── Results
 └── Sandbox
     ├── ConcatFile.txt
@@ -59,4 +57,4 @@ README document for CMEECourseWork Week1 > README
         ├── file3.txt
         └── file4.txt
 
-13 directories, 45 files
+13 directories, 43 files
