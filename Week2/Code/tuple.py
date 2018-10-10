@@ -1,6 +1,12 @@
-"""This script prints out the contents of the tuple of tuples on a seperate line
-"""
+#!/usr/bin/env python3
+"""Practicle solution - Tuples."""
+__appname__ = "tuple.py"
 __author__ = "Joseph Palmer <joseph.palmer18@imperial.ac.uk>"
+__version__ = "0.0.1"
+__license__ = "License for this code/"
+
+## imports ##
+import sys
 
 birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
           ('Delichon urbica','House martin',19),
@@ -10,7 +16,8 @@ birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
         )
 
 # Birds is a tuple of tuples of length three: latin name, common name, mass.
-# write a (short) script to print these on a separate line or output block by species 
+# write a (short) script to print these on a separate line or output block by 
+# species 
 # Hints: use the "print" command! You can use list comprehension!
 
 # ANNOTATE WHAT EVERY BLOCK OR IF NECESSARY, LINE IS DOING! 
@@ -19,9 +26,11 @@ birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
 # SAYS WHAT THE SCRIPT DOES AND WHO THE AUTHOR IS
 
 #### ONE LINE SOLOUTION ####
-# loop through the tuples in the tuple, then loop through the items in the tuple
-# then join these into a single string with the items seperated by newline characters.
-print("".join(["{}\n".format(str(element)) for tupl in birds for element in tupl]))
+# loop through the tuples in the tuple, then loop through items in the tuple
+# then join these into a single string with the items seperated by newlines.
+# PUT ON TWO LINES FOR READBILITY!
+print("".join(["{}\n".format(str(element))
+    for tupl in birds for element in tupl]))
 
 #### NICEER SOLUTION ####
 # print a guide of latin name, common name and mass to the screen.

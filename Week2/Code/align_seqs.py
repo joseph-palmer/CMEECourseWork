@@ -1,4 +1,13 @@
+#!/usr/bin/env python3
+"""Aligns two sequences in a set file"""
 
+__appname__ = "align_seqs.py"
+__author__ = "Joseph Palmer <joseph.palmer18@imperial.ac.uk>"
+__version__ = "0.0.1"
+__license__ = "License for this code/"
+
+## imports ##
+import sys
 
 # open the default file and find the sequences.
 fpath = "../Data/DefaultSequences.fasta"

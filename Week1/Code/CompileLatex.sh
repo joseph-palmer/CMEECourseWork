@@ -30,5 +30,4 @@ rm *.blg
 mv $filename.pdf "../Results/"
 
 # Open pdf in Viewer
-evince "../Results/$filename.pdf"
-
+evince "../Results/$filename.pdf" &

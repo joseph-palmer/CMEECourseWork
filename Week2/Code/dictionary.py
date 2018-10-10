@@ -1,3 +1,14 @@
+#!/usr/bin/env python3
+"""Practicle Solution - Dictionary."""
+
+__appname__ = "disctionary.py"
+__author__ = "Joseph Palmer <joseph.palmer18@imperial.ac.uk>"
+__version__ = "0.0.1"
+__license__ = "License for this code/"
+
+## imports ##
+import sys
+
 taxa = [ ('Myotis lucifugus','Chiroptera'),
          ('Gerbillus henleyi','Rodentia',),
          ('Peromyscus crinitus', 'Rodentia'),
@@ -14,8 +25,15 @@ taxa = [ ('Myotis lucifugus','Chiroptera'),
 # derived from  taxa so that it maps order names to sets of taxa. 
 # E.g. 'Chiroptera' : set(['Myotis lucifugus']) etc. 
 
+# ANNOTATE WHAT EVERY BLOCK OR IF NECESSARY, LINE IS DOING! 
+
+# ALSO, PLEASE INCLUDE A DOCSTRING AT THE BEGINNING OF THIS FILE THAT 
+# SAYS WHAT THE SCRIPT DOES AND WHO THE AUTHOR IS
+
+# Write your script here:
+
 # LOOP SOLUTION
-# set an empty dictionary to pupulate.
+# set an empty dictionary to populate.
 taxa_dic = {}
 
 # loop through the tuples in the list.
@@ -27,13 +45,6 @@ for order in taxa:
     else:
         taxa_dic[order[-1]] = [order[0]]
 
-# DICTIONARY COMPREHENSION - dos same as above description but on one line
+# DICTIONARY COMPREHENSION - does same as above description but on one line
 taxa_dic = {}
 [taxa_dic.setdefault(order[-1], []).append(order[0]) for order in taxa]
-
-# ANNOTATE WHAT EVERY BLOCK OR IF NECESSARY, LINE IS DOING! 
-
-# ALSO, PLEASE INCLUDE A DOCSTRING AT THE BEGINNING OF THIS FILE THAT 
-# SAYS WHAT THE SCRIPT DOES AND WHO THE AUTHOR IS
-
-# Write your script here:

@@ -25,7 +25,7 @@ f.close()
 
 # write a file containing only species name and body mass
 f = open("../Data/testcsv.csv", "r")
-g = open("../Data/bodymass.csv", "w")
+g = open("../Results/bodymass.csv", "w")
 
 csvread = csv.reader(f)
 csvwrite = csv.writer(g)
@@ -33,5 +33,9 @@ for row in csvread:
     print (row)
     csvwrite.writerow([row[0], row[4]])
 
+# close files
 f.close()
 g.close()
+
+# show info about where saved.
+print("\nOutput saved in", g)

@@ -6,12 +6,12 @@ README document for CMEECourseWork Week1 > README
 │   ├── ConcatonateTwoFiles.sh : Concatonates two files
 │   ├── CountLines.sh : Counts the number of lines in a file
 │   ├── csvtospace.sh : Converts commas in a csv file to spaces
-│   ├── FirstBiblio.bib
-│   ├── FirstExample.tex
+│   ├── FirstBiblio.bib : Bib file for latex.
+│   ├── FirstExample.tex : Source code for PdF.
 │   ├── MyExampleScript.sh : a further example of variables for the current user
 │   ├── tabtocsv.sh : converts tabs in given file to commas
 │   ├── tiff2png.sh : Convert tiff to png.
-│   ├── UnixPrac1.txt
+│   ├── UnixPrac1.txt : Contains one line bash answers to practicle questions.
 │   └── variables.sh : Shows the use of variables
 ├── Data
 │   ├── fasta
@@ -25,7 +25,7 @@ README document for CMEECourseWork Week1 > README
 │       ├── 1802.csv
 │       └── 1803.csv
 ├── README
-├── Results
+├── Results : The location all scripts producing output write to.
 └── Sandbox
     ├── ConcatFile.txt
     ├── ListRootDir.txt
