@@ -16,7 +16,11 @@ import sys
 
 # functions ##
 def main(argv):
-    """Main entry point of the program"""
+    """main - The main entry point of the program - 
+    contains code to be executed.
+
+    :param argv: command line arguments.
+    """
     print("This is a boilerplate")
     return 0
 

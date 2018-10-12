@@ -8,6 +8,8 @@ __license__ = "License for this code/"
 
 ## imports ##
 import sys
+import pickle
+
 
 # Find which files to read. 
 # default sequences to use if none provided by user.
@@ -15,24 +17,24 @@ d1 = "../../Week1/Data/fasta/407228326.fasta"
 d2 = "../../Week1/Data/fasta/407228412.fasta"
 if len(sys.argv) == 1:
     # no sequences given, use defaults
-    print ("No sequence provided. Using {} and {} as default.".format(d1,d2))
+    print ("\nNo sequence provided. Using {} and {} as default.".format(d1,d2))
     s1 = open(d1)
     s2 = open(d2)
 elif len(sys.argv) == 2:
     # Only 1 sequence given, use and compare with first default.
-    print ("Only 1 sequence provided, using {} as comparison.".format(d1))
+    print ("\nOnly 1 sequence provided, using {} as comparison.".format(d1))
     s1 = open(d1)
     fasta_seq = sys.argv[1:]
     s2 = open(fasta_seq[-1])
 elif len(sys.argv) > 3:
     # more than 2 sequences given, use the first 2 given.
-    print ("More than 2 sequences have been provided. Only using first 2.")
+    print ("\nMore than 2 sequences have been provided. Only using first 2.")
     fasta_seq = sys.argv[1:]
     s1 = open(fasta_seq[0])
     s2 = open(fasta_seq[1])
 else:
     # open the given files and find the sequences.
-    print("2 Sequences provided.")
+    print("\n2 Sequences provided.")
     fasta_seq = sys.argv[1:]
     s1 = open(fasta_seq[0]) 
     s2 = open(fasta_seq[-1])
@@ -48,7 +50,7 @@ seq_1_name = ">{}".format(seq1.split(">")[1].split("\n")[0])
 seq_2_name = ">{}".format(seq2.split(">")[1].split("\n")[0])
 
 # show message of what is being processed
-print ("Aligning {} with {}".format(seq_1_name, seq_2_name))
+print ("\nAligning {} with {}".format(seq_1_name, seq_2_name))
 
 # remove the sequence name and \n to get the sequence for analysis.
 seq1 = seq1.replace(seq_1_name, "").replace("\n", "")
@@ -70,9 +72,9 @@ else:
 # by returning the number of matches 
 # starting from arbitrary startpoint
 def calculate_score(s1, s2, l1, l2, startpoint):
-    """calculate_score - calculates a score for the alignment matches.
+    """calculate_score - Calculates score for matching alignment.
 
-    :param s1: 
+    :param s1:
     :param s2:
     :param l1:
     :param l2:
@@ -103,19 +105,33 @@ calculate_score(s1, s2, l1, l2, 0)
 calculate_score(s1, s2, l1, l2, 1)
 calculate_score(s1, s2, l1, l2, 5)
 
-# now try to find the best match (highest score)
-my_best_align = None
-my_best_score = -1
-
+# Make a dictionary of scores and alignments
+scores_dict = {}
 for i in range(l1):
     z = calculate_score(s1, s2, l1, l2, i)
-    if z > my_best_score:
-        my_best_align = "." * i + s2
-        my_best_score = z
+    my_best_align = "." * i + s2
+    if not z in scores_dict.keys():
+        scores_dict[z] = [my_best_align]
+    else:
+        scores_dict[z].append(my_best_align)
 
-print (my_best_align)
-print (s1)
-print ("Best score:", my_best_score)
+
+#print (s1)
+
+# get the alignment with the highest score. captures if alignments
+# with the same score.
+best_alignments = [(i, scores_dict[i]) for i in scores_dict.keys() 
+        if i == max(scores_dict.keys())]
+
+# get the last highest score and alignment for writing to file and printing.
+# [-1] gets the last highest score set, [-1] gets the alignment part of that
+# set which is a list, [-1] gets the last string in the list.
+my_best_align = best_alignments[-1][-1][-1]
+my_best_score = best_alignments[-1][0]
+print("\n{}\nAlignment complete".format("-"*25))
+print("\n\nBest Score: {}\nBest Alignment:\n{}".format(my_best_score, 
+    my_best_align))
+
 
 # save the output to a text file
 fsave = "../Results/Fasta_alignment.txt"
@@ -123,4 +139,13 @@ with open(fsave, "w") as w:
     w.write("Best Alignment: {}\nBest score: {}".format(my_best_align,
         my_best_score))
 
+# saving the pickle object
+psave = "../Results/Fasta_alignment_dict.p"
+with open(psave, "wb") as w:
+    pickle.dump(scores_dict, w)
+
+# print message to screen.
 print("\n\nResults saved at", fsave)
+print("Saved all scores and alignments as dictionary, "
+      "saved as pickle object in", psave)
+

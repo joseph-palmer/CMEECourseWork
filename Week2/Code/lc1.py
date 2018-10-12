@@ -1,6 +1,14 @@
-"""This script is the practicle for testing list comprehensions and loops.
-"""
-__author__ = "Joseph Palmer <joseph.palmer18@imperial.ac.uk"
+#!/usr/bin/env python3
+"""Python practicle - simple list comprehensions"""
+__appname__ = "lc1.py"
+__author__ = "Joseph Palmer <joseph.palmer18@imperial.ac.uk>"
+__version__ = "0.0.1"
+__license__ = "License for this code/"
+__date__ = "Oct-2018"
+
+## imports ##
+import sys
+
 
 birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
           ('Delichon urbica','House martin',19),

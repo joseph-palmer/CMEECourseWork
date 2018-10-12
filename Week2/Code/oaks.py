@@ -17,6 +17,10 @@ taxa = [ 'Quercus robur',
         'Quercus petraea']
 
 def is_an_oak(name):
+    """is_an_oak checks if the name is an oak.
+
+    :param name: Str
+    """
     return name.lower().startswith("quercus ")
 
 ## Using for loops

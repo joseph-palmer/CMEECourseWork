@@ -42,6 +42,14 @@ else:
 # by returning the number of matches 
 # starting from arbitrary startpoint
 def calculate_score(s1, s2, l1, l2, startpoint):
+    """calculate_score - Calculates scores for matching alignment.
+
+    :param s1:
+    :param s2:
+    :param l1:
+    :param l2:
+    :param startpoint:
+    """
     # startpoint is the point at which we want to start
     matched = "" # contains string for alignement
     score = 0

@@ -17,14 +17,20 @@ import sys
 # functions ##
 
 def even_or_odd(x=0): # if not specified, x should take value 0.
+    """even_or_odd - Find whether x is even of odd.
 
-    """Find whether a number x is even or odd."""
+    :param x: int
+    """
     if x % 2 == 0: #The conditional if
         return "%d is Even!" % x
     return "%d is Odd!" % x
 
 def largest_divisor_five(x=120):
-    """Find which is the largest divisor of x among 2,3,4,5."""
+    """largest_divisor_five - Find which is the largest deviser of x 
+    among 2,3,4,5
+
+    :param x: int
+    """
     largest = 0
     if x % 5 == 0:
         largest = 5
@@ -39,7 +45,10 @@ def largest_divisor_five(x=120):
     return "The largest divisor of %d is %d" % (x, largest)
 
 def is_prime(x=70):
-    """Find whether an integer is prime."""
+    """is_prime - Find whether an integer is a prime.
+
+    :param x: int
+    """
     for i in range(2, x): #  "range" returns a sequence of integers
         if x % i == 0:
           print("%d is not a prime: %d is a divisor" % (x, i)) #Print formatted text "%d %s %f %e" % (20,"30",0.0003,0.00003)
@@ -49,7 +58,10 @@ def is_prime(x=70):
     return True 
 
 def find_all_primes(x=22):
-    """Find all the primes up to x"""
+    """find_all_primes - find all primes up to x
+
+    :param x: int
+    """
     allprimes = []
     for i in range(2, x + 1):
       if is_prime(i):
@@ -59,6 +71,10 @@ def find_all_primes(x=22):
 
 
 def main(argv):
+    """main - Main entry point of the program.
+
+    :param argv: command line arguments.
+    """
     """Main entry point of the program"""
     print (even_or_odd(22))
     print (even_or_odd(33))

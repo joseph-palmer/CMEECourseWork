@@ -1,8 +1,16 @@
-"""This code makes a list using comprehensions and loops to group
-months with rainfall less than 50mm and greater than 100mm
-"""
-
+#!/usr/bin/env python3
+"""Python practicles - More compex list comprehension"""
+__appname__ = "lc2.py"
 __author__ = "Joseph Palmer <joseph.palmer18@imperial.ac.uk>"
+__version__ = "0.0.1"
+__license__ = "License for this code/"
+__date__ = "Oct-2018"
+
+## imports ##
+import sys
+
+
+
 
 # Average UK Rainfall (mm) for 1910 by month
 # http://www.metoffice.gov.uk/climate/uk/datasets

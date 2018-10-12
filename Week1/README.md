@@ -1,18 +1,25 @@
-README document for CMEECourseWork Week1 > README
+# README Document for CMEECourseWork Week1
+## Author: Joseph Palmer - _joseph.palmer18@imperial.ac.uk_
+## Date: _Oct - 2018_
+
+### Description: [Enter description for project here]
+
+### Tree map
+```
 .
 ├── Code
-│   ├── boilerplate.sh : simple boilerplate for shell scripts
-│   ├── CompileLatex.sh : Compiles .tex document to pdf and cleans up files
-│   ├── ConcatonateTwoFiles.sh : Concatonates two files
-│   ├── CountLines.sh : Counts the number of lines in a file
-│   ├── csvtospace.sh : Converts commas in a csv file to spaces
-│   ├── FirstBiblio.bib : Bib file for latex.
-│   ├── FirstExample.tex : Source code for PdF.
-│   ├── MyExampleScript.sh : a further example of variables for the current user
-│   ├── tabtocsv.sh : converts tabs in given file to commas
-│   ├── tiff2png.sh : Convert tiff to png.
-│   ├── UnixPrac1.txt : Contains one line bash answers to practicle questions.
-│   └── variables.sh : Shows the use of variables
+│   ├── boilerplate.sh : simple boilerplate for shell scripts '
+│   ├── CompileLatex.sh : Compiles .tex document to pdf and cleans up files '
+│   ├── ConcatonateTwoFiles.sh : Concatonates two files '
+│   ├── CountLines.sh : Counts the number of lines in a file '
+│   ├── csvtospace.sh : Converts commas in a csv file to spaces '
+│   ├── FirstBiblio.bib
+│   ├── FirstExample.tex
+│   ├── MyExampleScript.sh : a further example of variables for the current user '
+│   ├── tabtocsv.sh : converts tabs in given file to commas '
+│   ├── tiff2png.sh : Convert tiff to png. '
+│   ├── UnixPrac1.txt
+│   └── variables.sh : Shows the use of variables '
 ├── Data
 │   ├── fasta
 │   │   ├── 407228326.fasta
@@ -24,8 +31,7 @@ README document for CMEECourseWork Week1 > README
 │       ├── 1801.csv
 │       ├── 1802.csv
 │       └── 1803.csv
-├── README
-├── Results : The location all scripts producing output write to.
+├── README.md
 └── Sandbox
     ├── ConcatFile.txt
     ├── ListRootDir.txt
@@ -57,4 +63,6 @@ README document for CMEECourseWork Week1 > README
         ├── file3.txt
         └── file4.txt
 
-13 directories, 43 files
+12 directories, 43 files
+
+```
