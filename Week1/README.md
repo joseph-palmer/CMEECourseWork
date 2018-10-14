@@ -2,7 +2,7 @@
 ## Author: Joseph Palmer - _joseph.palmer18@imperial.ac.uk_
 ## Date: _Oct - 2018_
 
-### Description: [Enter description for project here]
+### Description: Contains all the week one files and directories. This weeks focus was on scripting in Bash and getting used to the command line. We also did modules on version controling with Git and on using Latex for writing documents.
 
 ### Tree map
 ```

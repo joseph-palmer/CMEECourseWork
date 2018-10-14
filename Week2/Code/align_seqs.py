@@ -10,6 +10,9 @@ __license__ = "License for this code/"
 import sys
 
 # open the default file and find the sequences.
+# create an empty dictionary which you fill with the contents of the file.
+# the dictionary key should be the name (everything on the first line, which
+# starts with a '>' in fasta formats. The value should be the sequence.
 fpath = "../Data/DefaultSequences.fasta"
 seq_dict = {}
 for line in open(fpath):
@@ -20,6 +23,9 @@ for line in open(fpath):
             seq_dict[key] += line.rstrip()
         else:
             seq_dict[key] = line.rstrip()
+
+seq1 = seq_dict["seq1"]
+seq2 = seq_dict["seq2"]
 
 # These are the two sequences to match
 seq2 = "ATCGCCGGATTACGGG"
