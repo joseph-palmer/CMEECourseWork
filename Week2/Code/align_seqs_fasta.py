@@ -115,7 +115,8 @@ for i in range(l1):
 
 print (my_best_align)
 print (s1)
-print ("Best score:", my_best_score)
+print ("Best score: {}".format(my_best_score))
+
 
 # save the output to a text file
 fsave = "../Results/Fasta_alignment.txt"
@@ -123,4 +124,4 @@ with open(fsave, "w") as w:
     w.write("Best Alignment: {}\nBest score: {}".format(my_best_align,
         my_best_score))
 
-print("\n\nResults saved at", fsave)
+print("\n\nResults saved at {}".format(fsave))

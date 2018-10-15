@@ -28,8 +28,8 @@ seq1 = seq_dict["seq1"]
 seq2 = seq_dict["seq2"]
 
 # These are the two sequences to match
-seq2 = "ATCGCCGGATTACGGG"
-seq1 = "CAATTCGGAT"
+#seq2 = "ATCGCCGGATTACGGG"
+#seq1 = "CAATTCGGAT"
 
 # assign the longest sequence s1, and the shortest to s2
 # l1 is the length of the longest, l2 that of the shortest
