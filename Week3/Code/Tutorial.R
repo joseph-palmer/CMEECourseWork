@@ -72,4 +72,10 @@ arr1[,,2]
 
 # Matracies and arrays have to be part of a homogenous type and R will convert those that arnt. so be aware.
 
+# Vectorization
+
+
+
+
+
 
