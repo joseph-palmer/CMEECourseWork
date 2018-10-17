@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Finds the oaks from a csv file."""
+"""Finds the oaks from a csv file. Includes doctest to test."""
 __appname__ = "oaks_debugme.py"
 __author__ = "Joseph Palmer <joseph.palmer18@imperial.ac.uk>"
 __version__ = "0.0.1"
@@ -17,8 +17,7 @@ def is_an_oak(name):
     """is_an_oak - checks if name is an oak.
 
     :param name: Str
-    """
-    """ Returns True if name is starts with 'quercus'     
+    Returns True if name is starts with 'quercus'     
     >>> is_an_oak('Quercuss sylvatica')
     False
     >>> is_an_oak("Fagus sylvatica")
@@ -52,6 +51,16 @@ def main(argv):
             csvwrite.writerow([row[0], row[1]])
 
     doctest.testmod()
+    f.close()
+    g.close()
+
+    # a list comprehension soloution.
+    # filelines = [i for i in taxa]
+    # oaks_str = "\n".join(["".join(i) for i in filelines[1:] if is_an_oak(i[0])])
+    # header_str = " ".join(["".join(i.strip()) for i in filelines[0]])
+    # print("The following are oaks:\n{}".format(oaks_str))
+    # g.write("{}\n{}".format(header_str, oaks_str))
+    # g.close()
 
     return 0
     

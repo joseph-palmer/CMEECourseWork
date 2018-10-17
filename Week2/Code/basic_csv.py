@@ -38,4 +38,4 @@ f.close()
 g.close()
 
 # show info about where saved.
-print("\nOutput saved in", g)
+print("\nOutput saved in ../Results/bodymass.csv")

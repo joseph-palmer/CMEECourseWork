@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""Description of this program or app
-[can be over several lines]"""
+"""Demonstration of functions and name == main"""
 
 __appname__ = "[application name here]"
 __author__ = "Joseph Palmer <joseph.palmer18@imperial.ac.uk>"
