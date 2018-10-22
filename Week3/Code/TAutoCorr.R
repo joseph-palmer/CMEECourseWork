@@ -3,7 +3,6 @@
 # clear environment
 rm(list=ls())
 
-
 # load in the data
 datapath <- "../Data/KeyWestAnnualMeanTemprature.RData" 
 load(datapath)
@@ -25,8 +24,16 @@ GetCor <- function(x, y){
 # run the function using lapply to vectorize
 cors = sapply(1:10000,function(i) GetCor(t1, t2))
 
-hist(cors)
-points(a, col="red")
+# make a density plot of the cors, placing a line at the obsserved coreleation.
+pdf("../Results/KeyWestAnualMeanTemperaturePlot.pdf")
+plot(density(cors), main = "")
 abline(v = a, col = "red")
+dev.off()
 
+# calculate what proportion of corelations are greater than the observed.
+length(cors[cors>a])/length(cors)
+length(cors[cors>a])
+
+# another way to generate the above.
 1- length(cors[cors< a])/length(cors)
+

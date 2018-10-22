@@ -1,0 +1,19 @@
+\documentclass[12pt]{article}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\title{Correlation between successive years temperature data, Key West, USA.}
+\author{Joseph Palmer, joseph.palmer18@imperial.ac.uk}
+\date{October 2018}
+\begin{document}
+	\maketitle
+	The goal of this practical was to answer the question: \textit{Are temperatures of one year significantly correlated with the next year (successive years), across years in a given location?} Using temperature data for the Key West region in Florida over the 20th Century, the correlation value was computed between successive years and compared to a distribution of 10,000 randomly permuted time series correlations. As the measurements of successive time points are climactic variables they are not independent, making a standard p-value inappropriate. Instead, the approximate p-value was calculated by dividing the number of random sample correlations greater than the actual value by the entire sample size. 
+	
+	
+	There was a weak positive correlation between the temperatures in successive years, \textit{r = 0.33, aprox p \textless 0.01.} Figure 1 shows the density plot of correlations, with the red line denoting the position of the successive year correlation.
+	
+	\begin{figure}[ht]
+		\includegraphics[width=1\textwidth]{../Results/KeyWestAnualMeanTemperaturePlot.pdf}
+		\caption{Density plot of correlations between rainfall in Key West, Florida, USA. Red line indicates successive years temperature correlation}
+	\end{figure}
+		
+\end{document}
