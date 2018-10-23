@@ -1,6 +1,4 @@
-################################################################
-################## Wrangling the Pound Hill Dataset ############
-################################################################
+### Wrangling the Pound hill dataset.
 
 # clear environment
 rm(list=ls())
