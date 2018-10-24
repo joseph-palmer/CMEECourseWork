@@ -1,4 +1,12 @@
-### apply: applying the same function to rows/colums of a matrix
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: October 2018
+# Desc: applying the same function to rows/colums of a matrix
+
+# clear environment
+rm(list=ls())
+
+# Load required packages #
 
 ###This is a test
 

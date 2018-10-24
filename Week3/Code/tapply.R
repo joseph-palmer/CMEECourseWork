@@ -1,4 +1,13 @@
-# Using the tapply function.
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: October 2018
+# Desc: Using the tapply function
+
+# clear environment
+rm(list=ls())
+
+# Load required packages #
+
 
 x <-1:20 # is a vector
 y <- factor(rep(letters[1:5], each = 4)) # is a factor

@@ -1,3 +1,13 @@
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: October 2018
+# Desc: calculates tree height given angle and distance from base of tree
+
+# clear environment
+rm(list=ls())
+
+# Load required packages #
+
 # Header.
 ########################################################################
 #                               Functions

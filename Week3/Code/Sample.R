@@ -1,4 +1,12 @@
-## Run a simulation that involves sampling from a population
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: October 2018
+# Desc: Run a simulation that involves sampling from a population
+
+# clear environment
+rm(list=ls())
+
+# Load required packages #
 
 x <- rnorm(50) # generate your population
 doit <- function(x){

@@ -1,6 +1,13 @@
-# Runs the stochastic (with gaussian fluctuations) Ricker Eqn .
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: October 2018
+# Desc: Runs the stochastic (with gaussian fluctuations) Ricker Eqn
 
+# clear environment
 rm(list=ls())
+
+# Load required packages #
+
 
 stochrick<-function(p0=runif(1000,.5,1.5),r=1.2,K=1,sigma=0.2,numyears=100)
   

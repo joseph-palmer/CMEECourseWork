@@ -1,4 +1,12 @@
-# map the Global Population Dynamics Database (GPDD).
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: October 2018
+# Desc: map the Global Population Dynamics Database (GPDD).
+
+# clear environment
+rm(list=ls())
+
+# Load required packages #
 
 # clear mem
 rm(list=ls())

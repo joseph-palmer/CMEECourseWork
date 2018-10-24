@@ -1,4 +1,12 @@
-### script that draws and saves three lattice graphs by feeding interaction type.
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: October 2018
+# Desc: script that draws and saves three lattice graphs by feeding interaction type.
+
+# clear environment
+rm(list=ls())
+
+# Load required packages #
 
 # clear environment
 rm(list=ls())

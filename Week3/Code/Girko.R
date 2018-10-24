@@ -1,4 +1,13 @@
-### Girko.R Exercise - plots a simulation of girko's law
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: October 2018
+# Desc: Girko.R Exercise - plots a simulation of girko's law
+
+# clear environment
+rm(list=ls())
+
+# Load required packages #
+
 
 # clear workspace
 rm(list=ls())

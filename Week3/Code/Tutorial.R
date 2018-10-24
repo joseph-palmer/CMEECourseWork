@@ -1,3 +1,13 @@
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: October 2018
+# Desc: Another tutorial for R based on the jupyter notebook
+
+# clear environment
+rm(list=ls())
+
+# Load required packages #
+
 a <- 4
 a # display it
 a_squared <- a * a

@@ -1,4 +1,13 @@
-# Takes a file from command line and calculates tree heights.
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: October 2018
+# Desc:  Takes a file from command line and calculates tree heights.
+
+# clear environment
+rm(list=ls())
+
+# Load required packages #
+
 ########################################################################
 #                               Functions
 ########################################################################

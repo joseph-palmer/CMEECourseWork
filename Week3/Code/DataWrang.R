@@ -1,4 +1,13 @@
-### Wrangling the Pound hill dataset.
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: October 2018
+# Desc: Wrangling the Pound hill dataset.
+
+# clear environment
+rm(list=ls())
+
+# Load required packages #
+
 
 # clear environment
 rm(list=ls())

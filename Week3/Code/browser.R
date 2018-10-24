@@ -1,4 +1,12 @@
-# show the use of browser() for debugging.
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: October 2018
+# Desc: show the use of browser() for debugging.
+
+# clear environment
+rm(list=ls())
+
+# Load required packages #
 
 Exponential <- function(N0 = 1, r = 1, generations = 10){
   # Runs a simulation of exponential growth

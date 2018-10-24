@@ -1,6 +1,12 @@
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: October 2018
+# Desc: Tutorial for certain R function in jupyter notebook
 
 # clear environment
 rm(list=ls())
+
+# Load required packages #
 
 # load the data
 datapath = "../Data/PoundHillData.csv"

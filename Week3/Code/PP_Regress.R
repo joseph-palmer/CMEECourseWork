@@ -1,4 +1,22 @@
-### ggplot practicle for data visualisation.
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: October 2018
+# Desc: ggplot practicle for data visualisation
+
+# clear environment
+rm(list=ls())
+
+# Load required packages #
+
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: October 2018
+# Desc: 
+
+# clear environment
+rm(list=ls())
+
+# Load required packages #
 
 # clear workspace
 rm(list=ls())

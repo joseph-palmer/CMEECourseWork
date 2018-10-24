@@ -1,4 +1,7 @@
-# Autocalculates the correlation between temperatures over successive years.
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: October 2018
+# Desc: Autocalculates the correlation between temperatures over successive years.
 
 # clear environment
 rm(list=ls())

@@ -1,4 +1,13 @@
-# An example of vectorizing and loop, comparison with speed.
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: October 2018
+# Desc: An example of vectorizing and loops with a speed comparison
+
+# clear environment
+rm(list=ls())
+
+# Load required packages #
+
 
 rm(list=ls())
 

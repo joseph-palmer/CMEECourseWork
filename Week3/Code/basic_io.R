@@ -1,4 +1,12 @@
-# A simple script to illustrate R input output.
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: October 2018
+# Desc: A simple script to illustrate R input output.
+
+# clear environment
+rm(list=ls())
+
+# Load required packages #
 
 # Read in the data in csv format with headers
 MyData <- read.csv("../Data/trees.csv", header = TRUE)

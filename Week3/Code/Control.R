@@ -1,4 +1,12 @@
-## Some code showing control flow constructs in R 
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: October 2018
+# Desc: Some code showing control flow constructs in R 
+
+# clear environment
+rm(list=ls())
+
+# Load required packages #
 
 ## If statement
 a <- TRUE

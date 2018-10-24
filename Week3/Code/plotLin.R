@@ -1,4 +1,12 @@
-### ggplot exercises - Makes a regression plot with mathmatical notations
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: October 2018
+# Desc: ggplot exercises - Makes a regression plot with mathmatical notations
+
+# clear environment
+rm(list=ls())
+
+# Load required packages #
 
 # clear workspace
 rm(list = ls())
