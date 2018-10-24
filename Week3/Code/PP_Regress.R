@@ -7,21 +7,6 @@
 rm(list=ls())
 
 # Load required packages #
-
-#!/usr/bin/env Rscript
-# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
-# Date: October 2018
-# Desc: 
-
-# clear environment
-rm(list=ls())
-
-# Load required packages #
-
-# clear workspace
-rm(list=ls())
-
-# load required packages
 require(ggplot2)
 
 # set data path

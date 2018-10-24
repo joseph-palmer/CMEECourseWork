@@ -14,7 +14,7 @@
 │   ├── CountLines.sh : Counts the number of lines in a file '
 │   ├── csvtospace.sh : Converts commas in a csv file to spaces '
 │   ├── FirstBiblio.bib
-│   ├── FirstExample.tex
+│   ├── FirstExample.tex : A Simple Document '
 │   ├── MyExampleScript.sh : a further example of variables for the current user '
 │   ├── tabtocsv.sh : converts tabs in given file to commas '
 │   ├── tiff2png.sh : Convert tiff to png. '
