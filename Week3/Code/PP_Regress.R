@@ -16,7 +16,7 @@ datapath = "../Data/EcolArchives-E089-51-D1.csv"
 MyDF <- read.csv(datapath)
 head(MyDF)
 
-
+# make the plot
 p <- qplot(Prey.mass,
       Predator.mass,
       facets = Type.of.feeding.interaction ~.,
@@ -25,10 +25,16 @@ p <- qplot(Prey.mass,
       xlab = "Prey Mass in grams",
       ylab = "Predator mass in grams",
       colour = Predator.lifestage)
-q = p + geom_smooth(method = "lm", fullrange = TRUE) + geom_point(shape = 9) + theme_bw() + theme(legend.position="bottom")
+q = p + stat_smooth(method = "lm", fullrange = TRUE) + geom_point(shape = 9) + theme_bw() + theme(legend.position="bottom")
+
+# show the plot
 q
 
-# ask francis
-# smooth_vals = predict(lm(log(Predator.mass)~log(Prey.mass)), MyDF)
+summary(q)
 
-
+# work out stats
+for (i in unique(MyDF$Predator.lifestage)) {
+  print(i)
+}
+model <- lm(Prey.mass~Predator.mass, MyDF)
+summary(model)

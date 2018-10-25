@@ -1,7 +1,12 @@
-### Describing distributions. 
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: October 2018
+# Desc: Describing distributions.
 
-# clear the working directory
+# clear environment
 rm(list=ls())
+
+# Load required packages # 
 
 # read in the sparrow data
 d<-read.table("../LectureMaterial/HandOutsandData_18/SparrowSize.txt", header=TRUE) 	
