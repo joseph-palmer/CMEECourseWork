@@ -36,6 +36,7 @@ dev.off()
 # lattice for predator mass / prey mass ratio.
 pdf("../Results/SizeRatio_Lattice.pdf")
 densityplot(~log(Predator.mass/Prey.mass) | Type.of.feeding.interaction, data=MyDF, xlab = "Predator mass (Kg) / Prey mass (Kg)")
+dev.off()
 
 # basic stats
 mean(MyDF$Predator.mass)
@@ -46,12 +47,12 @@ require(dplyr)
 pp_results <- MyDF %>%
   group_by(Type.of.feeding.interaction) %>% 
     summarise(
-      Predator.mass.mean = mean(Predator.mass),
-      Predator.mass.median = median(Predator.mass),
-      Prey.mass.mean = mean(Prey.mass),
-      Prey.mass.median = median(Prey.mass),
-      Predator.Prey.Size.Ratio = mean(Prey.mass/Predator.mass)
+      Predator.mass.mean = mean(log(Predator.mass)),
+      Predator.mass.median = median(log(Predator.mass)),
+      Prey.mass.mean = mean(log(Prey.mass)),
+      Prey.mass.median = median(log(Prey.mass)),
+      Predator.Prey.Size.Ratio = mean(log(Prey.mass)/log(Predator.mass))
     )
 
 pp_results
-write.csv(pp_results, file = "../Results/PP_Results.csv")
+write.csv(pp_results, file = "../Results/PP_Results.csv", row.names = F)
