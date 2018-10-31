@@ -4,6 +4,7 @@
 
 ### Description: Contains all the files for week 3. This weeks focus was on scripting and data exploration in R.
 
+
 ### Tree map
 ```
 .
@@ -25,6 +26,7 @@
 │   ├── MyBars.R : MyBars exercise for annotating plots in R '
 │   ├── plotLin.R : ggplot exercises - Makes a regression plot with mathmatical notations '
 │   ├── PP_Lattice.R : script that draws and saves three lattice graphs by feeding interaction type. '
+│   ├── PP_Regress_loc.R : ggplot practicle extra credit - adding Location to the subset lm '
 │   ├── PP_Regress.R : ggplot practicle for data visualisation '
 │   ├── preallocate.R : pre allocation in R - can be faster. '
 │   ├── run_get_TreeHeight.sh : Runs the R script \'get_TreeHeight.sh" with a test file. '
@@ -50,6 +52,6 @@
 │   └── trees.csv
 └── README.md
 
-2 directories, 40 files
+2 directories, 41 files
 
 ```
