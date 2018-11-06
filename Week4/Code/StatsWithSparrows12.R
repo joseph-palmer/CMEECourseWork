@@ -9,7 +9,7 @@ rm(list=ls())
 # Load required packages #
 
 # load data
-datapath = "../LectureMaterial/HandOutsandData_18/SparrowSize.txt"
+datapath = "../Data/SparrowSize.txt"
 d <- read.table(datapath, header=T)
 
 cov(d$Tarsus,d$Mass, use = "complete.obs")

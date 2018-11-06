@@ -9,7 +9,7 @@ rm(list=ls())
 # Load required packages # 
 
 # read in the sparrow data
-d<-read.table("../LectureMaterial/HandOutsandData_18/SparrowSize.txt", header=TRUE) 	
+d<-read.table("../Data/SparrowSize.txt", header=TRUE) 	
 str(d)
 
 # have a look

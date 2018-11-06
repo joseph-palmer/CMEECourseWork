@@ -9,7 +9,7 @@ rm(list=ls())
 # Load required packages #
 
 # read in the sparrow data, subset for non na values
-d <- read.table("../LectureMaterial/HandOutsandData_18/SparrowSize.txt", header=TRUE) 	
+d <- read.table("../Data/SparrowSize.txt", header=TRUE) 	
 d1 <- subset(d,  d$Tarsus!="NA")
 d2 <- subset(d, d$Bill != "NA")
 

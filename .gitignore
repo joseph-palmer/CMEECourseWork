@@ -3,10 +3,10 @@
 *.pdf
 *.pyc
 *.Rhistory
+*.RData
 *.aux
 *.bbl
 *.blg
 *.gv
 *.log
-/Week4/LectureMaterial/
-/Week5/
+/Week6/

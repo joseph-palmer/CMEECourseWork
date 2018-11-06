@@ -13,7 +13,7 @@ getwd()
 # setwd("~/home/CMEE/CMEECourseWork/Week4/Code") 
 
 2*2 +1
-2*(2+1) 	
+2*(2+1)
 12/2^3 	
 (12/2)^3 
 
@@ -66,6 +66,6 @@ rm(list=ls())
 
 
 # read in data table
-d<- read.table("../LectureMaterial/HandOutsandData_18/SparrowSize.txt",  header=TRUE)
+d<- read.table("../Data/SparrowSize.txt",  header=TRUE)
 str(d)
 

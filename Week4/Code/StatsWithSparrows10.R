@@ -9,7 +9,7 @@ rm(list=ls())
 # Load required packages #
 
 # load data
-datapath = "../LectureMaterial/HandOutsandData_18/SparrowSize.txt"
+datapath = "../Data/SparrowSize.txt"
 d <- read.table(datapath, header=T)
 
 # have a look
@@ -49,7 +49,7 @@ head(d)
 d$Sex<-as.numeric(d$Sex)
 par(mfrow = c(1, 2))
 plot(d$Wing ~ d$Sex.1, ylab="Wing(mm)")
-plot(d$Wing ~ d$Sex, xlab="Sex", xlim=c(-�‐0.1,1.1), ylab="")
+plot(d$Wing ~ d$Sex, xlab="Sex", xlim=c(-?‐0.1,1.1), ylab="")
 abline(lm(d$Wing ~ d$Sex), lwd = 2) 
 text(0.15, 76, "intercept") 
 text(0.9, 77.5, "slope", col = "red")
