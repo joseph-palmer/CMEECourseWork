@@ -4,13 +4,14 @@
 
 ### Description: Contains the files and directories for Week7. This week focused on more python.
 
+
 ### Tree map
 ```
 .
 ├── Code
-│   ├── blackbirds.py : Regex blackbirds practicle
+│   ├── blackbirds.py : Regex blackbirds practicle 
 │   ├── DrawFW.py : Python notes on Networks
-│   ├── fmr.R : b''
+│   ├── fmr.R : The R script for the os problem 2 python '
 │   ├── LV1.py : Numerical integration in python using the Lotka-Volterra model
 │   ├── LV2.py : Practicle - Lotka-Volterra model problem.
 │   ├── LV3.py : ExtraExtra credit Descrete time Lotka-Volterra model
@@ -20,7 +21,7 @@
 │   ├── profileme2.py : More efficient profiling in python
 │   ├── profileme.py : Profiling in python
 │   ├── regexs.py : Demonstration of regular expressions in python
-│   ├── run_fmr_R.py : Runs the fmr.R : b'' script using subprocess - practicle
+│   ├── run_fmr_R.py : Runs the fmr.R : The R script for the os problem 2 python ' script using subprocess - practicle
 │   ├── runLV.sh : Runs the two LV scripts (LV1.py and LV2.py) '
 │   ├── scipy1.py : An introduction script to scipy
 │   ├── subprocess_tutorial.py : tutorial on using subprocess
@@ -31,11 +32,12 @@
 │   ├── NagyEtAl1999.csv
 │   ├── QMEE_Net_Mat_edges.csv
 │   └── QMEE_Net_Mat_nodes.csv
+├── README.md
 ├── Results
 │   ├── Plots
 │   └── QMEENet.svg
 └── Writeup
 
-5 directories, 23 files
+5 directories, 24 files
 
 ```
