@@ -2,7 +2,18 @@
 ## Author: Joseph Palmer - _joseph.palmer18@imperial.ac.uk_
 ## Date: _Nov - 2018_
 
-### Description: Contains the files and directories for Week7. This week focused on more python.
+### Description:   Contains the files and directories for Week7. This week focused on more python.
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### Tree map
@@ -25,6 +36,8 @@
 │   ├── runLV.sh : Runs the two LV scripts (LV1.py and LV2.py) '
 │   ├── scipy1.py : An introduction script to scipy
 │   ├── subprocess_tutorial.py : tutorial on using subprocess
+│   ├── TestR.py : Calls TestR.R : Test R script to run from python '
+│   ├── TestR.R : Test R script to run from python '
 │   ├── timeitme.py : Timing a python function
 │   └── using_os.py : Practicle - using os problem 1
 ├── Data
@@ -35,9 +48,10 @@
 ├── README.md
 ├── Results
 │   ├── Plots
-│   └── QMEENet.svg
+│   ├── TestR_errFile.Rout
+│   └── TestR.R : Test R script to run from python 'out
 └── Writeup
 
-5 directories, 24 files
+5 directories, 27 files
 
 ```

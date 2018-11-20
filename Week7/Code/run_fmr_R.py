@@ -51,13 +51,23 @@ def RunScript(program, script, args=[], runtime=10):
                                                            stdout.decode()))
         return DisplayString
 
+def main(argv):
+    """main - The main function.
 
-# set the path to the r_script and the program to run it.
-r_script = "fmr.R"
-program = "Rscript"
+    :param argv: command line arguments
+    """
+    # set the path to the r_script and the program to run it.
+    r_script = "fmr.R"
+    program = "Rscript"
 
-# run the above and get the output
-run = RunScript(program, r_script)
+    # run the above and get the output
+    run = RunScript(program, r_script)
 
-# show the output on the screen
-print(run)
+    # show the output on the screen
+    print(run)
+
+    return 0
+
+if __name__ == "__main__":
+    status = main(sys.argv)
+    print(status)

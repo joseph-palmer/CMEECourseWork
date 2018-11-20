@@ -1,8 +1,21 @@
 # README Document for CMEECourseWork Week2
 ## Author: Joseph Palmer - _joseph.palmer18@imperial.ac.uk_
-## Date: _Oct - 2018_
+## Date: _Nov - 2018_
 
 ### Description: Contains all fils for CMEECourseWork Week2. This week was focsed on programming in python.
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Tree map
 ```
 .
@@ -33,11 +46,17 @@
 │   ├── testcsv.csv
 │   └── TestOaksData.csv
 ├── README.md
+├── Results
+│   ├── bodymass.csv
+│   ├── DefaultSequences_alignment.txt
+│   ├── Fasta_alignment_dict.p
+│   ├── Fasta_alignment.txt
+│   └── JustOaksData.csv
 └── Sandbox
     ├── testout.txt
     ├── testp.p
     └── test.txt
 
-3 directories, 28 files
+4 directories, 33 files
 
 ```
