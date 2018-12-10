@@ -2,7 +2,8 @@
 ## Author: Joseph Palmer - _joseph.palmer18@imperial.ac.uk_
 ## Date: _Dec - 2018_
 
-### Description: This weeks focus was on writing C programs.
+### Description:  This weeks focus was on writing C programs.
+
 
 
 

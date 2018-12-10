@@ -2,7 +2,8 @@
 ## Author: Joseph Palmer - _joseph.palmer18@imperial.ac.uk_
 ## Date: _Dec - 2018_
 
-### Description: This weeks focus was on using the HPC cluster. For this neutral model simulations were created and ran on the HPC cluster.
+### Description:  This weeks focus was on using the HPC cluster. For this neutral model simulations were created and ran on the HPC cluster.
+
 
 ### Tree map
 ```
@@ -318,6 +319,7 @@
 │   ├── jpalmer_HPC_Script.R : The R file for running on the HPC cluster '
 │   └── run_JP4318_HPC_Script.sh : b''
 ├── Data
+├── README.md
 ├── Results
 │   ├── HPCTestRun
 │   │   ├── JP4318_Neutral_Simulations_1.rda
@@ -329,6 +331,6 @@
     ├── jp4318_HPC_answers.tex
     └── jp4318_HPC_answers.toc
 
-9 directories, 312 files
+9 directories, 313 files
 
 ```
