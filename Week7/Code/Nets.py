@@ -10,6 +10,7 @@ __date__ = "Nov-2018"
 import sys
 import scipy as sc
 import pandas as pd
+import networkx as nx
 
 # set paths to data
 edgespath = "../Data/QMEE_Net_Mat_edges.csv"
@@ -21,3 +22,10 @@ edges = pd.read_csv(edgespath)
 
 print(nodes)
 print(edges)
+
+
+
+G = nx.Graph()
+G.add_nodes_from(nodes.index.tolist())
+nx.draw_networkx(G)
+

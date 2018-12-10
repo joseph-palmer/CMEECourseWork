@@ -1,0 +1,101 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsmath}
+\title{High Performance Computing Programming Exercises}
+\author{Joseph Palmer, joseph.palmer18@imperial.ac.uk}
+\date{December 2018}
+\begin{document}
+  \maketitle
+  \tableofcontents
+  \newpage
+  \section{Neutral Theory Simulations}
+    \subsection{Question 8}
+    What state will the system always converge to if you wait long enough? Why is this?
+    Species richness converged to an equilibrium value of 2 after 65 generations. This is because....
+     
+    \begin{figure}[H]
+    	\centering
+    	\includegraphics[scale=0.5]{../Results/Plots/Question8.pdf}
+    	\caption{Question 8) Time series plot of Neutral model simulation over 200 generations.}
+    \end{figure}
+
+	\subsection{Question 12}
+	Explain what you found from this plot about the effects of initial conditions. Why does the neutral model simulation give you those particular results?
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.5]{../Results/Plots/Question12.pdf}
+		\caption{Question 12) Time series plot of Neutral model simulation with speciation over 200 generations. Speciation rate = 0.1, Community size = 100}
+	\end{figure}
+
+	\subsection{Question 16}
+	Does the initial condition of the system matter? Why is this?
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.5]{../Results/Plots/Question16.pdf}
+		\caption{Question 16) Average Species abundance distribution of a Neutral model simulation with speciation over 2000 generations. The first 200 generations are excluded to allow the community to reach equilibrium. Speciation rate = 0.1, Community size = 100}
+	\end{figure}
+    
+    \subsection{Challenge Question A}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.5]{../Results/Plots/ChallengeA.pdf}
+		\caption{Challenge Question A) Mean species richness as a function of time in simulation steps across 100 generations. Community size = 100, Speciation rate = 0.1. The number of steps taken to reach dynamic equilibrium is approximately 30.}
+	\end{figure}
+
+    \subsection{Question 20}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.5]{../Results/Plots/Question20.pdf}
+		\caption{Question 20)}
+	\end{figure}
+	
+	\section{Fractals in Nature}
+	\subsection{Question 21}
+	The 2D image on the left hand side of the worksheet is made up of eight smaller copies of the larger image. The bottom and top rows of the image are composed of three copies of the same smaller image. The dimension can be calculated through Equation 1 where S is the size (the number of sub-units required) and W is the width. 
+    \begin{equation}
+    	 d = \frac{\log(S)}{\log(W)} 
+	   	 d = \frac{\log(8)}{\log(3)} 
+	   	 d = 1.893
+    \end{equation}
+    The image on the right hand side of the worksheet is simply a 3D image of its neighbour. Counting blocks instead of the faces, the top and bottom rows have 8 blocks, whilst the middle has only 4 due to the hole in the centre, giving a total of 20 blocks. The magnification of 3 remains the same. The dimensions are shown in Equation 2.
+    \begin{equation}
+	    d = \frac{\log(S)}{\log(W)} 
+	    d = \frac{\log(20)}{\log(3)} 
+	    d = 2.726
+    \end{equation}
+    
+    \subsection{Question 22}
+    Through placing points at the midpoint between the current location and a randomly selected point, the image in figure 6 is produced.
+    \begin{figure}[H]
+    	\centering
+    	\includegraphics[scale=0.5]{../Results/Plots/Question22.pdf}
+    	\caption{Question 22) Sierpinski Gasket.}
+    \end{figure}
+	
+	\subsection{Question 25 \& 26}
+	A series of connected lines are drawn where the current line takes the end point of the previous line as its starting point, the previous lines length multiplied by 0.95 as its length and has a direction 45 degrees to the right of the previous line. This continues until the length of the line reaches a limit imposed as 0.01. Without this limit, the simulation would theoretically recurse infinitely, however, R produces a stack usage error as the memory allocated to the process runs out.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.5]{../Results/Plots/Question25_26.pdf}
+		\caption{Question 25 \& 26) Spiral.}
+	\end{figure}
+
+	\subsection{Question 27}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.5]{../Results/Plots/Question27.pdf}
+		\caption{Question 27) Tree.}
+	\end{figure}
+
+	\subsection{Question 29}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.5]{../Results/Plots/Question29.pdf}
+		\caption{Question 29) Fern.}
+	\end{figure}
+    
+    
+\end{document}

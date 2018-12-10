@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Author: Joseph Palmer <joseph.palmer18@imperial.ac.uk>
+# Script: CompileC.sh
+# Desc: Compiles and runs C code with full warnings, naming the output as the output
+# of the file.
+# Arguments: None
+# Date: Dec-2018
+
+# get the name of the file without the .c extention
+newname=$(basename "$1" .c)
+echo ------ Compiler messages -----
+gcc -Wall $1 -o $newname
+echo ------ running: $newname -----
+./$newname

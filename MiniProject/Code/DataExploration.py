@@ -10,35 +10,18 @@ __date__ = "Nov-2018"
 import sys
 import os
 import re
+import subprocess
+import MiniprojectFunctions as mpf
 import scipy as sp
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import matplotlib.mlab as mlab
 plt.style.use('ggplot')
 
-## Functions ##
-def Distance(origin, destination):
-    """Distance - Get the distance in kilometers between two coordinates.
-
-    :param origin: tuple of lat and long
-    :param destination: tuple of lat and long
-    """
-    lat1, lon1 = origin
-    lat2, lon2 = destination
-    radius = 6371 # km
-
-    dlat = sp.radians(lat2-lat1)
-    dlon = sp.radians(lon2-lon1)
-    a = sp.sin(dlat/2) * sp.sin(dlat/2) + sp.cos(sp.radians(lat1)) \
-        * sp.cos(sp.radians(lat2)) * sp.sin(dlon/2) * sp.sin(dlon/2)
-    c = 2 * sp.arctan2(sp.sqrt(a), sp.sqrt(1-a))
-    d = radius * c
-
-    return d
-
-
 # load the data into pandas dataframes
-csv_files = re.findall(r"(\w+.csv)", "  ".join(os.listdir("../Data")))
+regex = r"(ROT2.csv).+?(ZSL2.csv)"
+csv_files = list(re.findall(regex, "  ".join(os.listdir("../Data")))[0])
 csv_data = [pd.read_csv("../Data/{}".format(x)) for x in csv_files]
 data = pd.concat(csv_data)
 
@@ -63,10 +46,10 @@ data["Hive_Longitude"] = sp.where(data.Location == "ZSL",
                                   rot_hive[-1])
 
 # Calculate the distance in Km from hive to desitation
-data["Distance_km"] = Distance((data.Hive_Latitude,
-                                data.Hive_Longitude),
-                               (data.Destination_Latitude,
-                                data.Destination_Longitude))
+data["Distance_km"] = mpf.Distance((data.Hive_Latitude,
+                                    data.Hive_Longitude),
+                                   (data.Destination_Latitude,
+                                    data.Destination_Longitude))
 
 # view tha data with a summary
 summary_data = ("\n----- Data -----\n"
@@ -78,6 +61,153 @@ summary_data = ("\n----- Data -----\n"
                                           data.Distance_km.var()))
 print(summary_data)
 
+# save the ouput to a csv file
+print("\nRunning 'FitDistributions.R' ---")
+data.to_csv("../Data/Distances.csv", index = False)
+
+# call rscript to fit the optimized models
+rout = mpf.RunScript("Rscript", "FitDistributions.R")
+rout = rout.replace("\n", "").replace("\t", "")
+
+# extract the model values outputed by FitDistributions.R
+regex = r"value:\s(\w+).+?'\s(\w+).+?Std.\sError\w+\s(.+?)\s.+?\s([0-9].[0-9]+).+?AIC:\s+(.+?)\s"
+model_stats = re.findall(regex, rout)
+runs = set([x[0] for x in model_stats])
+
+# create a dictionary to store the model selection output
+model_stats_dict = {"DataType" : [],
+                    "Distribution" : [],
+                    "AIC" : [],
+                    "AICDifferance" : [],
+                    "Param1" : [],
+                    "Param2" : []}
+
+# loop through each model run and get the distribution with lowest aic
+for i in runs:
+    aic_scores = sorted([float(x[-1]) for x in model_stats if x[0] == i])
+    aic_difference = aic_scores[1] - aic_scores[0]
+    distribution = "".join([x[1] for x in model_stats if str(aic_scores[0]) == x[-1]])
+    param1 = float([x[2] for x in model_stats if str(aic_scores[0]) == x[-1]][0])
+    param2 = float([x[3] for x in model_stats if str(aic_scores[0]) == x[-1]][0])
+    model_stats_dict["AIC"].append(aic_scores[0])
+    model_stats_dict["Distribution"].append(distribution)
+    model_stats_dict["DataType"].append(i)
+    model_stats_dict["AICDifferance"].append(aic_difference)
+    model_stats_dict["Param1"].append(param1)
+    model_stats_dict["Param2"].append(param2)
+
+    
+# convert dictionary to pandas df for display
+model_stats_df = pd.DataFrame.from_dict(model_stats_dict)
+
+# show model stats
+print("Output summary of 'FitDistributions.R' ---\n")
+print(model_stats_df)
+
+# make some plots of the distributions
+sns.distplot(data.Distance_km, hist = True)
+
+param1 = model_stats_df["Param1"][model_stats_df["DataType"] == "ActualData"]
+param2 = model_stats_df["Param2"][model_stats_df["DataType"] == "ActualData"]
+normdist = sp.random.weibull(param1, len(data.Distance_km))
+
+sns.distplot(normdist, hist = True)
+plt.show()
+
+
+
+#plt.show()
+
+sys.exit()
+# my own generator
+# extract the distribution x, y values
+x, y = sns.distplot(data.Distance_km).get_lines()[0].get_data()
+plt.clf()
+plt.plot(x, y, "o")
+
+def fit_straight_line(x, m, b):
+    return m * x + b
+
+p, cov = sp.optimize.curve_fit(fit_straight_line, x, y)
+
+t = sp.array([min(x), max(x)])
+plt.plot(t, p[0] * t + p[-1])
+plt.show()
+
+
+# fit normal to data
+def normal_fit(x, mean, sigma):
+    return sp.stats.norm.pdf(x, mean, sigma)
+
+p, cov = sp.optimize.curve_fit(normal_fit, x, y)
+plt.plot(x, y, "o")
+plt.plot(x, normal_fit(x, p[0], p[1]), "-")
+plt.show()
+
+print("***")
+print(sp.optimize.curve_fit(normal_fit, x, y))
+print("***")
+
+
+pp = sp.stats.norm.fit(data.Distance_km)
+plt.plot(x, y, "o")
+plt.plot(x, normal_fit(x, pp[0], pp[-1]))
+plt.show()
+print("work?>")
+print(sp.sum(sp.log(normal_fit(x, pp[0], pp[-1]))))
+
+
+# now plot a gamma function
+def gamma_fit(x, a):
+    return sp.stats.gamma.pdf(x, a)
+
+p, cov = sp.optimize.curve_fit(gamma_fit, x, y)
+print(p)
+plt.plot(x, y, "o")
+plt.plot(x, gamma_fit(x, p[0]), "-")
+plt.show()
+
+# plot weivan distribution
+def wei_fit(x, c):
+    return sp.stats.weibull_min.pdf(x, c)
+p, cov = sp.optimize.curve_fit(wei_fit, x, y)
+print (p)
+plt.plot(x, y, "o")
+plt.plot(x, wei_fit(x, p[0]), "-")
+plt.show()
+
+
+sys.exit()
+
+# we can see a straigth line doesnt fit very well, lets try normal.
+mean = 0.0
+var = 1.0
+sigma = sp.sqrt(var)
+x = sp.linspace(-4, 4, 80)
+plt.plot(x, sp.stats.norm.pdf(x, mean, sigma))
+plt.show()
+
+n = 20
+x = sp.linspace(-4, 4, n)
+jitter_amp = .1
+jitter = jitter_amp * (sp.random.random(n) - 0.5)
+y = sp.stats.norm.pdf(x, mean, sigma) + jitter
+plt.plot(x, y, "o")
+plt.show()
+
+
+def normal_fit(x, mean, sigma):
+    return sp.stats.norm.pdf(x, mean, sigma)
+
+p, cov = sp.optimize.curve_fit(normal_fit, x, y)
+print(p)
+
+plt.plot(x, y, "o")
+plt.plot(x, normal_fit(x, p[0], p[1]), "-")
+plt.show()
+
+
+sys.exit()
 
 # make a normal distrubution to plot against the data
 normal_data = sp.stats.norm.rvs(data.Distance_km.mean(),
@@ -112,8 +242,6 @@ for i in range(100):
 print(sp.mean([i[0] for i in normal_ss]))
 
 
-
-sys.exit()
 
 # make a plot of the distrubution of Distance
 #sns.distplot(data.Distance_km)
