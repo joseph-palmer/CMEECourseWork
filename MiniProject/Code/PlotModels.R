@@ -54,9 +54,9 @@ PlotModels <- function(dataframe) {
 PlotResiduals <- function(dataframe) {
   # Makes a facet plot of the residuals
   # change name for plots
-  model_names <- c('LogNormal' = paste("Log normal, r sqaured =", GetR2(dataframe, "LogNormal")),
-                   'X_2Dt' = paste("2Dt, r sqaured =", GetR2(dataframe, "X_2Dt")),
-                   'InversePowerlaw' =  paste("Inverse powerlaw, r sqaured =", GetR2(dataframe, "InversePowerlaw")))
+  model_names <- c('LogNormal' = paste("Log normal, r squared =", GetR2(dataframe, "LogNormal")),
+                   'X_2Dt' = paste("2Dt, r squared =", GetR2(dataframe, "X_2Dt")),
+                   'InversePowerlaw' =  paste("Inverse powerlaw, r squared =", GetR2(dataframe, "InversePowerlaw")))
   
   # make residual plots
   residuals_plot = ggplot() +
