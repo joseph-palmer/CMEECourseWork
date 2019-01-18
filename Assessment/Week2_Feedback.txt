@@ -9,11 +9,11 @@ Note that:
 
 ======================================================================
 ======================================================================
-Your Git repo size this week is about 1.57 MiB on disk 
+Your Git repo size this week is about 28.27 MiB on disk 
 
 PART 1: Checking project workflow...
 
-Found the following directories in parent directory: Week1, Assessment, Week2, .git, Week3
+Found the following directories in parent directory: Week1, Week7, Assessment, Week10, Week5, Week2, Week9, Week4, .git, Week3, MiniProject
 
 Found the following files in parent directory: README.txt, .gitignore
 
@@ -27,7 +27,15 @@ Printing contents of .gitignore:
 *.tmp
 *.pdf
 *.pyc
-
+*.Rhistory
+*.RData
+*.aux
+*.bbl
+*.blg
+*.gv
+*.log
+/Week6/
+/jp4318_hpc_files/
 **********************************************************************
 
 Found README in parent directory, named: README.txt
@@ -35,12 +43,13 @@ Found README in parent directory, named: README.txt
 Printing contents of README.txt:
 **********************************************************************
 My CMEE Coursework Repository
+Each folder contains a more detailed README document.
 **********************************************************************
 
 ======================================================================
 Looking for the weekly directories...
 
-Found 3 weekly directories: Week1, Week2, Week3
+Found 8 weekly directories: Week1, Week10, Week2, Week3, Week4, Week5, Week7, Week9
 
 The Week2 directory will be assessed 
 
@@ -63,9 +72,22 @@ Printing contents of README.md:
 **********************************************************************
 # README Document for CMEECourseWork Week2
 ## Author: Joseph Palmer - _joseph.palmer18@imperial.ac.uk_
-## Date: _Oct - 2018_
+## Date: _Nov - 2018_
 
 ### Description: Contains all fils for CMEECourseWork Week2. This week was focsed on programming in python.
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Tree map
 ```
 .
@@ -96,12 +118,18 @@ Printing contents of README.md:
 │   ├── testcsv.csv
 │   └── TestOaksData.csv
 ├── README.md
+├── Results
+│   ├── bodymass.csv
+│   ├── DefaultSequences_alignment.txt
+│   ├── Fasta_alignment_dict.p
+│   ├── Fasta_alignment.txt
+│   └── JustOaksData.csv
 └── Sandbox
     ├── testout.txt
     ├── testp.p
     └── test.txt
 
-3 directories, 28 files
+4 directories, 33 files
 
 ```
 **********************************************************************
@@ -194,7 +222,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.01373s
+Time consumed = 0.04980s
 
 ======================================================================
 Inspecting script file boilerplate.py...
@@ -249,7 +277,7 @@ This is a boilerplate
 
 Code ran without errors
 
-Time consumed = 0.01271s
+Time consumed = 0.02923s
 
 ======================================================================
 Inspecting script file basic_csv.py...
@@ -310,19 +338,19 @@ Output (only first 500 characters):
 
 **********************************************************************
 ['Species', 'Infraorder', 'Family', 'Distribution', 'Body mass male (Kg)']
-('The species is', 'Species')
+The species is Species
 ['Daubentonia_madagascariensis', 'Chiromyiformes ', 'Daubentoniidae', 'Madagascar', '2.7']
-('The species is', 'Daubentonia_madagascariensis')
+The species is Daubentonia_madagascariensis
 ['Allocebus_trichotis', 'Lemuriformes', 'Cheirogaleidae', 'Madagascar', '0.1']
-('The species is', 'Allocebus_trichotis')
+The species is Allocebus_trichotis
 ['Avahi_laniger', 'Lemuriformes', 'Indridae', 'America', '1.03']
-('The species is', 'Avahi_laniger')
-['Avahi_occidentalis', 'Lemurifo
+The species is Avahi_laniger
+['Avahi_occidentalis', 'Lemuriformes', 'Indridae', 'Madagasc
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.01622s
+Time consumed = 0.02959s
 
 ======================================================================
 Inspecting script file cfexercises2.py...
@@ -429,7 +457,7 @@ Found one or more doctrings!
 Output (only first 500 characters): 
 
 **********************************************************************
-3.46410161514
+3.4641016151377544
 11
 15
 [11, 10, 12]
@@ -442,7 +470,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.01471s
+Time consumed = 0.03049s
 
 ======================================================================
 Inspecting script file align_seqs_better.py...
@@ -622,18 +650,15 @@ Output (only first 500 characters):
 **********************************************************************
 No sequence provided. Using ../../Week1/Data/fasta/407228326.fasta and ../../Week1/Data/fasta/407228412.fasta as default.
 
--------------------------
-Alignment complete
-
-
-Best Score: 545
-Best Alignment:
-............................................................................AAAAAAACAAAAAGATACATATATATGATATATCTGATATATGATATATATATGATATATCTGATATATGATATATATATGATATATCTGATATATGATATATATATGATATATCTGATATATGATATATATATGATATATCTGATATATATACATATGGTATACATGAGATACATCATATGTATATATGGTATACATGAGATACATCATATGTATATATGGT
 **********************************************************************
 
-Code ran without errors
-
-Time consumed = 2.41212s
+Encountered error:
+Traceback (most recent call last):
+  File "align_seqs_better.py", line 158, in <module>
+    status = main(sys.argv)
+  File "align_seqs_better.py", line 107, in main
+    seq1 = sequences.values()[0]
+TypeError: 'dict_values' object does not support indexing
 
 ======================================================================
 Inspecting script file dictionary.py...
@@ -707,7 +732,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.01446s
+Time consumed = 0.03023s
 
 ======================================================================
 Inspecting script file debugme.py...
@@ -753,7 +778,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.01521s
+Time consumed = 0.02480s
 
 ======================================================================
 Inspecting script file scope.py...
@@ -811,18 +836,18 @@ Found one or more doctrings!
 Output (only first 500 characters): 
 
 **********************************************************************
-('Inside the function the value is ', 5)
-('Inside a function the local is ', 4)
-('Outside the function, the value is ', 10)
-('Inside the function, the value is ', 5)
-('Inside the function, the value is ', 4)
-('Outside the function, the value is', 5)
+Inside the function the value is  5
+Inside a function the local is  4
+Outside the function, the value is  10
+Inside the function, the value is  5
+Inside the function, the value is  4
+Outside the function, the value is 5
 
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.01494s
+Time consumed = 0.02544s
 
 ======================================================================
 Inspecting script file cfexercises1.py...
@@ -919,7 +944,7 @@ hello
 
 Code ran without errors
 
-Time consumed = 0.01390s
+Time consumed = 0.03019s
 
 ======================================================================
 Inspecting script file tuple.py...
@@ -1005,7 +1030,7 @@ Junco hyemalis                 D
 
 Code ran without errors
 
-Time consumed = 0.01597s
+Time consumed = 0.02969s
 
 ======================================================================
 Inspecting script file basic_io.py...
@@ -1113,7 +1138,7 @@ Fourth Line
 
 Code ran without errors
 
-Time consumed = 0.02128s
+Time consumed = 0.03780s
 
 ======================================================================
 Inspecting script file lc1.py...
@@ -1199,7 +1224,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.01423s
+Time consumed = 0.03538s
 
 ======================================================================
 Inspecting script file oaks_debugme.py...
@@ -1312,7 +1337,7 @@ FOUND AN OAK!
 
 Code ran without errors
 
-Time consumed = 0.05125s
+Time consumed = 0.09180s
 
 ======================================================================
 Inspecting script file oaks.py...
@@ -1376,15 +1401,15 @@ Found one or more doctrings!
 Output (only first 500 characters): 
 
 **********************************************************************
-set(['Quercus robur', 'Quercus cerris', 'Quercus petraea'])
-set(['Quercus robur', 'Quercus cerris', 'Quercus petraea'])
-set(['QUERCUS ROBUR', 'QUERCUS CERRIS', 'QUERCUS PETRAEA'])
+{'Quercus robur', 'Quercus petraea', 'Quercus cerris'}
+{'Quercus robur', 'Quercus petraea', 'Quercus cerris'}
+{'QUERCUS PETRAEA', 'QUERCUS CERRIS', 'QUERCUS ROBUR'}
 
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.01321s
+Time consumed = 0.03521s
 
 ======================================================================
 Inspecting script file loops.py...
@@ -1562,7 +1587,7 @@ GERONIMO! infinite loop! ctrl+c
 
 Code ran without errors
 
-Time consumed = 10.58826s
+Time consumed = 10.25049s
 
 ======================================================================
 Inspecting script file using_name.py...
@@ -1602,7 +1627,7 @@ This program is being run by itself
 
 Code ran without errors
 
-Time consumed = 0.07325s
+Time consumed = 0.06846s
 
 ======================================================================
 Inspecting script file align_seqs.py...
@@ -1781,7 +1806,7 @@ ATCGCCGGATTACGGG
 
 Code ran without errors
 
-Time consumed = 0.05953s
+Time consumed = 0.05204s
 
 ======================================================================
 Inspecting script file sysargv.py...
@@ -1814,15 +1839,15 @@ Found one or more doctrings!
 Output (only first 500 characters): 
 
 **********************************************************************
-('This is the name of the script: ', 'sysargv.py')
-('Number of arguments: ', 1)
-('The arguments are: ', "['sysargv.py']")
+This is the name of the script:  sysargv.py
+Number of arguments:  1
+The arguments are:  ['sysargv.py']
 
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.01579s
+Time consumed = 0.02806s
 
 ======================================================================
 Inspecting script file align_seqs_fasta.py...
@@ -1975,7 +2000,7 @@ Aligning >gi|407228326|dbj|AB690564.1| Homo sapiens x Mus musculus hybrid cell l
 
 Code ran without errors
 
-Time consumed = 2.28878s
+Time consumed = 3.36578s
 
 ======================================================================
 Inspecting script file control_flow.py...
@@ -2112,7 +2137,7 @@ True
 
 Code ran without errors
 
-Time consumed = 0.01703s
+Time consumed = 0.03287s
 
 ======================================================================
 Inspecting script file test_control_flow.py...
@@ -2183,13 +2208,13 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.04514s
+Time consumed = 0.07082s
 
 ======================================================================
 ======================================================================
 Finished running scripts
 
-Ran into 0 errors
+Ran into 1 errors
 
 ======================================================================
 ======================================================================
