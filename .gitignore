@@ -9,7 +9,7 @@
 *.blg
 *.gv
 *.log
-/Data/Distances**
-/Results/**
+Miniproject/Data/Distances**
+Miniproject/Results/**
 /Week6/
 /jp4318_hpc_files/
