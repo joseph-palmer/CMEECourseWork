@@ -181,8 +181,8 @@ ggsave(paste0(plotpath, "model_pdf_cdf.pdf"), combined.plot)
 ggsave(paste0(plotpath, "models.pdf"), modelplot2)
 ggsave(paste0(plotpath, "models_hn_ex.pdf"), predicted.plot1)
 ggsave(paste0(plotpath, "models_ln_n.pdf"), predicted.plot2)
-ggsave(paste0(plotpath, "bootstrap_model_aic.pdf"), aic1.plot, scale=2)
-ggsave(paste0(plotpath, "bootstrap_model_aic_corrected.pdf"), aic2.plot, scale=2)
+ggsave(paste0(plotpath, "bootstrap_model_aic.pdf"), aic1.plot, scale=1.5)
+ggsave(paste0(plotpath, "bootstrap_model_aic_corrected.pdf"), aic2.plot, scale=1.5)
 
 # save tabele
 model_stats.aic$Rank = NULL
