@@ -1,0 +1,231 @@
+\documentclass[11pt]{article}
+\usepackage{lineno}
+\usepackage{graphicx}
+\usepackage[left=3cm, right=3cm, top=2cm]{geometry}
+\usepackage{float}
+\usepackage{amsmath}
+\DeclareMathOperator\erf{erf}
+\usepackage{caption}
+%\usepackage{cite}
+\usepackage[round]{natbib}
+\bibliographystyle{plainnat}
+\captionsetup[table]{skip=12pt}
+\linespread{1.6}
+\setlength{\parskip}{2em}
+\begin{document}
+\begin{titlepage}
+\begin{center}
+	\large{MSC. Computational Methods in Ecology and Evolution }\\
+	\textbf{ Miniproject }\\[0cm]
+	\huge{\line(1,0){380}\\
+		Modelling foraging distances of the Western Honeybee, \textit{Apis mellifera}: A comparison between rural and urban environments\\
+	\line(1,0){380}}\\[1cm]
+	\large{ Joseph Palmer\\ CID: 01613406}\\[0cm]
+	{joseph.palmer18@imperial.ac.uk }\\[1.2cm]
+	\begin{figure}[h]
+	\includegraphics[width=6cm]{../Writeup/WriteupImages/ImperialCrest.png}
+	\centering
+	\end{figure}
+	\normalsize{\textit{Department of Life Sciences, Imperial College London,}\\
+		\textit{Ascot, Berkshire, SL5 7PY, United Kingdom}}\\[0.5cm]
+	\small{\textbf{Word count:} 3449}\\
+	\small{\textbf{March 2019}}
+\end{center}
+\end{titlepage}
+\newpage
+\tableofcontents
+\newpage
+\section{Abstract}
+\begin{center}	
+\begin{linenumbers}
+
+Previous studies on pollinator foraging have often compared statistics that summarise data, such as the mean or median, and statistically compare them to examine the probability they arise from the same dataset. Whilst this is a useful approach it provides limited information about the wider structure of the data and its potential underlying processes. In this study, four distributions, two heavy-tailed and two light-tailed, are fit to honeybee (\textit{Apis mellifera}) foraging data gathered from a rural and urban hive using Non-linear least squares. Rural honeybees show a foraging distance with a heavy-tailed distribution, whereas the urban bees show a light-tailed distribution. The sites show significantly different foraging distances with rural bees foraging around 2 kilometres further than the urban population. However, areas of poor model fit in the data suggest these observations could potentially be a product of the non-linear least squares method of model fitting used. The implications of this study and alternative methods of distribution fitting are discussed.
+
+\end{linenumbers}
+\end{center}
+
+\section{Introduction}	
+\begin{linenumbers}
+Animal plant pollination is a critical ecosystem function relied upon by over 300,000 species of flowering plants, representing 87.5\% of species level diversity \citep{Ollerton2011}. The vast majority of this pollination is carried out by insects and the western honeybee (\textit{Apis mellifera}) has been shown as the most frequent floral visitor in natural habitats across the globe \citep{Albrecht2018}. With global insect populations declining, understanding foraging behaviour is an important part of developing conservation responses and has wider implications for land management.\par
+
+Anthropogenic land-use change is thought to be a key driver of pollinator declines, with agricultural expansion and urbanisation cited as key factors responsible \citep{Senapathi}. Whilst urbanisation has been shown to negatively influence some pollinators the effect on bees is less clear cut. A recent study by \cite{Samuelson2018} on Bumblebees (\textit{Bombus terrestris}) examined a number of metrics across hives over varying degrees of urbanization, finding a greater peak hive size, increased food stores, fewer parasites and overall increased survival time compared to rural populations. In contrast, the effects of urbanisation on honeybees has shown the opposite, finding decreased survival with increasing urbanisation \citep{Youngsteadt2015}. Whilst the two species are not directly comparable, both studies show differences in foraging behaviour between urban and rural environments. There are several plausible reasons for differences in foraging strategy. The abundance of resources in urban environments, although patchy, could be located in larger green spaces, such as parks, which may make it unnecessary to travel beyond the confines of a certain area \citep{Kaluza2016}. Alternatively, the features of the surrounding urban landscape could illicit a heavier selection against further foraging by decreasing the relative rewards, either through increased mortality or by requiring a longer path to reach an resources due to the presence of obstacles such as tall buildings \citep{Steffan-Dewenter2003}.\par
+
+Before the mechanisms can be established fully the statistical characteristics of foraging distance should be assessed. Evaluating distributions is common in many areas of biology, such as in seed dispersal \citep{Bullock2017} where the understanding of distributions is required for modelling plant dispersal. These methods have also been applied to foraging behaviour, with many studies fitting distributions to establish the presence or absence of power laws \citep{Humphries2010, Breed2015, Murphy2007}. In these studies, the data is usually in the form of step lengths during a search for food, which requires observing and recording movements of organisms through an environment. This method is often expensive and difficult to conduct effectively, with data limited to the number of individuals that can plausibly be tracked.\par
+
+An alternative to active tracking is to study central place foragers that use recruitment. Honeybee foragers are well known to communicate food resource locations using the waggle dance, whereby an individual conducts a series of movements in a figure of eight pattern whilst moving their abdomen (reviewed in \cite{Dyer2002}). The dance conveys information about the distance and direction from the hive of a food source, thereby allowing other individuals to exploit it. This method, unique to Honeybees, is predicted to reduce foraging time and allows for a collective search strategy in certain environments \citep{Schurch2014}. However, the waggle dances offers no information about the searching method. Although honeybees don't always follow these instructions and often continue to forage at patches they already know of, they do appear to follow rather than conduct their own search \citep{Wray2012}. Consequentially, whilst the use of waggle dance data does not give a full view of honeybee searching strategy, it does provide a good indicator of how the hive as a collective is foraging in the local environment\par
+
+Identifying the distribution of foraging distances shows the probability of an individual foraging a certain distance away from the hive. This understanding gives a more holistic view of the underlying foraging behaviour of the hive and provides an in-depth view of how the environment is changing hive foraging behaviour. In order to evaluate the difference in distributions of honeybee foraging distance, waggle dance observations from an urban and rural hive are decoded to derive foraging distance. Four distributions are fit to each dataset: Half-normal, Exponential, weibull and lognormal. These distributions were chosen as they have different tail properties, with the Half-Normal and exponential being light-tailed and the Weibull and lognormal having heavier tails (see models section in methods).\par
+
+The light-tailed models allude to a foraging strategy whereby the longest distances lie relatively close to the mean. The half-normal model is used here to represent distances close to a mean value, suggesting there is an optimal distance the hive is foraging at. The exponential model represents the probability decreasing rapidly with distance away from the hive. The heavier tailed models are used to represent a foraging strategy with rare occurrences of longer distances, leading to a slower rate of decrease in probability. The weibull distribution is chosen due to its flexibility in modelling skewed distributions. The lognormal distribution was chosen as an alternative heavy-tailed distribution and is utilised in cases where the there are many more smaller observations than larger ones causing a skew, such as in organism body size \citep{Packard2014}.\par  
+
+\end{linenumbers}
+
+\section{Methods}
+\begin{linenumbers}
+\subsection{Study design}
+The study used longitude and latitude data of foraging location decoded from honeybee waggle-dance observations from 2 three-frame observation hives of standard size in an urban and rural location. The recordings took place for 2-4 hours every two weeks in the morning or afternoon from April to September 2017.
+
+\subsection{Calculation of distances from latitude and longitude coordinates}
+Foraging distances were calculated in kilometres as the euclidean distance between the hive coordinates and foraging destination coordinates derived from waggle-dance observations (equation 1, 2 and 3, where a = hive latitude, b = destination latitude, c = hive longitude, d = destination longitude, C = 6371, the conversion constant for Kilometres).  
+
+\begin{large}
+	\begin{equation}
+	x = f_{(abcd)} = \sin\left(\frac{b - a}{2}\right)^2\ +\ \cos(a)\ \cos(b) \sin\left(\frac{d - c}{2}\right)^2\\  
+	\end{equation}
+	\begin{equation}
+	y = 2\ \text{atan2}(\sqrt{x}, \sqrt{1 - x})
+	\end{equation}
+	\begin{equation}
+	 D_e = C\ y
+	\end{equation}
+\end{large}
+
+\subsection{Distributions}
+Four distributions were chosen to fit to the foraging distance data:  Half-normal, Exponential, Weibull and Log-normal. The integral was taken from each distributions probability density function (PDF) to derive the cumulative density function (CDF), after which 1 was subtracted from the CDF to produce a complement CDF (CCDF). The half-normal (PDF equation 4, CDF equation 5) and exponential (PDF equation 6, CDF equation 7) distributions were chosen as different light-tailed distributions which predict different probabilities of forging distance. The Weibull (PDF equation 8, CDF equation 9) and lognormal (PDF equation 10, CDF equation 11) distributions were chosen as the heavy tailed distributions.
+
+\subsubsection{Half-Normal}
+\begin{Large}
+	\begin{equation}
+	f_{(x, \sigma)} = \frac{\sqrt{2}}{\sigma \sqrt{\pi}} \exp \left(-\frac{x^2}{2 \sigma^2}\right)
+	\end{equation}\\
+	\begin{equation}
+		F_{(x, \theta)} = \erf\left(\frac{x}{\sigma \sqrt{2}}\right)
+	\end{equation}
+\end{Large}
+
+\subsubsection{Exponential}
+\begin{Large}
+	\begin{equation}
+	f_{(x)} = e^{-\lambda x}
+	\end{equation}\\
+	\begin{equation}
+	F_{(x)} = 1 - e^{-\lambda x}
+	\end{equation}
+\end{Large}
+
+\subsubsection{Weibull}
+\begin{Large}
+	\begin{equation}
+	f_{(x)} = \frac{k}{\lambda} \left(\frac{x}{\lambda}\right)^{k-1} e^{-\left(\frac{x}{\lambda}\right)^k}
+	\end{equation}\\
+	\begin{equation}
+	F_{(x)} = 1 - e^{- \left(\frac{x}{\lambda}\right)^k}
+	\end{equation}
+\end{Large}
+
+\subsubsection{Lognormal} 
+\begin{Large}
+	\begin{equation}
+	f_{(x)} = \frac{1}{x \sigma \sqrt{2 \pi}}\ e^{- \frac{(\ln\ x - \mu)^2}{2\sigma^2}}
+	\end{equation}\\
+	\begin{equation}
+	F_{(x)} = \frac{1}{2} + \frac{1}{2}\ \erf\left[\frac{\ln\ x - \mu}{\sqrt{2 \sigma}}\right]
+	\end{equation}
+\end{Large}
+
+\subsection{Calculation of Compliment Cumulative Frequency}
+The Compliment Cumulative Frequency (CCDF) of the distance data was derived by sorting distances in ascending order and producing a set of numbers between 1 and 0 corresponding to the total length of the distances used. Each distance thereby was given a value representing the probability of selecting a distance greater than a specific distance.
+
+\subsection{Model fitting and selection}
+The CCDF's were fit to the distance data by estimating parameters which minimised the residual sum of squares using non-linear least squares (NLLS) via the r package \textit{minpack.lm}. The optimised parameter estimates were then used with each distributions CCDF to generate a series of predicted values for comparison against the actual distance CCDF.\par
+
+The NNLS algorithm make predictions of the dependent variable based upon the parameters in the model and the data provided. A starting estimate is given for each parameter which the algorithm uses to make a set of predictions and calculate the residual sum of squares (RSS), the sum of the squared deviations between the actual data points and those predicted by the model. The parameter values are then repeatedly altered and the RSS recalculated and compared to the previous predictions with the goal of minimising the RSS. This process in the R package \textit{minpack.lm} uses the Levenberg-Marquardt (LM) algorithm which switches between the Gauss-Newton and gradient descent algorithms to increase robustness against sub-optimal starting values.\par
+
+Imperative to optimal NLLS fitting is the selection of starting values, which were derived from the dataset being fit. For the Weibull and Lognormal distributions the starting parameters were given as the mean and variance of the input data. For the Half-normal distribution the parameter $\sigma$ was given as the standard deviation of the input data. For the exponential distribution, the parameter $\lambda$ was given as one divided by the mean of the input data.\par
+
+Throughout this study a Corrected Akaike Information Criterion (AICc) score is used for model selection (equation 12, where $n$ is the sample size and $k$ is the number of parameters). The AICc differers from the AIC by taking into account sample size in order to correct for second order bias when $n/k\ < 40$ \citep{Burnham2004}, which is the case for some of the samples in this study. The choice of an AIC derived test over a Bayesian Information Criterion (BIC) equivalent is due to the complexity of the ecological processes underlying the data. The AIC is said to be more appropriate  when the underlying process is complex such that the sample size of the data is unlikely to approach the process parameter space \citep{Aho2014}. In contrast, the BIC is more appropriate for relatively simple processes, where the sample size of the data is expected to be much larger than the process parameter space \citep{Aho2014}. Multiple factors can influence foraging distance, such as metabolic cost Vs reward, resource allocation and the distribution of resources within an environment. For social organisms with division of labour, such as honeybees, influencing factors are increased beyond the relative needs of the individual. Consequentially, the model selection used herein does not presume to select the 'true' model but rather the best fitting model from a collection of phenomenologically plausible options. 
+
+\begin{equation}
+AICc = AIC(m) + \frac{2\ k\ (k\ +\ 1)}{n\ - k\ - 1}
+\end{equation}
+
+\subsection{Sampling sensitivity analysis}
+The total number of individual distances for each dataset was divided into 17 bins, where size increased from 17 to the total number of individual distances in that dataset. The result of this produced 17 bins of increasing size, N. 17 was chosen as in testing this produced a large enough number of samples to observe trends whilst containing sufficient data for the models to converge. Each bin contained N randomly drawn samples from the distance data with replacement to produce a subset. Distributions were then fitted to the CCDF of the sample distances and its AICc value recorded. This procedure was repeated 100 times in order to calculate an average AICc along with 95\% confidence intervals based on their normal distribution.
+
+\subsection{Computing languages}
+The data analysis process was divided into two sections: data cleansing and model fitting. The data cleansing was conducted with a python script due to its speed and ease of data organisation. The model fitting was conducted in R because of the support surrounding the NLLS fitting package \textit{minpack.lm} as well as the ability to use the high-level graphics package \textit{ggplot2}. Bash was used to run all the processes as a complete analysis pipeline and was chosen for its ease of use in running multiple programs in different languages in sequence. However, as Bash doesn't work on Windows operating system, where cross platform support is required a python script using the modules \textit{OS} or \textit{Subprocess} would be more suitable. This write up is written in \LaTeX. 
+
+\subsubsection{Software and package versions}
+\textbf{System architecture:} x86\_64-pc-linux-gnu (64-bit).\\
+\textbf{python version 3.6.7.}. Packages: scipy 1.1.0, pandas 0.23.4, re 2.2.1.\\
+\textbf{R version 3.4.4 (someone to lean on).} Packages: xtable 1.8-3, cowplot 0.9.4, ggplot2 3.1.0, reshape2 1.4.3, pracma 2.2.2, minpack.lm 1.2-1.\\
+\textbf{gnu Bash version 4.4.19.}\\
+\textbf{pdfTeX version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian).}
+
+\end{linenumbers}
+
+\section{Results}
+\begin{linenumbers}
+
+\subsection{Comparison of foraging distances between rural and urban environments}
+The data consists of 414 foraging distance observations comprising of 221 and 193 observations for rural and urban environments respectively. There is a significant difference in the mean foraging distance between urban and rural environments (urban mean = 1.3, rural mean = 0.8, Welch Two-sample t-test: t = 5.7, df = 344.5, p $<$ 0.001) despite substantial overlap of their inter-quartile ranges (figure 1). 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale= 1]{../Results/Plots/ttest.pdf}
+	\caption{Box plots of Rural and urban foraging distance}
+\end{figure}
+\newpage
+As foraging distance is continuous, fitting models to the probability density function is not viable due to the probability of obtaining a specific value being 0. To account for this, the data was fit to the compliment cumulative density (CCDF), which gives the probability of obtaining a value greater than or equal to a specific value. Figure 2 shows the PDF and CCDF of foraging distances at each site. The distributions in all cases are bounded from 0 to $+\infty$. For the rural and urban datasets the range of foraging distances are 0.01:5.17Km and 0.00057:3.18Km respectively. 
+
+\newpage
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale= 1]{../Results/Plots/model_pdf_cdf.pdf}
+	\caption{\textbf{A.} Probability density plot of foraging distances for the Rural, urban and combined (ALL) datasets generated through the \textit{geom\_smooth} component of ggplot2. \textbf{B.} Cumulative density plot for the Rural, urban and combined (ALL) datasets.}
+\end{figure}
+
+\subsection{Model fitting}
+Weibull, Lognormal, exponential and half-normal CCDFs were fitted to foraging distances from both environments(figure 3). Table 1 shows the model predictions for each model and each dataset. For the urban environment, the half-normal CCDF provided the best fit with an AICc value lower than the other models (AIC = -1144, $\sigma$ = 1.07, Standard Error $\pm$ 0.004). For the urban data the Weibull distribution showed the best fit (Urban: AICc = -969, $\lambda$ = 1.38, $k$ = 1.7, Standard Error $\pm$ 0.004, 0.02). In all scenarios the AICc values are significantly different to each other with a difference in AICc values between any two models much greater than the 4 points required under a conservative estimate \citep{Burnham2004}. \\[1cm]
+
+\input{../Results/ModelAICc.tex}
+
+\begin{figure}[H]
+	%\centering
+	\includegraphics[width= 15cm]{../Results/Plots/models.pdf}
+	\caption{ Fitted models to Rural, urban and combined (ALL) cumulative density function for foraging distance. Black line indicates actual values, coloured lines show each models fit to the data}
+\end{figure}
+
+The sampling Sensitivity analysis shows how sensitive the ranking of models are to the sample size. As the data used here is a set size this is necessary in order to determine if the sample size is sufficient. It is important to note that the difference in AICc values are not comparable between different datasets, the focus is on the rankings rather than the absolute values. For the urban data, the ranking of models by AICc values (Half-normal, Weibull, exponential, lognormal) varies over the range of sample sizes used. The half-normal and weibull distributions diverge from the exponential and lognormal with sample sizes over 50. Whilst the exponential and lognormal distributions significantly diverge from each other as sample size increase, the half-normal and weibull distributions remain close, only significantly diverging with sample size greater than 180. For the rural data the ranking of models by AICc values (weibull, lognormal, Half-normal, exponential) shows a wider spread. The Half-normal and exponential models are significantly different to each other and the other models above sample sizes of approximately 34, whereas the lognormal and weibull distributions only become significantly different above sample sizes of approximately 100 (figure 4). \par
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width= 14cm]{../Results/Plots/bootstrap_model_aic.pdf}
+	\caption{AIC values of fitted models to Rural (ZSL), urban (ROT) and combined (ALL) cumulative density function for different sample sizes of foraging distance. Shaded area around points indicates 95\% confidence intervals across simulations.}
+\end{figure}
+
+To make the differences in model ranking clearer figure 5 shows the absolute normalised AICc values against sample size, derived by dividing the absolute AICc values by their respective sample sizes. Both the rural dataset show a clear ranking preserved from the smallest sample. The urban data, however, shows changes in ranking throughout increasing sample size. The exponential and lognormal distributions change ranking positions at sample sizes ranging between 50 and 100 and although the new ranking is preserved for the remaining sample sizes, the difference between them fluctuates and remains close, moving towards another overlap at the full sample size. Similarly, the half-normal and weibull distributions overlap from sample sizes above 50 and differences are only statistically significant above 180.\par 
+
+Combined, the results show differences in ranking between models is significant and stable for the rural data. For the urban data the rankings are much more confused suggesting the observed differences between models is strongly influenced by sample size. Despite this uncertainty in the exact model dynamics, the results indicate a difference between foraging distance distributions for rural and urban honeybees.  
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width= 14cm]{../Results/Plots/bootstrap_model_aic_corrected.pdf}
+	\caption{Absolute Corrected AIC values of fitted models to rural and urban cumulative density function for different sample sizes of foraging distance. As these are absolute values, higher values indicate the best fit, as all values were negative before taking the absolute. Shaded area around points indicates 95\% confidence intervals across simulations.}
+\end{figure}
+
+\end{linenumbers}
+
+\section{Discussion}	
+\begin{linenumbers}
+\par
+The results from this study show both the mean and distribution of Honeybee foraging distances differ between rural and urban environments. Rurally located honeybees forage further than their urban counterparts and display a heavier tailed distribution, suggesting a greater probability of longer distanced flights. The urban data shows not only the best AICc fit for the half-normal distribution, the predicted line is visually very close to the observed data. However, the weibull distribution also shows a relatively good fit but over estimates the probability at the tail. This is re-enforced by the results of our sampling sensitivity analysis which shows a much slower divergence between these two models which only become significantly different as the sample size approaches the total for the data.\par
+
+For the rural data, the difference in AICc values is significantly different between the two best fitting models, weibull and lognormal, but the visual fit of these lines show clear gaps in a number of areas not identified in either model and the weibull, the best fitting model, has a visually worse fit than the lognormal for distances over 2Km, consistently underestimating the probability. Although overall the weibull is the better fitting model, the prediction of the tail end of the distribution casts doubt on this model representing an accurate approximation of the data. The sampling sensitivity analysis shows a significant divergence between the distributions in terms of AICc with sample sizes over 100, suggesting more data wouldn't necessarily improve either models fit. Therefore, it cannot be certain our best fitting distribution is representative of the 'true' underlying distribution.\par
+
+Our models show a range of good and poor fits to the data but all with the exception of the half-normal don't appear reflective of the underlying process. The implications for this are either that the distributions chosen are not good fits and other phenomenological models would do a better job, or the parameter estimation by NNLS has not identified the best values. The former can be tested easily by introducing other distributions or modifying the current ones in some way to change their responses over certain parts of the curve. The latter is more of a question as to the suitability of NNLS for fitting distributions.\par
+
+A limitation of NLLS is that it will always return the parameters with the minimum variance of fit, which may not be the parameters with the highest probability of being correct. The NLLS procedure examines the fit over the entire curve and treats the error terms equally, which could result in parameters which minimise residual distance in some areas at the expense of increasing them in others to produce the overall lowest deviation from the line. In this instance, although the overall fit of the curve may be closest to the actual data, this could result in sections with extremely poor fit and estimate parameters that are not the most probable.\par 
+
+A possible alternative would be to use weighted least squares (WLS). This method can be applied to both linear and non-linear functions and places a weight on each observation to vary their relative contribution to the final parameter estimates. This method could be used in the data presented here to increase the relative contribution of distances at the right tail and coerce the parameter estimation into providing a better fit at this end. A problem with using this approach is that the weighting would have to be known specifically, which may not be possible for our observations \citep{Makarenkov2004}.\par
+
+Maximum likelihood is an alternative method of optimising the parameters. Rather than providing the fit with the lowest sum of residual errors, maximum likelihood provides parameter estimates with the highest probability of being correct. One area where this has been promoted is in identifying levy flights. Levy flights are random walks with a step length derived from a PDF with a power-law tail, resulting in a higher density of small steps connected by few long steps and have been promoted in several studies as an optimal foraging strategy \citep{Reynolds2009}. The identification of levy flights has not been without controversy and evidence has been shown to vary depending on methods used \citep{Clauset, Murphy2007}. To date most studies use maximum likelihood for parameter estimation and AIC weights for model comparison \citep{Humphries2010}. It therefore may be worthwhile repeating the analysis using maximum likelihood.\par
+
+Overall, the results presented here demonstrate potential differences in urban and rural honeybee foraging strategies and serves to highlight the importance of comparing probability density functions when evaluating ecological processes. Nevertheless, there is a strong possibility these differences could be an artefact of the curve fitting method employed rather than actual differences in the underlying biological processes. Future studies should consider the methods used here over a much larger dataset with multiple sites and implement a maximum likelihood method of parameter estimation along with a model selection processes based on akaike weights.
+\end{linenumbers}
+\section{Acknowledgements}
+The author would like to thank Vincent Jansen, Ellie Leadbeater and Ash Samuelson for providing the data used in this study.
+
+\bibliographystyle{plainnat}
+\bibliography{JPalmer_MiniProject}
+\end{document}

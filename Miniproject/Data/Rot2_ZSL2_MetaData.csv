@@ -1,0 +1,5 @@
+ColumnName,Description,DataType
+Location,The location of the source hive,String
+Date,The date the observations were made,Date
+Y,Latitude of foraging destination,Float
+X,Lognitude of foraging destination,Float

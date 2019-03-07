@@ -1,0 +1,8 @@
+ColumnName,Description,DataType
+Location,Location of the source Hive,String
+Date,The date the observations were made,DateTime object
+Destination_Longitude,Longitude coordinate of foraging destination,float64
+Destination_Latitude,Latitude coordinate of formaging destination,float64
+Hive_Latitude,Latitude coordinate of hive location,float64
+Hive_Longitude,Longitude coordinate of hive location,float64
+Distance_Km,Ecludian distance in Kilometers between hive and destination,float64
