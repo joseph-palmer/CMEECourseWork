@@ -22,6 +22,6 @@ echo -e "----------- Model fitting complete --------------------\n"
 # Compile latex report
 echo -e "---------- Compiling writeup --------------------------\n"
 bash CompileLatex.sh ../Writeup/JPalmer_MiniProject.tex
-#mv JPalmer_MiniProject.pdf ../Writeup/
+rm *.pdf
 echo -e "---------- Writeup compiled ---------------------------\n"
 echo -e "\nMiniproject Complete, write up is in directory Writeup"
