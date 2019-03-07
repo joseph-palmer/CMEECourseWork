@@ -7,12 +7,12 @@
 rm(list=ls())
 
 ########## Load required packages ##########
-require("minpack.lm")
-require("pracma")
-require("reshape2")
-require("ggplot2")
-require("cowplot")
-require("xtable")
+suppressMessages(require("minpack.lm"))
+suppressMessages(require("pracma"))
+suppressMessages(require("reshape2"))
+suppressMessages(require("ggplot2"))
+suppressMessages(require("cowplot"))
+suppressMessages(require("xtable"))
 
 ########## Model Functions ##########
 LogNormal <- function(x, a, b) {

@@ -8,18 +8,12 @@ rm(list=ls())
 
 ########## Load required packages ##########
 cat("### Loading required packages ###\n\n")
-require("minpack.lm")  
-require("pracma")
-require("reshape2")
-require("ggplot2")
-require("cowplot")
-require("xtable")
 
 ########## Source Functions script ##########
 source("Functions.R")
 
 ########## Import data ##########
-cat("\n### Generating descritive statistics and running data comparison tests ###\n\n")
+cat("\n### Generating descriptive statistics and running data comparison tests ###\n\n")
 data = read.csv("../Data/Distances.csv")
 
 # change location names
@@ -51,9 +45,14 @@ rot.cdf["Location"] = "Rural"
 cdf = rbind(rot.cdf, zsl.cdf)
 
 # fit models to get predictions
+# surpress warnings for NaNs produced. not important.
+options(warn = -1)
 predicted.zsl = GetPredictions(zsl.cdf)
 predicted.rot = GetPredictions(rot.cdf)
 predicted.comb = rbind(predicted.zsl, predicted.rot)
+
+# turn warnings back on
+options(warn = 0)
 
 # Get best AICScore for each model and dataset
 model_stats = matrix(ncol = 8, nrow = length(unique(predicted.comb$AIC)))
@@ -79,11 +78,16 @@ colnames(model_stats) = c("Location", "Model", "Parameters", "Starting estimates
 model_stats.aic = AICTableRank(model_stats)
 
 ########## Sampling sensitivity Analysis ##########
+# surpress warnings here - these are due to certain samples not converging which is expected and accounted for in the workflow
+options(warn=-1)
 cat("\n### Conducting sampling sensitivity analysis ###\n\n")
 combined.zsl = BootstapModels(data.zsl)
 combined.zsl["Location"] = "Urban"
 combined.rot = BootstapModels(data.rot)
 combined.rot["Location"] = "Rural"
+
+# turn warnings back on
+options(warn=0)
 
 # Rank bootstrapped data according to AICc at each sample size.
 bootstrap_data = data.frame()
@@ -176,13 +180,13 @@ modelplot2 = plot_grid(predicted.plot1, predicted.plot2, ncol = 1, nrow = 2)
 
 ########### Save all plots and tables ##########
 plotpath = "../Results/Plots/"
-ggsave(paste0(plotpath, "ttest.pdf"), ttest.plot)
-ggsave(paste0(plotpath, "model_pdf_cdf.pdf"), combined.plot)
-ggsave(paste0(plotpath, "models.pdf"), modelplot2)
-ggsave(paste0(plotpath, "models_hn_ex.pdf"), predicted.plot1)
-ggsave(paste0(plotpath, "models_ln_n.pdf"), predicted.plot2)
-ggsave(paste0(plotpath, "bootstrap_model_aic.pdf"), aic1.plot, scale=1.5)
-ggsave(paste0(plotpath, "bootstrap_model_aic_corrected.pdf"), aic2.plot, scale=1.5)
+suppressMessages(ggsave(paste0(plotpath, "ttest.pdf"), ttest.plot))
+suppressMessages(ggsave(paste0(plotpath, "model_pdf_cdf.pdf"), combined.plot))
+suppressMessages(ggsave(paste0(plotpath, "models.pdf"), modelplot2))
+suppressMessages(ggsave(paste0(plotpath, "models_hn_ex.pdf"), predicted.plot1))
+suppressMessages(ggsave(paste0(plotpath, "models_ln_n.pdf"), predicted.plot2))
+suppressMessages(ggsave(paste0(plotpath, "bootstrap_model_aic.pdf"), aic1.plot, scale=1.5))
+suppressMessages(ggsave(paste0(plotpath, "bootstrap_model_aic_corrected.pdf"), aic2.plot, scale=1.5))
 
 # save tabele
 model_stats.aic$Rank = NULL
