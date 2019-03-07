@@ -232,7 +232,7 @@ question_16 <- function() {
 #######################
 # Challenge Question A
 #######################
-challenge_A_helper <- function(run_type) {
+challenge_A_helper <- function(run_type, v) {
   # Gets the mean species richness as a function of time across a large number of repeated simulations
   # set parameters
   # run type 0 gets min, 1 gets max
@@ -256,7 +256,7 @@ challenge_A_helper <- function(run_type) {
   # loop through the simulations and get species richness at each time point, populate the vectors tot_data
   # and x2_var with the total values at that time point
   for (i in 1:simulations) {
-    example_time_series = neutral_time_series_speciation(community, time_series_length, v = 0.2)
+    example_time_series = neutral_time_series_speciation(community, time_series_length, v)
     tot_data = tot_data + example_time_series
     x2_var = x2_var + example_time_series^2 
   }
@@ -275,8 +275,8 @@ challenge_A_helper <- function(run_type) {
 
 challenge_A <- function() {
   # get data to plot for challenge A using challenge_A_helper function.
-  data_max = challenge_A_helper(0)
-  data_min = challenge_A_helper(1)
+  data_max = challenge_A_helper(0, 0.2)
+  data_min = challenge_A_helper(1, 0.2)
   
   # create the plot
   time = seq(0, length(data_max[,1]) - 1)
@@ -304,10 +304,47 @@ challenge_A <- function() {
 #######################
 # Challenge Question B)
 #######################
-challenge_B <- function() {
+challenge_B_helper <- function(community, v) {
+  # set simulations and tme step
+  simulations = 100
+  time_series_length = 200
   
+  # initialise the vectors to store the species richness and squared species richness at each time point
+  tot_data = rep(0, time_series_length + 1)
+  x2_var = rep(0, time_series_length + 1)
+  for (i in 1:simulations) {
+    example_time_series = neutral_time_series_speciation(community, time_series_length, v)
+    tot_data = tot_data + example_time_series
+    x2_var = x2_var + example_time_series^2 
+  }
+  
+  # calulcate average from the running total / simulation number
+  avg_data = tot_data / simulations
+  avg_x2 = x2_var / simulations
+  
+  # calculate variance, sd and confidence interval
+  varience = avg_x2 - avg_data^2
+  std = sqrt(varience)
+  error = qnorm(0.986) * std / sqrt(simulations)
+  
+  return(cbind(avg_data, error))
 }
 
+challenge_B <- function() {
+  for (v in 1:100) {
+    if (100 %% v == 0){
+      print(v)
+      run = 100/ v
+      output = challenge_B_helper(rep(seq(1, v), run), 0.2)
+      time = seq(1, length(output[,1]))
+      if(v < 2) {
+        plot(time, output[,1], type = "l", xlim = c(0, 100), ylim = c(0, 100), xlab = "Generations", ylab = "Species Richness")
+      } else {
+        lines(output[,1], col = v)
+      }
+    }
+  }
+}
 
 ##############
 # Question 17)
@@ -386,6 +423,8 @@ question_20 <- function() {
   }
   # set partition for the bar plots produced
   par(mfrow=c(2,2), oma=c(0,0,2,0))
+  # set storage vector for octaves to be returned
+  return_octaves = c()
   # loop through each size, then loop through each file of that size
   # get the octaves average for each file, then sum these averages and take an average
   # for each size, then plot these in a bar plot 
@@ -410,12 +449,128 @@ question_20 <- function() {
     # average the size sum of the averages for each file
     avg_simulation_octaves = unlist(lapply(simulation_octaves, function(n) n/length(files)))
     # produce the final barplot with labels and title
+    
+    # create labels fot the plot.
+    len_bins = c(0:(length(avg_simulation_octaves) - 1))
+    bins = c()
+    for (i in len_bins) {
+      if (i > 0) {
+        max_bin = 2^i
+        min_bin = 2^(i + 1) - 1
+        bins = append(bins, paste0(max_bin, " -\n", min_bin))
+      } else {
+        max_bin = 2^i
+        bins = append(bins, max_bin)
+      }
+    }
+    
     barplot(avg_simulation_octaves,
             main = paste("Size =", size),
+        #    names.arg = bins[1:length(avg_simulation_octaves)],
             xlab = "Octaves",
             ylab = "Average Species Abundance")
     title(paste("Species Richness", speciation_rate), outer = T)
+    
+    # return the octaves to main to be returned
+    return_octaves = append(return_octaves, list(avg_simulation_octaves)) 
   }
+  return(return_octaves)
+}
+
+#############
+# Challenge C
+#############
+Challenge_C_helper <- function(size) {
+  # mean species richness against generation to better identify accurate burn in time
+  simulations = 10
+  time_series_length = 100
+  speciation_rate = 0.2
+  community = initialise_min(size)
+  tot_data = 0
+  
+  for (i in 1:simulations) {
+    example_time_series = neutral_time_series_speciation(community, time_series_length, speciation_rate)
+    tot_data = tot_data + example_time_series
+  }
+  
+  # calulcate average from the running total / simulation number
+  avg_data = tot_data / simulations
+  return(avg_data)
+}
+
+Challenge_C <- function() {
+  s_500 = Challenge_C_helper(500)
+  s_1000 = Challenge_C_helper(1000)
+  s_2500 = Challenge_C_helper(2500)
+  s_5000 = Challenge_C_helper(5000)
+  sizes = list(s_1000, s_2500, s_5000)
+  time = seq(0, length(s_500) - 1)
+  plot(time, s_500, type = "l", xlim = c(0, 100), ylim = c(0, 2500), xlab = "Generations", ylab = "Average Species Richness")
+  c = 1
+  for (i in sizes) {
+    c = c + 1
+    lines(i, col = c)
+  }
+}
+
+
+#############
+# Challenge D
+#############
+Challenge_D <- function(J, v) {
+  # coalesence code
+  lineages = rep(1, J)
+  abundances = c()
+  N = J
+  theta = v * (J-1/1-v)
+  while (N > 1) {
+    j = sample(length(lineages), 1)
+    randnum = runif(1)
+    if (randnum < (theta / (theta + N - 1))) {
+      abundances = append(abundances, lineages[j])
+    } else {
+      i = sample(length(lineages), 1)
+      while (i == j) {
+        i = sample(length(lineages), 1)
+      }
+      lineages[i] = lineages[i] + lineages[j]
+    }
+    lineages = lineages[-j]
+    N = N - 1
+  }
+  abundances = append(abundances, lineages)
+  return(abundances)
+}
+
+RunChallengeD <- function(simulation_number, speciation_rate) {
+  #### code to run coalescence with a given speciation rate and number of simulations
+  sample_sizes = c(500)#, 1000, 2500, 5000)
+  for (i in 1:length(sample_sizes)) {
+    print(paste("Community size =", sample_sizes[i]))
+    total_oct = c()
+    for (ii in 1:simulation_number) {
+      x = Challenge_D(sample_sizes[i], speciation_rate)
+      #  spa = species_abundance(x)
+      oct = octaves(x)
+      total_oct = sum_vect(total_oct, oct)
+    }
+    average_oct = total_oct / simulation_number
+    return(average_oct)
+  }
+}
+
+Create_Graph_ChallengeD <- function() {
+  forwards_octaves = question_20()
+  coalescence = RunChallengeD(30000, 0.002125)
+  forwards = forwards_octaves[[1]]
+  bartable = cbind(forwards, coalescence)
+  # clear the previous graphics
+  dev.off()
+  barplot(bartable,
+          beside = T,
+          #    names.arg = bins[1:length(avg_simulation_octaves)],
+          xlab = "Octaves",
+          ylab = "Average Species Abundance")
 }
 
 ################################################
@@ -458,6 +613,7 @@ chaos_game <- function() {
     random_selection = sample(3, 1)
     target = unlist(vector_list[random_selection])
     # make a new point half way towards the desired point (diferance - (difference / 2))
+    # max - difference between max and min / 2.
     new_x = max(plotter[1], target[1]) - ((max(plotter[1], target[1]) - min(plotter[1], target[1]))/2)
     new_y = max(plotter[2], target[2]) - ((max(plotter[2],  target[2]) - min(plotter[2], target[2]))/2)
     # plot the point 
@@ -466,6 +622,46 @@ chaos_game <- function() {
     plotter = c(new_x, new_y)
   }
 }
+
+##############
+# Question 22) - E) Challenge question -
+##############
+Challenge_E <- function() {
+  # save seed state
+  seed_state <- .Random.seed
+  # set the seed
+  set.seed(9)
+  # initialised the plot
+  plot(0:5, 0:5, type = "n", xaxt = "n", yaxt = "n", ann = F, bty = "n")
+  # set the plot values to randomly choose from
+  A = c(0, 0)
+  B = c(2, 3)
+  C = c(4, 0)
+  # place vector in a list
+  vector_list = list(A, B, C)
+  # set the starting value for the plot
+  plotter = c(0, 5)
+  for (i in 1:100000) {
+    # randomly select some points to draw towards
+    random_selection = sample(3, 1)
+    target = unlist(vector_list[random_selection])
+    # make a new point half way towards the desired point (diferance - (difference / 2))
+    # max - difference between max and min / 2.
+    new_x = max(plotter[1], target[1]) - ((max(plotter[1], target[1]) - min(plotter[1], target[1]))/2)
+    new_y = max(plotter[2], target[2]) - ((max(plotter[2],  target[2]) - min(plotter[2], target[2]))/2)
+    # plot the point
+    if (i < 20) {
+      points(new_x, new_y, cex = 1, pch = 16)
+    } else {
+      points(new_x, new_y, cex = 0.05, col = random_selection*2)
+    }
+    # re set pointer to the new position
+    plotter = c(new_x, new_y)
+  }
+  # return the original seed state
+  .Random.seed <- seed_state
+}
+
 
 ##############
 # Question 23)
@@ -506,7 +702,6 @@ spiral <- function(start, direction, length) {
   end = turtle(start, direction, length)
   # calcuate the length and director for the next line
   next_length = 0.95 * length
-  print(next_length)
   next_direction = direction - pi/4
   # call spiral to draw the next part of the spiral
   spiral(end, next_direction, next_length)
@@ -521,7 +716,6 @@ spiral_2 <- function(start, direction, length) {
   end = turtle(start, direction, length)
   # calcuate the length and director for the next line
   next_length = 0.95 * length
-  print(next_length)
   next_direction = direction - pi/4
   # call spiral to draw the next part of the spiral
   if ( length > 0.01) {
@@ -569,8 +763,13 @@ fern <- function(start, direction, length) {
 ##############
 # Question 29)
 ##############
-fern_2 <- function(start, direction, length, dir) {
+fern_2 <- function(start, direction, length, dir, recursive_number = 0) {
   # calls turtle to draw a spiral but stops if length is below a certain value
+  # set blank area for plot
+  if (recursive_number == 0){
+    plot(-50:50, -50:50, type = "n", xaxt = "n", yaxt = "n", ann = F, bty = "n")
+    recursive_number = recursive_number + 1
+  }
   # store the first turtle line end point for the start of the next turtle call
   end = turtle(start, direction, length)
   # calcuate the length and director for the next line
@@ -587,31 +786,77 @@ fern_2 <- function(start, direction, length, dir) {
   # call spiral to draw the next part of the spiral
   if (length > 0.1) {
     # to make furl, it need to go in same direction as previous one, so change the dir back to the previous call
-    fern_2(end, next_direction_left, next_length_left, - dir_pass)
+    fern_2(end, next_direction_left, next_length_left, - dir_pass, recursive_number)
     # this is to go straight up
-    fern_2(end, next_direction_right, next_length_right, dir_pass)
+    fern_2(end, next_direction_right, next_length_right, dir_pass, recursive_number)
   }
 }
 
-# make empty plot (not neededin script)
-# plot(-50:50, -50:50, type = "n", xaxt = "n", yaxt = "n", ann = F, bty = "n")
-# 
-# fern_2(start = c(-5, -30), pi/2, 10, 1)
-# 
-# tree(start = c(-5, -30), pi/2, 20)
+#############
+# Challenge F
+#############
+Challenge_F <- function(distance, start_x, start_y, colour = 1){
+  direction = (pi/3)
+  end_x = start_x
+  end_y = start_y + distance
+  segments(start_x, start_y, end_x, end_y, col = colour)
+  new_x = end_x
+  new_y = end_y
+  end_y = (sin(direction) * (distance/2)) + new_y
+  end_x = (cos(direction) * (distance/2)) + new_x
+  segments(new_x, new_y, end_x, end_y, col = colour)
+  if (distance > 1) {
+    newdistance = distance / 2
+    if (distance < 10) {
+      colour = 4
+    } else {
+    }
+    Challenge_F(newdistance, end_x, end_y, colour)
+  }
+  direction = 2 * direction
+  end_y = (sin(direction) * (distance/2)) + new_y
+  end_x = (cos(direction) * (distance/2)) + new_x
+  segments(new_x, new_y, end_x, end_y)
+  if (distance > 1){
+    distance = distance / 2
+    if (distance < 10) {
+      colour = 4
+    } else {
+    }
+    Challenge_F(distance, end_x, end_y, colour)
+  }
+}
 
+run_challenge_f <- function() {
+  plot(-50:50, -50:50, type = "n", xaxt = "n", yaxt = "n", ann = F, bty = "n")
+  Challenge_F(30, 0, -40)
+}
 
+#############
+# Challenge G
+#############
 
+# Challenge_G <- function(s, d, l, f, r = 0) {
+#   if(r == 0){
+#     bp()
+#     r = r + 1
+#   }
+#   e = turtle(s, d, l)
+#   x = 0.87 * l
+#   y =  0.38 * l
+#   z = d
+#   if (f == 1) {
+#     A = d + (pi/4)
+#   } else {
+#     A = d - (pi/4)
+#   }
+#   Q = f * -1
+#  if (l > 0.1) {
+#    Challenge_G(e, A, y, - Q, r)
+#    Challenge_G(e, z, x, Q, r)
+#  }
+# }
 
-
-
-
-
-
-
-
-
-
-
-
-
+##################################################################################################################
+#                                                         end                                                    #
+##################################################################################################################

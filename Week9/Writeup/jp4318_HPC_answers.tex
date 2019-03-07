@@ -4,15 +4,14 @@
 \usepackage{amsmath}
 \title{High Performance Computing Programming Exercises}
 \author{Joseph Palmer, joseph.palmer18@imperial.ac.uk}
-\date{December 2018}
+\date{January 2018}
 \begin{document}
   \maketitle
   \tableofcontents
   \newpage
   \section{Neutral Theory Simulations}
     \subsection{Question 8}
-    What state will the system always converge to if you wait long enough? Why is this?
-    Species richness converged to an equilibrium value of 2 after 65 generations. This is because....
+    Species richness converged to mono-dominance, an equilibrium value of 1, after approximately 90 generations. As individuals are chosen randomly to die and/or reproduce, the probability of being replaced by a conspecific individual is proportional to the number of conspecifics in the overall population. Consequently, whilst this increases the probability that a dominant species member will be replaced, this is countered by an increased chance of being randomly selected to replace another individual. This phenomena means the system will always converge to a species richness of one, providing the speciation rate is low. Figure 1. shows this process over time. Within the first 10 generations species richness drops rapidly from 100 to approximately 20, showing species with only 1 individual going extinct whilst those selected to replace increasing individuals. Between approximately 10 and 90 generations, the species richness drops in increasingly shallower trajectories as the species with the largest number of individuals compete to replace each other. The shallower steps indicate the increased time taken to remove species with fewer individuals as others occupy a greater proportion. By approximately 90 generations, species richness has reached mono-dominance, indicating a single species has replaced the individuals of all the other species.
      
     \begin{figure}[H]
     	\centering
@@ -21,7 +20,7 @@
     \end{figure}
 
 	\subsection{Question 12}
-	Explain what you found from this plot about the effects of initial conditions. Why does the neutral model simulation give you those particular results?
+	Due to the speciation rate being greater than 0, a state of mono-dominance can never be fully reached. With a low enough speciation rate the species richness would trend towards 1 but with speciation rate greater than 0 the average will always be above 1. The random replacement with a new species will always increase diversity in the system. Initial conditions with regards to community size have no influence on the state at equilibrium. When starting with the maximum number of species in the community, any new species have the same probability of having individuals removed as the pre-existing species. As such, species richness declines as sharply as it did without speciation. Starting from a species richness of 1, new species have a lower probability of being selected to die or reproduce. As generation number increases the majority of replacements take place within a single species, allowing the species richness to climb until the proportion of species richness reaches the state where other species have a greater probability of being selected to die and/or reproduce. Both conditions then fluctuate in species richness as the new species entering the system replace those going extinct. The species richness value the simulations fluctuate around is therefore influenced by the speciation rate.
 
 	\begin{figure}[H]
 		\centering
@@ -30,7 +29,7 @@
 	\end{figure}
 
 	\subsection{Question 16}
-	Does the initial condition of the system matter? Why is this?
+	The initial conditions of the system have no influence on the state at equilibrium as this is governed by the speciation rate (see answer to question 12).
 	\begin{figure}[H]
 		\centering
 		\includegraphics[scale=0.5]{../Results/Plots/Question16.pdf}
@@ -44,26 +43,57 @@
 		\caption{Challenge Question A) Mean species richness as a function of time in simulation steps across 100 generations. Community size = 100, Speciation rate = 0.1. The number of steps taken to reach dynamic equilibrium is approximately 30.}
 	\end{figure}
 
+	\subsection{Challenge Question B}
+	Simulations outlined in figure 4 were repeated for different initial species richness, ranging from mono-dominance to fully diverse in equal steps meaning any individual was equally likely to take a any species identity. Figure 5 shows little variation in the average species richness after burn in, indicating the initial species richness has no influence on the species richness at equilibrium. 
+	\begin{figure}
+		\centering
+		\includegraphics[scale=0.5]{../Results/Plots/ChallengeB.pdf}
+		\caption{Challenge Question B) Species richness simulations for different initial species abundances. Simulations were ran over 100 generations. Speciation rate = 0.2, community size = 100.}
+		
+	\end{figure}
+	
+
     \subsection{Question 20}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[scale=0.5]{../Results/Plots/Question20.pdf}
-		\caption{Question 20)}
+		\caption{Question 20) Mean species abundance for each community size at equilibrium. Speciation rate was set to 0.002126.}
 	\end{figure}
+
+	\subsection{Challenge Question C}
+	Knowing how long to burn in populations in import to ensure the system is actually at dynamic equilibrium. A simple method would be to plot species richness over a number of generations and visually gauge where the population looks to have reached dynamic equilibrium. This, however, is somewhat subjective. An alternative method would be to mark every initial species with a flag which passed on to descendants. Once all flags had been removed from the system the process can be said to be at dynamic equilibrium.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.5]{../Results/Plots/ChallengeC.pdf}
+		\caption{Challenge C) Mean species richness against generation time for different community sizes. Black = 500, red = 1000, green = 2500, blue = 5000. Speciation rate = 0.002126.}
+	\end{figure}
+
+    \subsection{Challenge Question D}
+    The coalescence function allows for the simulations conducted for question 20 to be done in a fraction of the time. This is because the function applies the rules of speciation and death backwards rather than forwards to derive the final community species abundance. By only focusing on the species present in the final and initial community, attention is not given to lineages that arise and go extinct during the simulation. The coalescence simulation is already at equilibrium so burn in simulations are not required. Combined, this means the coalescence function is substantially faster than a regular simulation. Calculating exactly how much faster is difficult but it can be estimated by working out how many simulations with coalescence are required to get a value that matches the one produced in question 20. In the test presented here, the forwards simulation for a community size of 500 and speciation rate of 0.002125 ran for 11.5 hours. The coalescence function took 179 seconds to converge on the same value, running 30,000 simulations. This suggests coalescence is 231 times faster. Obviously, this is a rough estimate but demonstrates the speed advantages to using the coalescence method.	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.5]{../Results/Plots/ChallengeD.pdf}
+		\caption{Challenge D) Mean species abundance for forwards and coalescence simulations. Speciation rate = 0.002126, community size = 500. Coalescence was ran over 30,000 simulations.}
+	\end{figure}
+	
 	
 	\section{Fractals in Nature}
 	\subsection{Question 21}
 	The 2D image on the left hand side of the worksheet is made up of eight smaller copies of the larger image. The bottom and top rows of the image are composed of three copies of the same smaller image. The dimension can be calculated through Equation 1 where S is the size (the number of sub-units required) and W is the width. 
     \begin{equation}
-    	 d = \frac{\log(S)}{\log(W)} 
-	   	 d = \frac{\log(8)}{\log(3)} 
-	   	 d = 1.893
+    \begin{split}
+    	 d = \frac{\log(S)}{\log(W)} \\
+	   	 = \frac{\log(8)}{\log(3)} \\
+	   	 = 1.893
+	\end{split}
     \end{equation}
-    The image on the right hand side of the worksheet is simply a 3D image of its neighbour. Counting blocks instead of the faces, the top and bottom rows have 8 blocks, whilst the middle has only 4 due to the hole in the centre, giving a total of 20 blocks. The magnification of 3 remains the same. The dimensions are shown in Equation 2.
+    The image on the right hand side of the worksheet is simply a 3D image of its neighbour. Counting blocks instead of the faces, the top and bottom rows have 8 blocks, whilst the middle has only 4 due to the hole in the centre, giving a total of 20 blocks. The magnification of 3 remains the same. The dimension calculations are shown in Equation 2.
     \begin{equation}
-	    d = \frac{\log(S)}{\log(W)} 
-	    d = \frac{\log(20)}{\log(3)} 
-	    d = 2.726
+    \begin{split}
+	    d = \frac{\log(S)}{\log(W)} \\
+	    = \frac{\log(20)}{\log(3)} \\
+	    = 2.726
+	\end{split}
     \end{equation}
     
     \subsection{Question 22}
@@ -73,9 +103,17 @@
     	\includegraphics[scale=0.5]{../Results/Plots/Question22.pdf}
     	\caption{Question 22) Sierpinski Gasket.}
     \end{figure}
+
+	\subsection{Challenge Question E}
+	By changing the initial position for the Sierpinski Gasket we observe points outside the shape converge on a random section in the shape. Changing the points can be done to change the triangle shape to the more classic equilateral triangle. Separate colours have also been added, dividing the three main sub-triangles into separate colours.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.5]{../Results/Plots/ChallengeQuestion_E.pdf}
+		\caption{Question 22) Sierpinski Gasket, colours were generated by assigning one of three random numbers to the colour argument during plotting. Black dots show the random starting values as they converge onto the shape.}
+	\end{figure}
 	
 	\subsection{Question 25 \& 26}
-	A series of connected lines are drawn where the current line takes the end point of the previous line as its starting point, the previous lines length multiplied by 0.95 as its length and has a direction 45 degrees to the right of the previous line. This continues until the length of the line reaches a limit imposed as 0.01. Without this limit, the simulation would theoretically recurse infinitely, however, R produces a stack usage error as the memory allocated to the process runs out.
+	A series of connected lines are drawn where the current line takes the end point of the previous line as its starting point, the previous lines length multiplied by 0.95 as becomes the current lines length and has a direction 45 degrees to the right of the previous line. This continues until the length of the line reaches a limit imposed as 0.01. Without this limit, the simulation would theoretically recurse infinitely, however, R produces a stack usage error as the memory allocated to the process runs out.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[scale=0.5]{../Results/Plots/Question25_26.pdf}
@@ -83,7 +121,7 @@
 	\end{figure}
 
 	\subsection{Question 27}
-	
+	Here, the Spiral function is modified to produce a tree. This is achieved by calling the tree function twice with altering directions, 45 degrees to the left and right. The length of each subsequent call is 0.65 times the length of the previous call. 
 	\begin{figure}[H]
 		\centering
 		\includegraphics[scale=0.5]{../Results/Plots/Question27.pdf}
@@ -95,6 +133,12 @@
 		\centering
 		\includegraphics[scale=0.5]{../Results/Plots/Question29.pdf}
 		\caption{Question 29) Fern.}
+	\end{figure}
+	\subsection{Challenge Question F}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.5]{../Results/Plots/ChallengeF.pdf}
+		\caption{Question 29) Phylogenetic Tree / Menorah.}
 	\end{figure}
     
     

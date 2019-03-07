@@ -7,7 +7,7 @@
 rm(list=ls())
 
 # load in the data
-datapath <- "../Data/KeyWestAnnualMeanTemprature.RData" 
+datapath <- "../Data/KeyWestAnnualMeanTemperature.RData" 
 load(datapath)
 
 # get the data split on time series

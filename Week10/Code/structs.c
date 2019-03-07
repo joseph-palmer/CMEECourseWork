@@ -7,24 +7,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct site_data {
+	float lat;
+	float longit; // `'long` is a reserved keyword, so using this instead
+	float elev;
+    int *spp_IDs; // A pointer to ID's of species counts
+	int num_IDs; // The number of elements in this pointer ('array')
+};
 
-// one way of showing a point in 2d shape (x,y)
-float x_points[] = {0.73, 0.44, 0.32, 0.43};
-float y_points[] = {1.52, 2.34, 3.87, 3.13};
-
-// using structs to store in information
-struct point_s {
-    float x;
-    float y;
+struct int_ptrs {
+	int *pt1;
+	int *pt2;
 };
 
 int main(void)
 {
-    struct point_s pt1;
-    struct point_s pt2;
+    struct site_data mysite1;
+    mysite1.lat = 32.045;
+    mysite1.longit = -104.181;
+    
+    int my_int = 0;
+    struct int_ptrs twoints;
 
-    pt1.x = x_points[0];
-    pt1.y = y_p
+    twoints.pt1 = &my_int;
+
+    *twoints.pt1 = 12;
     
     return 0;
 }

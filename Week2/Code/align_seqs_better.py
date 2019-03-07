@@ -104,8 +104,8 @@ def calculate_score(s1, s2, l1, l2, startpoint):
 def main(argv):
     # get sequences from file, extract individual sequences from dictionary.
     sequences = GetSeqFromFile()
-    seq1 = sequences.values()[0]
-    seq2 = sequences.values()[-1]
+    seq1 = list(sequences.values())[0]
+    seq2 = list(sequences.values())[-1]
 
     # asign the longest sequence s1 and the shortest to s2
     l1 = len(seq1)
