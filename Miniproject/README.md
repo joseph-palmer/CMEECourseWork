@@ -5,13 +5,13 @@
 ### __Date of submission:__ 08/03/2019
 ### __Author:__ Joseph Palmer, joseph.palmer@imperial.ac.uk
 ### __Affiliation:__ Imperial College London
-### __Affiliation Adress:__ Department of Life Sciences, Imperial College London, Ascot, Berkshire, SL5 7PY, United Kingdom
+### __Affiliation Address:__ Department of Life Sciences, Imperial College London, Ascot, Berkshire, SL5 7PY, United Kingdom
 ---
 
 # Getting started
 
 #### Cloning this repository
-The first step in creating the miniproject is to clone this repository. On the previous page (the main one for CMEECourseWork) you should see a green dropdown button which reads 'Clone or download' click on this and copy the github path in the box displayed.  
+The first step in creating the Miniproject is to clone this repository. On the previous page (the main one for CMEECourseWork) you should see a green dropdown button which reads 'Clone or download' click on this and copy the github path in the box displayed.  
 
 Next, open a terminal on your computer and navigate to a location you want to store this project, such as in Documents. Once you have done this type in 'gitclone' and paste the link.  
 ```
@@ -20,9 +20,9 @@ gitclone git@github.com:joseph-palmer/CMEECourseWork.git
 
 #### Prerequisites
 
-In order to run this miniproject you must have [python 3.6](https://www.python.org/downloads/release/python-360/) and [R version 3.4.4](https://www.r-project.org/) (or higher) installed on your machine and present in the environment path. This is because the commands python3 and Rscript are used to run python and R scripts respectivley. You must also have [pdfTeX](https://ctan.org/pkg/pdftex?lang=en) version 3.14159265-2.6-1.40.18 or higher installed.
+In order to run this miniproject you must have [python 3.6](https://www.python.org/downloads/release/python-360/) and [R version 3.4.4](https://www.r-project.org/) (or higher) installed on your machine and present in the environment path. This is because the commands python3 and Rscript are used to run python and R scripts respectively. You must also have [pdfTeX](https://ctan.org/pkg/pdftex?lang=en) version 3.14159265-2.6-1.40.18 or higher installed.
 
-The following python packages are required for instilation: [scipy 1.1.0](https://www.scipy.org/), [pandas 0.23.4](https://pandas.pydata.org/), [re 2.2.1](https://docs.python.org/3/library/re.html). To install with pip3 simply paste the following command into the terminal:
+The following python packages are required for installation: [scipy 1.1.0](https://www.scipy.org/), [pandas 0.23.4](https://pandas.pydata.org/), [re 2.2.1](https://docs.python.org/3/library/re.html). To install with pip3 simply paste the following command into the terminal:
 
 
 ```
