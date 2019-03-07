@@ -9,11 +9,11 @@ Note that:
 
 ======================================================================
 ======================================================================
-Your Git repo size this week is about 1.57 MiB on disk 
+Your Git repo size this week is about 28.27 MiB on disk 
 
 PART 1: Checking project workflow...
 
-Found the following directories in parent directory: Week1, Assessment, Week2, .git
+Found the following directories in parent directory: Week1, Week7, Assessment, Week10, Week5, Week2, Week9, Week4, .git, Week3, MiniProject
 
 Found the following files in parent directory: README.txt, .gitignore
 
@@ -27,7 +27,15 @@ Printing contents of .gitignore:
 *.tmp
 *.pdf
 *.pyc
-
+*.Rhistory
+*.RData
+*.aux
+*.bbl
+*.blg
+*.gv
+*.log
+/Week6/
+/jp4318_hpc_files/
 **********************************************************************
 
 Found README in parent directory, named: README.txt
@@ -35,12 +43,13 @@ Found README in parent directory, named: README.txt
 Printing contents of README.txt:
 **********************************************************************
 My CMEE Coursework Repository
+Each folder contains a more detailed README document.
 **********************************************************************
 
 ======================================================================
 Looking for the weekly directories...
 
-Found 2 weekly directories: Week1, Week2
+Found 8 weekly directories: Week1, Week10, Week2, Week3, Week4, Week5, Week7, Week9
 
 The Week1 directory will be assessed 
 
@@ -65,7 +74,7 @@ Printing contents of README.md:
 ## Author: Joseph Palmer - _joseph.palmer18@imperial.ac.uk_
 ## Date: _Oct - 2018_
 
-### Description: [Enter description for project here]
+### Description: Contains all the week one files and directories. This weeks focus was on scripting in Bash and getting used to the command line. We also did modules on version controling with Git and on using Latex for writing documents.
 
 ### Tree map
 ```
@@ -77,7 +86,7 @@ Printing contents of README.md:
 │   ├── CountLines.sh : Counts the number of lines in a file '
 │   ├── csvtospace.sh : Converts commas in a csv file to spaces '
 │   ├── FirstBiblio.bib
-│   ├── FirstExample.tex
+│   ├── FirstExample.tex : A Simple Document '
 │   ├── MyExampleScript.sh : a further example of variables for the current user '
 │   ├── tabtocsv.sh : converts tabs in given file to commas '
 │   ├── tiff2png.sh : Convert tiff to png. '
@@ -132,6 +141,7 @@ Printing contents of README.md:
 **********************************************************************
 
 Found following files in results directory: .gitignore...
+
 Found 12 code files: CompileLatex.sh, CountLines.sh, variables.sh, tiff2png.sh, ConcatonateTwoFiles.sh, csvtospace.sh, FirstExample.tex, MyExampleScript.sh, FirstBiblio.bib, UnixPrac1.txt, tabtocsv.sh, boilerplate.sh
 
 ======================================================================
@@ -210,29 +220,29 @@ rm: cannot remove '*.bbl': No such file or directory
 rm: cannot remove '*.blg': No such file or directory
 mv: cannot stat '.pdf': No such file or directory
 
-** (evince:27626): WARNING **: Error when getting information for file '/home/mhasoba/Documents/Teaching/IC_CMEE/2018-19/Coursework/StudentRepos/JosephPalmer_JP4318/Week1/Results/.pdf': No such file or directory
+** (evince:12251): WARNING **: Error when getting information for file '/home/mhasoba/Documents/Teaching/IC_CMEE/2018-19/Coursework/StudentRepos/JosephPalmer_JP4318/Week1/Results/.pdf': No such file or directory
 
-** (evince:27626): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12251): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:27626): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12251): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:27626): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12251): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:27626): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12251): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:27626): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12251): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:27626): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12251): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:27626): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12251): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:27626): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12251): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:27626): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12251): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:27626): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12251): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:27626): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12251): WARNING **: Error setting file metadata: No such file or directory
 
 ======================================================================
 Inspecting script file CountLines.sh...
@@ -488,7 +498,7 @@ Hello mhasoba
 
 Code ran without errors
 
-Time consumed = 0.01820s
+Time consumed = 0.00419s
 
 ======================================================================
 Inspecting script file FirstBiblio.bib...
@@ -573,7 +583,7 @@ Done!
 
 Code ran without errors
 
-Time consumed = 0.01345s
+Time consumed = 0.00547s
 
 ======================================================================
 Inspecting script file boilerplate.sh...
@@ -615,7 +625,7 @@ SET TO UPPERCASE
 
 Code ran without errors
 
-Time consumed = 0.01626s
+Time consumed = 0.00913s
 
 ======================================================================
 ======================================================================
@@ -623,11 +633,12 @@ Finished running scripts
 
 Ran into 6 errors
 
+
 ======================================================================
 ======================================================================
 
 FINISHED WEEKLY ASSESSMENT
 
-Current Points for the Week = 100
+Current Points for the Week = 100.0
 
 NOTE THAT THESE ARE POINTS, NOT MARKS FOR THE WEEK!

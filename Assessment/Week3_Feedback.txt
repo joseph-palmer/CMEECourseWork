@@ -9,11 +9,11 @@ Note that:
 
 ======================================================================
 ======================================================================
-Your Git repo size this week is about 2.01 MiB on disk 
+Your Git repo size this week is about 28.27 MiB on disk 
 
 PART 1: Checking project workflow...
 
-Found the following directories in parent directory: Week1, Assessment, Week2, Week4, .git, Week3, MiniProject
+Found the following directories in parent directory: Week1, Week7, Assessment, Week10, Week5, Week2, Week9, Week4, .git, Week3, MiniProject
 
 Found the following files in parent directory: README.txt, .gitignore
 
@@ -28,13 +28,14 @@ Printing contents of .gitignore:
 *.pdf
 *.pyc
 *.Rhistory
+*.RData
 *.aux
 *.bbl
 *.blg
 *.gv
 *.log
-/Week4/LectureMaterial/
-/Week5/
+/Week6/
+/jp4318_hpc_files/
 **********************************************************************
 
 Found README in parent directory, named: README.txt
@@ -42,12 +43,13 @@ Found README in parent directory, named: README.txt
 Printing contents of README.txt:
 **********************************************************************
 My CMEE Coursework Repository
+Each folder contains a more detailed README document.
 **********************************************************************
 
 ======================================================================
 Looking for the weekly directories...
 
-Found 4 weekly directories: Week1, Week2, Week3, Week4
+Found 8 weekly directories: Week1, Week10, Week2, Week3, Week4, Week5, Week7, Week9
 
 The Week3 directory will be assessed 
 
@@ -127,12 +129,12 @@ Printing contents of README.md:
 ```
 **********************************************************************
 
-Found following files in results directory: trees_treeheights.csv, CodeOut.Rout, .gitignore, MyData.csv...
+Found following files in results directory: MyFirst-ggplot2-Figure.pdf, Girko.pdf, PP_Results.csv, PP_Regress_Results.csv, PP_Regress_loc_results.csv, Pred_Lattice.pdf, Pred_Prey_Overlay.pdf, Prey_Lattice.pdf, MyLinReg.pdf, PP_Regress_Plot.pdf, KeyWestAnualMeanTemperaturePlot.pdf, .gitignore, SizeRatio_Lattice.pdf, MyBars.pdf...
 ideally, Results directory should be empty other than, perhaps, a readme. 
 
-Found 33 code files: PP_Regress.R, apply1.R, ggplot_intro.R, tutorial2.R, Tutorial.R, SpeedComparison.sh, run_get_TreeHeight.sh, get_TreeHeight.py, Control.R, boilerplate.R, TreeHeight.R, DataExploration.R, vectorize1.py, PP_Lattice.R, Sample.R, Maps.R, Girko.R, vectorize1.R, tapply.R, plotLin.R, basic_io.R, vectorize2.R, apply2.R, get_TreeHeight.R, TAutoCorr.R, browser.R, DataWrangTidy.R, preallocate.R, PP_Regress_loc.R, DataWrang.R, TAutoCorr.tex, MyBars.R, vectorize2.py
+Found 35 code files: PP_Regress.R, apply1.R, ggplot_intro.R, tutorial2.R, Tutorial.R, SpeedComparison.sh, run_get_TreeHeight.sh, get_TreeHeight.py, Control.R, boilerplate.R, TreeHeight.R, DataExploration.R, vectorize1.py, PP_Lattice.R, Sample.R, Maps.R, Girko.R, vectorize1.R, tapply.R, break.R, plotLin.R, basic_io.R, vectorize2.R, try.R, apply2.R, get_TreeHeight.R, TAutoCorr.R, browser.R, DataWrangTidy.R, preallocate.R, PP_Regress_loc.R, DataWrang.R, TAutoCorr.tex, MyBars.R, vectorize2.py
 
-Found the following extra files: .RData
+Found the following extra files: Rplots.pdf
 0.5 pt deducted per extra file
 
 Current Points = 99.5
@@ -397,18 +399,18 @@ Testing apply1.R...
 Output (only first 500 characters): 
 
 **********************************************************************
- [1]  0.41233764  0.18495243 -0.01283620 -0.77471422  0.08589359  0.33290324
- [7] -0.09348407 -0.01369856 -0.21042343 -0.40556897
- [1] 0.5186869 0.8041268 0.7775455 1.5727348 1.2082393 1.0955115 0.9753252
- [8] 0.6032150 1.2230354 1.3456888
- [1]  0.029845385 -0.305261530  0.182404918 -0.420114320  0.652103876
- [6] -0.004758934 -0.206852001 -0.533067924  0.214491138 -0.103429154
+ [1] -0.13802992 -0.15241114  0.13106066  0.07317801  0.29785926 -0.02016767
+ [7]  0.09106957  0.47258850  0.44194085  0.45013193
+ [1] 1.1628862 1.2261743 0.9677996 1.2093176 0.3340632 1.0580490 0.8412251
+ [8] 0.8262421 1.3363792 0.7841063
+ [1]  0.65994016  0.51443675  0.41630815  0.12047005 -0.02613050 -0.02695131
+ [7] -0.04593173  0.08847859 -0.48678291  0.43338279
 
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.06813s
+Time consumed = 0.07481s
 
 ======================================================================
 Inspecting script file ggplot_intro.R...
@@ -1007,7 +1009,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.07663s
+Time consumed = 0.07565s
 
 ======================================================================
 Inspecting script file SpeedComparison.sh...
@@ -1073,18 +1075,18 @@ Python Vs R vectorization and loop speed summary
 Vectorise 1 - Execution time
 ******************************
 
-Python SumAllElements function: 0.17546415329
-Python sum vectorised function: 0.000586986541748
-R SumAllElements function: 0.0866923332214355 
-R vectorised sum function: 0.00111937522888184 
+Python SumAllElements function: 0.165448904037
+Python sum vectorised function: 0.000643014907837
+R SumAllElements function: 0.0799522399902344 
+R vectorised sum function: 0.00111198425292969 
 
 ******************************
-Vectorise 2 - 
+Vectorise 2 -
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.68053s
+Time consumed = 0.59046s
 
 ======================================================================
 Inspecting script file run_get_TreeHeight.sh...
@@ -1256,7 +1258,7 @@ Saving results to ../Results/trees_treeheights.csv
 
 Code ran without errors
 
-Time consumed = 0.01673s
+Time consumed = 0.03324s
 
 ======================================================================
 Inspecting script file Control.R...
@@ -1370,7 +1372,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.10640s
+Time consumed = 0.10149s
 
 ======================================================================
 Inspecting script file boilerplate.R...
@@ -1414,7 +1416,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.09501s
+Time consumed = 0.09134s
 
 ======================================================================
 Inspecting script file TreeHeight.R...
@@ -1495,7 +1497,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.09611s
+Time consumed = 0.10686s
 
 ======================================================================
 Inspecting script file DataExploration.R...
@@ -1715,14 +1717,14 @@ Found one or more doctrings!
 Output (only first 500 characters): 
 
 **********************************************************************
-Python SumAllElements function: 0.163977861404
-Python sum vectorised function: 0.000610113143921
+Python SumAllElements function: 0.17520952224731445
+Python sum vectorised function: 0.0006399154663085938
 
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.22237s
+Time consumed = 0.33010s
 
 ======================================================================
 Inspecting script file PP_Lattice.R...
@@ -1855,21 +1857,21 @@ Testing Sample.R...
 Output (only first 500 characters): 
 
 **********************************************************************
-[1] "Mean of this sample was:  -0.0358069104518163"
-[1] "Mean of this sample was:  0.427258324223385"
-[1] "Mean of this sample was:  -0.175908292249562"
-[1] "Mean of this sample was:  -0.0131332478188857"
-[1] "Mean of this sample was:  0.109711863255351"
-[1] "Mean of this sample was:  0.204090903401733"
-[1] "Mean of this sample was:  -0.0849401308492129"
-[1] "Mean of this sample was:  -0.0991759781817028"
-[1] "Mean of this sample was:  -0.018051546845181"
-[1] "Mean of this sample was:  0.08445132
+[1] "Mean of this sample was:  0.0966966108409527"
+[1] "Mean of this sample was:  0.137251503245921"
+[1] "Mean of this sample was:  -0.161319576604586"
+[1] "Mean of this sample was:  -0.128970450102514"
+[1] "Mean of this sample was:  0.201767319179249"
+[1] "Mean of this sample was:  -0.215689741528166"
+[1] "Mean of this sample was:  0.309004695398211"
+[1] "Mean of this sample was:  0.0502987574067173"
+[1] "Mean of this sample was:  0.138368106826132"
+[1] "Mean of this sample was:  0.1790130688048
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.10454s
+Time consumed = 0.11007s
 
 ======================================================================
 Inspecting script file Maps.R...
@@ -1915,21 +1917,16 @@ Testing Maps.R...
 Output (only first 500 characters): 
 
 **********************************************************************
-                            common.name    lat    long
-1                       Atlantic salmon  60.00   10.00
-2                           Pink salmon  45.62 -121.97
-3                             Great tit  51.63    1.08
-4                Eurasian oystercatcher  51.70   -5.15
-5                               Skylark  51.70   -5.15
-6                              Starling  51.70   -5.15
-7                               Lapwing  51.70   -5.15
-8                          Carrion crow  51.70   -5.15
-9     
+
 **********************************************************************
 
-Code ran without errors
-
-Time consumed = 0.42008s
+Encountered error:
+Error in readChar(con, 5L, useBytes = TRUE) : cannot open the connection
+Calls: load -> readChar
+In addition: Warning message:
+In readChar(con, 5L, useBytes = TRUE) :
+  cannot open compressed file '../Data/GPDDFiltered.RData', probable reason 'No such file or directory'
+Execution halted
 
 ======================================================================
 Inspecting script file Girko.R...
@@ -2067,14 +2064,14 @@ Testing vectorize1.R...
 Output (only first 500 characters): 
 
 **********************************************************************
-R SumAllElements function: 0.0824477672576904 
-R vectorised sum function: 0.00124096870422363 
+R SumAllElements function: 0.0796313285827637 
+R vectorised sum function: 0.00111699104309082 
 
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.19960s
+Time consumed = 0.20030s
 
 ======================================================================
 Inspecting script file tapply.R...
@@ -2151,7 +2148,65 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.14407s
+Time consumed = 0.14878s
+
+======================================================================
+Inspecting script file break.R...
+
+File contents are:
+**********************************************************************
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: December 2018
+# Desc: How to break out of loops in R.
+
+# clear environment
+rm(list=ls())
+
+# Load required packages #
+
+i <- 0 #Initialize i
+while(i < Inf) {
+  if (i == 20) {
+    break 
+  } # Break out of the while loop! 
+  else { 
+    cat("i equals " , i , " \n")
+    i <- i + 1 # Update i
+  }
+}**********************************************************************
+
+Testing break.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+i equals  0  
+i equals  1  
+i equals  2  
+i equals  3  
+i equals  4  
+i equals  5  
+i equals  6  
+i equals  7  
+i equals  8  
+i equals  9  
+i equals  10  
+i equals  11  
+i equals  12  
+i equals  13  
+i equals  14  
+i equals  15  
+i equals  16  
+i equals  17  
+i equals  18  
+i equals  19  
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.09131s
 
 ======================================================================
 Inspecting script file plotLin.R...
@@ -2335,13 +2390,125 @@ Testing vectorize2.R...
 Output (only first 500 characters): 
 
 **********************************************************************
-R vectorised stochrickvect function: 0.0466511249542236 
+R vectorised stochrickvect function: 0.0471413135528564 
 
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.11078s
+Time consumed = 0.11496s
+
+======================================================================
+Inspecting script file try.R...
+
+File contents are:
+**********************************************************************
+#!/usr/bin/env Rscript
+# Author: Joseph Palmer <Joseph.Palmer18@imperial.ac.uk>
+# Date: October 2018
+# Desc: Run a simulation that involves sampling from a population
+
+# clear environment
+rm(list=ls())
+
+# Load required packages #
+
+x <- rnorm(50) # generate your population
+doit <- function(x){
+  x <- sample(x, replace = TRUE)
+  if(length(unique(x)) > 30) { # only take mean in sample was sufficient
+    print(paste("Mean of this sample was: ", as.character(mean(x))))
+  } else {
+    stop("Couldn't calculate mean: too few unique points!")
+  }
+}
+
+# run 100 iterations using vectorization.
+result <-lapply(1:100, function(i) try(doit(x)))
+
+# or use a for loop
+result <- vector("list", 100) # Initializa
+for(i in 1:100){
+  result[[i]] <- try(doit(x))
+}
+
+result
+**********************************************************************
+
+Testing try.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+[1] "Mean of this sample was:  0.0558214060131079"
+[1] "Mean of this sample was:  0.189366251217487"
+[1] "Mean of this sample was:  0.0833135242232548"
+[1] "Mean of this sample was:  -0.0505041834424371"
+[1] "Mean of this sample was:  -0.146167630422353"
+[1] "Mean of this sample was:  -0.205263169969642"
+[1] "Mean of this sample was:  0.0732538126722848"
+[1] "Mean of this sample was:  0.0141230787291615"
+[1] "Mean of this sample was:  0.110727286335148"
+[1] "Mean of this sample was:  0.0368095582
+**********************************************************************
+
+Encountered error:
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
 
 ======================================================================
 Inspecting script file apply2.R...
@@ -2374,18 +2541,18 @@ Testing apply2.R...
 Output (only first 500 characters): 
 
 **********************************************************************
-              [,1]      [,2]       [,3]        [,4]       [,5]        [,6]
- [1,] -0.640783590 149.75628 -0.8107517 -1.06330927 -16.023538   84.786858
- [2,]  0.938898040  93.22399 -2.5668209  0.13548359 131.078201   59.211066
- [3,]  0.141783291  19.78994 -0.9231492  0.83991562 -30.630403  273.707999
- [4,] -0.480342124 -60.94130  0.2273308 -1.17509933 -44.234894   18.197430
- [5,]  0.004706499 -75.55795  0.2487477 -0.07975214 179.606997 -167.539607
- [6,] -0.290928952 -39.32593 -1.2461927 -0.79786304
+            [,1]       [,2]       [,3]         [,4]       [,5]       [,6]
+ [1,]  60.933447  112.08949  -22.24548  0.380478738 -2.5345786  0.5566053
+ [2,]  55.540016  157.22833  117.80174  0.481281637  1.7931147 -0.3342085
+ [3,]  16.734332  226.95663  263.09148 -0.192543804 -0.6604300  0.3289676
+ [4,] -31.503792  -22.41419   44.12806  0.476635018  0.3797350 -1.2389713
+ [5,] -47.807161   29.95043  -35.50947 -1.047507427  1.2473245 -0.4679808
+ [6,]  -8.609030  -38.13460 -136.37388 -0.228936906 -1.13
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.08634s
+Time consumed = 0.09064s
 
 ======================================================================
 Inspecting script file get_TreeHeight.R...
@@ -2528,17 +2695,16 @@ Testing TAutoCorr.R...
 Output (only first 500 characters): 
 
 **********************************************************************
-null device 
-          1 
-[1] 0.001
-[1] 10
-[1] 0.001
 
 **********************************************************************
 
-Code ran without errors
-
-Time consumed = 0.60364s
+Encountered error:
+Error in readChar(con, 5L, useBytes = TRUE) : cannot open the connection
+Calls: load -> readChar
+In addition: Warning message:
+In readChar(con, 5L, useBytes = TRUE) :
+  cannot open compressed file '../Data/KeyWestAnnualMeanTemprature.RData', probable reason 'No such file or directory'
+Execution halted
 
 ======================================================================
 Inspecting script file browser.R...
@@ -2599,7 +2765,7 @@ debug: browser()
 
 Code ran without errors
 
-Time consumed = 0.10821s
+Time consumed = 0.11164s
 
 ======================================================================
 Inspecting script file DataWrangTidy.R...
@@ -2750,15 +2916,15 @@ Output (only first 500 characters):
 
 **********************************************************************
    user  system elapsed 
-  0.012   0.004   0.016 
+   0.02    0.00    0.02 
    user  system elapsed 
-  0.000   0.000   0.002 
+  0.004   0.000   0.002 
 
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.13201s
+Time consumed = 0.22446s
 
 ======================================================================
 Inspecting script file PP_Regress_loc.R...
@@ -2956,8 +3122,9 @@ Output (only first 500 characters):
 [6,] "Agrostis gigantea"    ""   
 **********************************************************************
 
-Encountered error:
-Loading required package: reshape2
+Code ran without errors
+
+Time consumed = 10.00700s
 
 ======================================================================
 Inspecting script file TAutoCorr.tex...
@@ -3126,19 +3293,19 @@ Found one or more doctrings!
 Output (only first 500 characters): 
 
 **********************************************************************
-Python vectorized stochrickvect function: 0.009761095047
+Python vectorized stochrickvect function: 0.01089930534362793
 
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.06533s
+Time consumed = 0.15927s
 
 ======================================================================
 ======================================================================
 Finished running scripts
 
-Ran into 14 errors
+Ran into 16 errors
 
 ======================================================================
 ======================================================================
