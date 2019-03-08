@@ -15,7 +15,7 @@ The first step in creating the Miniproject is to clone this repository. On the p
 
 Next, open a terminal on your computer and navigate to a location you want to store this project, such as in Documents. Once you have done this type in 'gitclone' and paste the link.  
 ```
-gitclone git@github.com:joseph-palmer/CMEECourseWork.git
+git clone git@github.com:joseph-palmer/CMEECourseWork.git
 ```
 
 #### Prerequisites
