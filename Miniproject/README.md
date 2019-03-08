@@ -22,11 +22,11 @@ gitclone git@github.com:joseph-palmer/CMEECourseWork.git
 
 In order to run this miniproject you must have [python 3.6](https://www.python.org/downloads/release/python-360/) and [R version 3.4.4](https://www.r-project.org/) (or higher) installed on your machine and present in the environment path. This is because the commands python3 and Rscript are used to run python and R scripts respectively. You must also have [pdfTeX](https://ctan.org/pkg/pdftex?lang=en) version 3.14159265-2.6-1.40.18 or higher installed.
 
-The following python packages are required for installation: [scipy 1.1.0](https://www.scipy.org/), [pandas 0.23.4](https://pandas.pydata.org/), [re 2.2.1](https://docs.python.org/3/library/re.html). To install with pip3 simply paste the following command into the terminal:
+The following python packages are required: [scipy 1.1.0](https://www.scipy.org/), [pandas 0.23.4](https://pandas.pydata.org/), [re 2.2.1](https://docs.python.org/3/library/re.html) (part of base python). To install with pip3 simply paste the following command into the terminal:
 
 
 ```
-pip3 install scipy pandas re
+pip3 install scipy pandas
 ```
 NOTE: if you do not have pip3 you can install it with ```sudo apt install pip3```
 

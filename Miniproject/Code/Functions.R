@@ -13,6 +13,10 @@ suppressMessages(require("reshape2"))
 suppressMessages(require("ggplot2"))
 suppressMessages(require("cowplot"))
 suppressMessages(require("xtable"))
+suppressMessages(require("compiler"))
+
+# setup compiler
+enableJIT(3)
 
 ########## Model Functions ##########
 LogNormal <- function(x, a, b) {
@@ -20,15 +24,21 @@ LogNormal <- function(x, a, b) {
   return(1-((1/2) + (1/2) * erf((log(x) - a) / sqrt(2 * b))))
 }
 
+LogNormal = cmpfun(LogNormal)
+
 Weibull <- function(x, a, b) {
   ## calculates the cdf for a normal distribution ##
   return(1 - (1 - exp(-(x/a)^b)))
 }
 
+Weibull = cmpfun(Weibull)
+
 half_normal <- function(x, a) {
   ## calculates the cdf for a half normal distribution ##
   return(1-(erf(x / (a * sqrt(2)))))
 }
+
+half_normal = cmpfun(half_normal)
 
 exponential <- function(x, a){
   ## calculates the cdf for the exponential distribution ##
@@ -41,6 +51,8 @@ AICc = function(m, k, n) {
   return(AIC(m) + 2 * k * (k + 1) / (n - k - 1))
 }
 
+AICc = cmpfun(AICc)
+
 ########## model fitting functions ##########
 Fit_half_norm = function(x) {
   ## Fits the half-normal function and returns the AICc score of the fit ##
@@ -48,11 +60,15 @@ Fit_half_norm = function(x) {
   return(AICc(PowFit, 1, nrow(x)))
 }
 
+Fit_half_norm = cmpfun(Fit_half_norm)
+
 Fit_exponential = function(x){
   ## Fits the exponential function and returns the AICc score of the fit ##
   PowFit <- nlsLM(probability ~ exponential(sorted_distance, a), data = x, start = list(a = 1/mean(x$sorted_distance)))
   return(AICc(PowFit, 1, nrow(x)))
 }
+
+Fit_exponential = cmpfun(Fit_exponential)
 
 Fit_lognormal = function(x){
   ## Fits the lognormal function and returns the AICc score of the fit ##
@@ -60,11 +76,15 @@ Fit_lognormal = function(x){
   return(AICc(PowFit, 2, nrow(x)))
 }
 
+Fit_lognormal = cmpfun(Fit_lognormal)
+
 Fit_Weibull = function(x){
   ## Fits the weibull function and returns the AICc score of the fit ##
   PowFit <- nlsLM(probability ~ Weibull(sorted_distance, a, b), data = x, start = list(a = mean(x$sorted_distance), b = var(x$sorted_distance)))
   return(AICc(PowFit, 2, nrow(x)))
 }
+
+Fit_Weibull = cmpfun(Fit_Weibull)
 
 ########## Analysis functions ##########
 CalculateInverseCDF <- function(distance_data) {
@@ -75,6 +95,8 @@ CalculateInverseCDF <- function(distance_data) {
   return(data.frame(sorted_distance, probability))
 }
 
+CalculateInverseCDF = cmpfun(CalculateInverseCDF)
+
 GetMeanAIC = function(i, data.plot, data.aic, bootstrap_n) {
   ## Calculates the mean AIC value for a bootstrap pluss 95CI ##
   data.plot[i,1] = i
@@ -82,6 +104,8 @@ GetMeanAIC = function(i, data.plot, data.aic, bootstrap_n) {
   data.plot[i,3] = mean(data.aic) + qnorm(0.975)*sd(data.aic)/sqrt(bootstrap_n)
   data.plot[i,4] = mean(data.aic) - qnorm(0.975)*sd(data.aic)/sqrt(bootstrap_n)
 }
+
+GetMeanAIC = cmpfun(GetMeanAIC)
 
 BootstapModels = function(data){
   ## Fit models to the data over a number of bootstraps ##
@@ -151,6 +175,8 @@ BootstapModels = function(data){
   return(combined)
 }
 
+BootstapModels = cmpfun(BootstapModels)
+
 PredictFunc = function(Name, data){
   ## fit different models to the distributions ##
   Lengths = seq(min(data$sorted_distance), max(data$sorted_distance), len = nrow(data))
@@ -217,6 +243,8 @@ PredictFunc = function(Name, data){
   return(predictions)
 }
 
+PredictFunc = cmpfun(PredictFunc)
+
 GetPredictions = function(data){
   ## Get the predicted values from the fitted model 
   # set lengths (the x axis values to predict) ##
@@ -228,6 +256,8 @@ GetPredictions = function(data){
   predictions.all = rbind(predictions.hn, predictions.ln, predictions.ex, predictions.nm)
   return(predictions.all)
 }
+
+GetPredictions = cmpfun(GetPredictions)
 
 AICTableRank = function(model_stats){
   # #Creates a sorted tabe of Models according to AIC value ##
@@ -244,3 +274,5 @@ AICTableRank = function(model_stats){
   sorted_model_stats$Rank = rep(seq(0, length(unique(sorted_model_stats$Model)) - 1, 1), length(unique(sorted_model_stats$Location)))
   return(sorted_model_stats)
 }
+
+AICTableRank = cmpfun(AICTableRank)
