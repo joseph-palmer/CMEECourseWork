@@ -1,0 +1,113 @@
+\documentclass[11pt,usenames,dvipsnames]{article}
+\usepackage{lineno}
+\usepackage{graphicx}
+\usepackage[left=3cm, right=3cm, top=2cm]{geometry}
+\usepackage{float}
+\usepackage{caption}
+\usepackage[round]{natbib}
+\usepackage{pgfgantt}
+\bibliographystyle{plainnat}
+\captionsetup[table]{skip=12pt}
+\linespread{1.3}
+\setlength{\parskip}{2em}
+\begin{document}
+\begin{titlepage}
+\begin{center}
+	\large{MSC. Computational Methods in Ecology and Evolution }\\
+	\textbf{ Project proposal }\\[0cm]
+	\huge{\line(1,0){380}\\
+		Examining foraging distance distributions of the Western Honeybee, \textit{Apis mellifera}: A comparison between rural and urban environments\\
+	\line(1,0){380}}\\[2cm]
+\end{center}
+
+
+\begin{minipage}[t]{0.5\textwidth}
+\begin{flushleft}
+	\Large{\textbf{Author}}\\
+	\large{ Joseph Palmer\\
+		CID: 01613406}\\
+	joseph.palmer18@imperial.ac.uk\\[1cm]	
+\end{flushleft}
+\end{minipage}
+\begin{minipage}[t]{0.5\textwidth}
+\begin{flushright}
+	\Large{\textbf{Supervisors}}\\
+	\large{ Professor Vincent A.A. Jansen}\\
+	Vincent.Jansen@rhul.ac.uk\\
+	\large{Dr Elli Leadbeater}\\
+	Elli.Leadbeater@rhul.ac.uk\\
+	\large{Dr Richard J. Gill}\\
+	r.gill@imperial.ac.uk
+\end{flushright}
+\end{minipage}
+
+\vspace{1cm}
+\begin{center}
+	\large{\textbf{Imperial College London }}\\[0.2cm]
+	\large{\textit{Department of Life Sciences, Imperial College London,}\\
+		\textit{Ascot, Berkshire, SL5 7PY, United Kingdom}}\\[1cm]
+	
+	\large{\textbf{Royal Holloway University of London }}\\[0.2cm]
+	\large{\textit{School of Biological sciences, Royal Holloway University of London,\\
+			Egham Hill, Egham, Surrey, TW20 0EX, United Kingdom}}\\[1cm]
+	\textbf{April 5\textsuperscript{th} 2019}
+\end{center}
+
+\end{titlepage}
+\newpage
+\tableofcontents
+\newpage
+
+\section{Keywords}
+
+\textbf{Foraging behaviour, Movement, Heavy-tailed distribution, Levy flight, Power law, Ecology.}
+
+\section{Introduction}
+The aim of this project is to further the understanding of how foraging distances differ between rural and urban Honeybees (\textit{Apis mellifera}). Whilst previous research into honeybee foraging has shown differences between these two environments, their distributions have received little attention. This project will focus on fitting distributions to foraging distances. In doing so we hope to develop a more detailed understanding of the ecological implications of urbanisation on honeybees. Further, this project will form the basis for further research into investigating levy flights in honeybee foraging strategies and in developing further knowledge of how pollinators move through the environment. 
+
+\section{Proposed methods}
+The data used in this project has already been collected by Ash Samuelson as part of a PhD with Royal Holloway University of London. The data comes from 20 three-frame observation hives, 10 urban and 10 rural, of standard size recorded for 2-4 hours each fortnight, in the morning or afternoon, from April to September 2018. The first step in the process is to convert the waggle dance observation data into distances and produce inverse cumulative density distributions for each site. The methods for this have already been developed during the Computational Methods in Ecology and Evolution (CMEE) MiniProject. The next phase is to identify the most appropriate distributions to model the data. To do this a literature review will be conducted to identify the best set of distributions to use. Once identified, maximum likelihood methods of model fitting and AIC based akaike weights for model selection will be used to identify which distributions best describe honeybee foraging in the two environments.
+
+\section{Anticipated outcomes and results}
+Previous analysis conducted on a sample of the data reported in the CMEE MiniProject found apparent differences in foraging distances between urban and rural environments. The anticipated outcome of this study is to expand the phenomenological understanding of these differences to a higher resolution than has previously been conducted. Whilst there are no direct efforts to examine in detail the mechanistic basis of differences in foraging distances, additional data will be used where necessary to identify possible causes. Such data will be provided, where available, by Dr Ellie Leadbeater of Royal Holloway University of London and Dr Richard J. Gill at Silwood Park, Imperial College London.
+
+\section{Project timeline}
+\begin{enumerate}
+	\item\textbf{April 2019:} Conduct a literature review to identify the most appropriate distributions to model the data and write these distributions as R/Python functions.
+	
+	\item\textbf{May 2019:} Develop a data analysis workflow to fit candidate distributions to the data using maximum likelihood methods in python.
+	
+	\item\textbf{June 2019:} Review analysis and distributions. Analyse other data sources to identify possible mechanistic influencers on foraging distances.
+	
+	\item\textbf{July - 29th August:} Thesis write up.   
+	 
+\end{enumerate}
+
+\begin{ganttchart}[
+	vgrid,
+	title/.style={fill=teal, draw=none},
+	title label font=\color{white}\bfseries,
+	]{1}{25}
+	%\gantttitle{Timeline}{25} \\
+	\gantttitle{April}{5} 
+	\gantttitle{May}{5} 
+	\gantttitle{June}{5} 
+	\gantttitle{July}{5} 
+	\gantttitle{August}{5} \\
+	\ganttbar[bar/.append style={fill=black}]{1}{1}{5} \\
+	\ganttlinkedbar[bar/.append style={fill=black}]{2}{6}{10} \\
+	\ganttlinkedbar[bar/.append style={fill=black}]{3}{10}{15} \\
+	\ganttbar[bar/.append style={fill=CornflowerBlue}]{4}{15}{25}
+	
+	\ganttvrule[
+	vrule/.append style={red, thin},
+	vrule offset=.2,
+	vrule label node/.append style={anchor=north west}
+	]{Latest start writing point}{18}
+	
+\end{ganttchart}
+
+\section{Budget}
+As this research uses data already collected, there are no field or laboratory expenses required at the time of writing. All analysis will be conducted on the authors personal laptop, however, funds maybe required to use the Imperial College High Performance Computing cluster (HPC).
+
+\end{document}
