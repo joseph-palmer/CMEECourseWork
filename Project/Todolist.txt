@@ -1,0 +1,9 @@
+-- SUB --
+Rewrite the exponential process in R and compare.
+Try bounding the minimize function
+Check equation again. Email Tinu to request a quick check of it.
+
+-- MAJOR --
+Create the test MLE scipts for the other distributions
+Constrict the MLE methods from the test to the actual data
+Look at multiple sum exponentials
