@@ -98,8 +98,8 @@ class LLFunctions(object):
         """
         mu = params[0]
         sigma = params[1]**2
-        eq = (len(x) / 2 * np.log(2 * np.pi * sigma) -
-            (np.sum([(np.log(x_) - mu)**2 for x_ in x]) / 2 * sigma) -
+        eq = (-(len(x) / 2) * np.log(2 * np.pi * sigma) -
+            (np.sum([(np.log(x_) - mu)**2 for x_ in x]) / (2 * sigma)) -
             np.sum(np.log(x)))
         return -eq
 

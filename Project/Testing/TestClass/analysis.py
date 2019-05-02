@@ -30,9 +30,9 @@ aicdata["ParamNumber"] = None
 aicdata["AIC"] = None
 
 # create some test data to work with
-data = np.random.exponential(1 / 1.8, 10000)
+data = np.random.exponential(1 / 1.8, 100)
 #data = np.random.normal(4.8, 1.8, 1000)
-#data = np.random.lognormal(4.8, 1 / 1.8, 1000)
+#data = np.random.lognormal(4.8, 1.8, 1000)
 
 # loop through models and minimize loglikelihood function
 for i in range(0, len(modellist)):
