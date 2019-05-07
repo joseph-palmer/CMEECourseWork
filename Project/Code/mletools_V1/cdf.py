@@ -54,14 +54,14 @@ def GammaDist(params, x):
     eq = (sp.special.gammainc(k, x / theta))
     return 1 - eq
 
-def WeibullDist(params, x):
-    """WeibullDist - CDF function for the 2 paramater weibull
-    distribution.
-    TESTING REQUIRED
-    :param params: paramaters required (scale and shape)
+def SumExp_2r(params, x):
+    """SumExp_2p - CDF for 2 rate sum of exponentials.
+
+    :param params: paramaters required (rate 1 and 2, probability 1).
     :param x: data.
     """
-    lam = params[0]
-    k = params[1]
-    eq = (1 - np.exp(-(x / lam)**k))
+    r1 = params[0]
+    r2 = params[1]
+    p1 = params[2]
+    eq = (p1 - 1) * np.exp(-r2 * x) - p1 * np.exp(-r1 * x)
     return 1 - eq

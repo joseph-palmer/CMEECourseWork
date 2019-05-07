@@ -1,8 +1,6 @@
 Finish testing jupyter notebook for sampling from a function (using example of
 exponential).
 
-Start documentation of the package methods.
-
 Get code under git version control.
 
 Look at multiple sum exponentials.
