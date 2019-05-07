@@ -1,19 +1,31 @@
 #!/usr/bin/env python3
-"""Fitting distributions to honeybee foraging distance data using MLE"""
-__appname__ = "analysis.py"
+"""Testing script for the mle module"""
+__appname__ = "mletester.py"
 __author__ = "Joseph Palmer <joseph.palmer18@imperial.ac.uk>"
 __version__ = "0.0.1"
 __license__ = "License for this code/"
 __date__ = "May-2019"
 
 ## imports ##
+import sys
 import pandas as pd
 import numpy as np
-from mletools import runmle
-import matplotlib.pyplot as plt
+from mletools_V1 import cdf
+from mletools_V1.mlemodel import runmle
 
+
+# get command line options
+if len(sys.argv) < 2:
+    print("you can add arguments in you know!")
+    name = "exponential"
+else:
+    name = sys.argv[1]
+
+params = [4.8, 1.8]
+
+print("Testing {} with actual parmaters of {}".format(name, params))
 # import data into pandas dataframe
-path = "~/Documents/CMEE/CMEECourseWork/Miniproject/Data/Distances.csv"
+path = "../Data/Distances.csv"
 data = pd.read_csv(path)
 
 # subset the data by locations
@@ -29,17 +41,21 @@ aicdata["LogLike"] = None
 aicdata["ParamNumber"] = None
 aicdata["AIC"] = None
 
-# create some test data to work with
-data = np.random.exponential(1 / 1.8, 100)
-#data = np.random.normal(4.8, 1.8, 1000)
-#data = np.random.lognormal(4.8, 1.8, 1000)
-data = np.random.gamma(4.8, 1.8, 1000)
-# data = rural_dist
+# create some test data for tests
+n = 1000
+testdata = {"exponential" : np.random.exponential(1 / params[1], n),
+            "normal"      : np.random.normal(params[0], params[1], n),
+            "lognormal"   : np.random.lognormal(params[0], params[1], n),
+            "gamma"       : np.random.gamma(params[0], params[1], n),
+            "rural"       : rural_dist,
+            "urban"       : urban_dist}
+
+data = testdata[name]
 
 # loop through models and minimize loglikelihood function
 for i in range(0, len(modellist)):
     if modellist[i] == "exponential":
-        start = [0.1]
+        start = [1.1]
     else:
         start = [1.1, 1.1]
     mod = runmle(data = data,
@@ -48,7 +64,7 @@ for i in range(0, len(modellist)):
     model = mod.ModelData()
 
     # store results in dataframe
-    ll = (-1) * mod.GetLogLike(model)
+    ll = mod.GetLogLike(model)
     aicdata.iloc[i, 1] = ll
     aicdata.iloc[i, 2] = len(model.x)
     aicdata.iloc[i, 3] = mod.AIC(model)
@@ -56,6 +72,11 @@ for i in range(0, len(modellist)):
     print(model)
 
     # show figures
+    pred = mod.MLEPredict(model)
+    ci = mod.Getci2p(model)
+    pred2 = mod.MLEPredictCI(ci, pred)
+    fig = mod.PredictFig(pred2)
+    fig.show()
 
 # calculate weighted AIC scores
 aicdata.sort_values(by=["AIC"], inplace = True)
@@ -64,3 +85,4 @@ aicdata["wAIC"] = np.exp(-0.5 * (aicdata["AIC"].astype(float) -
                   aicdata["AIC"].min()))
 print("{f1}\n{f2:^50s}\n{f1}".format(f1 = "#" * 50, f2 = "Weighted AIC Table"))
 print(aicdata)
+print("\n\nTested {} with actual parmaters of {}".format(name, params))

@@ -1,9 +1,8 @@
--- SUB --
-Rewrite the exponential process in R and compare.
-Try bounding the minimize function
-Check equation again. Email Tinu to request a quick check of it.
+Finish testing jupyter notebook for sampling from a function (using example of
+exponential).
 
--- MAJOR --
-Create the test MLE scipts for the other distributions
-Constrict the MLE methods from the test to the actual data
-Look at multiple sum exponentials
+Start documentation of the package methods.
+
+Get code under git version control.
+
+Look at multiple sum exponentials.

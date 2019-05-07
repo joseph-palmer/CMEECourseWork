@@ -52,19 +52,32 @@ class CDFFunctions(object):
         """
         mu = params[0]
         sigma = params[1]
-        eq = (1 / 2) + (1 / 2) * sp.special.erf((np.log(x) - mu) / np.sqrt(2 * sigma))
+        eq = ((1 / 2) + (1 / 2) * sp.special.erf((np.log(x) - mu) / 
+              np.sqrt(2 * sigma)))
         return 1 - eq
 
     def __GammaDist(self, params, x):
         """__GammaDist - CDF function for the gamma distribution.
+            NOTE: INCORRECT RETURN - NEEDS CHECKING
 
         :param params: paramaters required (alpha and beta).
         :param x: data.
         """
-        alpha = params[0]
-        beta = params[1]
-        eq = 1 / (sp.special.gamma(alpha)) * sp.special.gammainc(alpha,
-                                                                 beta * x)
+        k = params[0]
+        theta = params[1]
+        eq = (sp.special.gammainc(k, x / theta)) #/ (sp.special.gamma(k))
+        return 1 - eq
+
+    def __WeibullDist(self, params, x):
+        """__WeibullDist - CDF function for the 2 paramater weibull
+        distribution.
+        TESTING REQUIRED
+        :param params: paramaters required (scale and shape)
+        :param x: data.
+        """
+        lam = params[0]
+        k = params[1]
+        eq = (1 - np.exp(-(x / lam)**k))
         return 1 - eq
 
 class LLFunctions(object):
@@ -122,13 +135,18 @@ class LLFunctions(object):
         :param params: paramaters required.
         :param x: data.
         """
-        alpha = params[0]
-        beta = params[1]
-        eq = (len(x) * alpha * np.log(beta) - 
-                len(x) * np.log(sp.special.gamma(alpha)) +
-                (alpha - 1) * np.sum(np.log(x)) - 
-                beta * np.sum(x))
+        k = params[0]
+        theta = params[1]
+        eq = ((k - 1) * np.sum(np.log(x)) - 
+              np.sum([x_ / theta for x_ in x]) -
+              len(x) * k * np.log(theta) - 
+              len(x) * np.log(sp.special.gamma(k)))
+        # eq = (len(x) * alpha * np.log(beta) - 
+        #     len(x) * np.log(sp.special.gamma(alpha)) + 
+        #     (alpha - 1) * np.sum([np.log(x_) for x_ in x]) - 
+        #    beta * np.sum(x))
         return -eq
+
 
 class runmle(CDFFunctions, LLFunctions):
 

@@ -102,6 +102,7 @@ def TestFunction(f):
 
     # optimize the model
     model = minimize(f, params, data, method = "l-bfgs-b")
+    print(1/np.mean(data))
     if model.success is True:
         print("Model '{}' had no erors: Actual params = {},"
               " simulated params = {}".format(f.__name__,

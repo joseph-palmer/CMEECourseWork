@@ -1,6 +1,0 @@
-\contentsline {section}{\numberline {1}Keywords}{2}
-\contentsline {section}{\numberline {2}Introduction}{2}
-\contentsline {section}{\numberline {3}Proposed methods}{2}
-\contentsline {section}{\numberline {4}Anticipated outcomes and results}{3}
-\contentsline {section}{\numberline {5}Project timeline}{3}
-\contentsline {section}{\numberline {6}Budget}{4}
