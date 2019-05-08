@@ -63,5 +63,16 @@ def SumExp_2r(params, x):
     r1 = params[0]
     r2 = params[1]
     p1 = params[2]
-    eq = (p1 - 1) * np.exp(-r2 * x) - p1 * np.exp(-r1 * x)
+    eq = (p1 - 1) * np.exp(-r2 * x) - p1 * np.exp(-r1 * x) + 1
+    return 1 - eq
+
+def SumExp_3r(params, x):
+    r1 = params[0]
+    r2 = params[1]
+    r3 = params[2]
+    p1 = params[3]
+    p2 = params[4]
+    eq = ((p2 + p1 - 1) * np.exp(-r3 * x) - 
+          p2 * np.exp(-r2 * x) -
+          p1 * np.exp(-r1 * x) + 1)
     return 1 - eq

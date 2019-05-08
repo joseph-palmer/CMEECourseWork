@@ -1,6 +1,6 @@
 # MSc Computational Methods in Ecology and Evolution Project.
 ### Joseph Palmer: <joseph.palmer18@imperial.ac.uk>
-### Update Date: 07/05/2019
+### Update Date: 08/05/2019
 
 __Note__: This Project is ongoing and the contents of these folders and this read me is subject to change daily.
 
@@ -25,6 +25,7 @@ Part of the objective of this project is to produce software to impliment a sum 
 * Fits exponential, lognormal, normal and gamma distributions to data sampled from distributions using numpy.random as well as the actual bee foraging data using MLE.
 * Creates plots of these fits with associated confidence intervals.
 * Produces comparative stats of AIC and weighted AIC scores.
+* __NEW:__ can do 2 and 3 rate paramater sum of exponentials.
 
 These are implimented and can be extended to any data provided if desired.
 
@@ -33,6 +34,6 @@ Imediate targets for inclusion are:
 
 * Testing frame work for sampling from any function.
 
-plan is to use the inverse cdf method for this. A comprehensive testing method is not possible. One has to sample from a uniform distribution bound between 0,1 and pass these to the inverse of the cdf of the target distribution. Not possible to code fully but an example script in a jupyter notebook in __Notebooks/__ for exponential will be used to show the process. This will need to be done manually for every other function you want to test from.
+plan is to use the inverse cdf method for this. A comprehensive testing method is not possible. One has to sample from a uniform distribution bound between 0,1 and pass these to the inverse of the cdf of the target distribution. Not possible to code fully but an example script in a jupyter notebook in __Notebooks/__ for exponential shows the method. This will need to be done manually for every other function you want to test from.
 
-* The two part sum of exponentials will need converting to a cdf and the likelihood function producing. then they can be tested.
+* The sum of exponentials will need extending to cover multiple data points. Because both the likelihood and cdf are in parts this can be done by simply increasing the number of parts to the total length of the data. This will be done through a function.

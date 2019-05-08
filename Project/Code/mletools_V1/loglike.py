@@ -59,3 +59,22 @@ def LLGamma(params, x):
           len(x) * k * np.log(theta) - 
           len(x) * np.log(sp.special.gamma(k)))
     return -eq
+
+def LLSumExp_2r(params, x):
+    r1 = params[0]
+    r2 = params[1]
+    p1 = params[2]
+    eq = (len(x) * np.log((p1 * r1) + ((1 - p1) * r2)) -
+         (r1 + r2) * np.sum(x))
+    print("{}, {}, {}, {}".format(r1, r2, p1, -eq))
+    return -eq
+
+def LLSumExp_3r(params, x):
+    r1 = params[0]
+    r2 = params[1]
+    r3 = params[2]
+    p1 = params[3]
+    p2 = params[4]
+    eq = (len(x) * np.log((p1 * r1) + (p2 * r2) + ((1 - p1 - p2) * r3)) -
+         (r1 + r2 + r3) * np.sum(x))
+    return -eq

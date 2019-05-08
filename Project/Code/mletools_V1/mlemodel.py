@@ -22,14 +22,16 @@ class runmle():
     functions.
     """
 
-    def __init__(self, data, startest, method):
+    def __init__(self, data, startest, method, bounds = None):
         """
         data     : The data to fit the model to.
         startest : starting estimates for the minimization.
-        method   : The distribution to fit as a string."""
+        method   : The distribution to fit as a string.
+        bounds   : Parameter bounds for minimize, default is no bounds."""
         self.data = data
         self.method = method
         self.startest = startest
+        self.bound = bounds
 
     def ModelMap(self):
         """ModelMap: Contains dictionary to link MLE and cdf functions
@@ -41,7 +43,11 @@ class runmle():
                       "lognormal"  : [loglike.LLLognormal,
                                       cdf.LognormalDist],
                       "gamma"      : [loglike.LLGamma,
-                                      cdf.GammaDist]}
+                                      cdf.GammaDist],
+                      "sumexp2"    : [loglike.LLSumExp_2r,
+                                      cdf.SumExp_2r],
+                      "sumexp3"    : [loglike.LLSumExp_3r,
+                                      cdf.SumExp_3r]}
         if self.method not in list(modeldict.keys()):
             msg = "'{}' Not a listed method for analysis.".format(self.method)
             raise ValueError(msg)
@@ -58,10 +64,17 @@ class runmle():
     def ModelData(self):
         """ModelData: Minimize the likelihood functions and return the
         minimisation object"""
-        model = minimize(self.ModelMap()[0],
-                         self.startest,
-                         self.data,
-                         method = "l-bfgs-b")
+        if self.bound is None: 
+            model = minimize(self.ModelMap()[0],
+                             self.startest,
+                             self.data,
+                             method = "l-bfgs-b")
+        else:
+            model = minimize(self.ModelMap()[0],
+                             self.startest,
+                             self.data,
+                             bounds = self.bound,
+                             method = "l-bfgs-b")
         return(model)
 
     def MLEPredict(self, model):
@@ -94,7 +107,7 @@ class runmle():
         df["LowerCI"] = np.array(self.ModelMap()[1](cina[:,2], df["Lengths"]))
         return df
 
-    def PredictFig(self, df):
+    def PredictFig(self, df, ci = True):
         """PredictFig - Produces a plot Using the dataframe from MLEPredictCI.
 
         :param df: The dataframe from MLEPredictCI.
@@ -106,15 +119,18 @@ class runmle():
         l2 = plt.plot(df["Lengths"],
                       df["Prediction"],
                       label = self.method)
-        lci = plt.fill_between(df["Lengths"], 
-                               df["UpperCI"],
-                               df["LowerCI"],
-                               color = "grey",
-                               alpha = 0.5,
-                               label = "95% CI")
+        if ci:
+            lci = plt.fill_between(df["Lengths"], 
+                                   df["UpperCI"],
+                                   df["LowerCI"],
+                                   color = "grey",
+                                   alpha = 0.5,
+                                   label = "95% CI")
+            plt.legend(handles = [l1[0], l2[0], lci])
+        else:
+            plt.legend(handles = [l1[0], l2[0]])
         plt.xlabel("Foraging distance (Km)")
         plt.ylabel("Probability")
-        plt.legend(handles = [l1[0], l2[0], lci])
         return plt
 
     def GetLogLike(self, model):
