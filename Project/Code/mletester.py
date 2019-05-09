@@ -13,6 +13,33 @@ import numpy as np
 from mletools_V1 import cdf
 from mletools_V1.mlemodel import runmle
 
+"""
+def LLSumExp(params, x, rval):
+    rates = params[:rval]
+    probs = params[rval:]
+    df = np.column_stack((rates[:-1], probs))
+    if np.sum(probs) > 1:
+        return 1000000
+    e1 = "*".join(["({}*{})".format(i[0], i[1]) for i in df])
+    e2 = "1-{}".format("-".join([str(i) for i in probs]))
+    e3 = "({})*{}".format(e2, rates[-1])
+    e4 = "{}*({})".format(e1, e3)
+    e5 = "len(x)*np.log({})".format(e4)
+    e6 = "{}-{}".format(e5, "-".join(["{}**len(x)*np.sum(x)".format(i) for i in rates]))
+    #print(e6)
+    #eq = eval(e6)
+    return e6
+
+
+params = [1, 2, 3, 4, 0, 0, 0]
+rval = 4
+x = [1, 2, 3, 4]
+
+ans = LLSumExp(params, x, rval)
+print(ans)
+
+exit()
+"""
 
 # get command line options
 if len(sys.argv) < 2:
@@ -33,7 +60,7 @@ rural_dist = data["Distance_Km"][data["Location"] == "ROT"]
 urban_dist = data["Distance_Km"][data["Location"] == "ZSL"]
 
 # run models one by one
-modellist = ["sumexp3", "sumexp2", "exponential", "gamma"]#, "normal", "lognormal", "gamma"]
+modellist = ["exponential", "sumexp2", "sumexp"]#, "normal", "lognormal", "gamma"]
 
 # create initialised dataframe to store weighted AIC results in
 aicdata = pd.DataFrame({"Model":modellist})
@@ -56,41 +83,49 @@ data = testdata[name]
 for i in range(0, len(modellist)):
     if modellist[i] == "exponential":
         start = [1.1]
-        bounds = ((None))
+        bounds = ((0, None),)
     elif modellist[i] == "sumexp3":
         start = [0.1, 0.1, 0.1, 0.1, 0.1]
-        bounds = ((None, None),
-                  (None, None),
-                  (None, None),
+        bounds = ((0, None),
+                  (0, None),
+                  (0, None),
                   (0, 1.0),
                   (0, 1.0))
     elif modellist[i] == "sumexp2":
         start = [0.1, 0.1, 0.1]
-        bounds = ((None, None),
-                  (None, None),
-                  (0, 1.0))
+        bounds = ((0, None),
+                  (0, None),
+                  (0, None))
+    elif modellist[i] == "sumexp":
+        l = 3
+        rates = [0.1] * l
+        param = [0.0001] * (l -1)
+        start = [rates, param]
+        bounds = (((None, None),) * l) + (((None, None),) * (l - 1))
     else:
         start = [1.1, 1.1]
     mod = runmle(data = data,
               startest = start,
               bounds = bounds,
               method = modellist[i])
-    model = mod.ModelData()
+    if modellist[i] == "sumexp":
+        model = mod.ModelDataSE()
+    else:
+        model = mod.ModelData()
+
+    print("{f1}\n{f2: ^50}\n{f1}".format(f1 = "#" * 50, f2 = modellist[i]))    
+    print(model)
+    print(", ".join([str(i) for i in model.x]))
 
     # store results in dataframe
     ll = mod.GetLogLike(model)
     aicdata.iloc[i, 1] = ll
     aicdata.iloc[i, 2] = len(model.x)
     aicdata.iloc[i, 3] = mod.AIC(model)
-    print("{f1}\n{f2: ^50}\n{f1}".format(f1 = "#" * 50, f2 = modellist[i]))    
-    print(model)
-    print(", ".join([str(i) for i in model.x]))
-
     # show figures
     pred = mod.MLEPredict(model)
-    ci = mod.Getci2p(model)
-    pred2 = mod.MLEPredictCI(ci, pred)
-    fig = mod.PredictFig(pred2, ci = False)
+    #ci = mod.Getci2p(model)
+    fig = mod.PredictFig(pred, ci = False)
     fig.show()
 
 # calculate weighted AIC scores

@@ -64,9 +64,7 @@ def LLSumExp_2r(params, x):
     r1 = params[0]
     r2 = params[1]
     p1 = params[2]
-    eq = (len(x) * np.log((p1 * r1) + ((1 - p1) * r2)) -
-         (r1 + r2) * np.sum(x))
-    print("{}, {}, {}, {}".format(r1, r2, p1, -eq))
+    eq = (len(x) * np.log((p1 * r1) * ((1 - p1) * r2)) - (r1**len(x) + r2**len(x)) * np.sum(x))
     return -eq
 
 def LLSumExp_3r(params, x):
@@ -75,6 +73,23 @@ def LLSumExp_3r(params, x):
     r3 = params[2]
     p1 = params[3]
     p2 = params[4]
-    eq = (len(x) * np.log((p1 * r1) + (p2 * r2) + ((1 - p1 - p2) * r3)) -
+    if (p1 + p2) > 1:
+        return 100000
+    eq = (len(x) * np.log((p1 * r1) * (p2 * r2) * ((1 - p1 - p2) * r3)) -
          (r1 + r2 + r3) * np.sum(x))
+    return -eq
+
+def LLSumExp(params, x, rval):
+    rates = params[:rval]
+    probs = params[rval:]
+    df = np.column_stack((rates[:-1], probs))
+    if np.sum(probs) > 1:
+        return 1000000
+    e1 = "*".join(["({}*{})".format(i[0], i[1]) for i in df])
+    e2 = "1-{}".format("-".join([str(i) for i in probs]))
+    e3 = "({})*{}".format(e2, rates[-1])
+    e4 = "{}*({})".format(e1, e3)
+    e5 = "len(x)*np.log({})".format(e4)
+    e6 = "{}-({})*np.sum(x)".format(e5, "+".join(["{}**len(x)".format(i) for i in rates]))
+    eq = eval(e6)
     return -eq

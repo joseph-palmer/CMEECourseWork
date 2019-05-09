@@ -1,6 +1,6 @@
 # MSc Computational Methods in Ecology and Evolution Project.
 ### Joseph Palmer: <joseph.palmer18@imperial.ac.uk>
-### Update Date: 08/05/2019
+### Update Date: 09/05/2019
 
 __Note__: This Project is ongoing and the contents of these folders and this read me is subject to change daily.
 
@@ -26,6 +26,7 @@ Part of the objective of this project is to produce software to impliment a sum 
 * Creates plots of these fits with associated confidence intervals.
 * Produces comparative stats of AIC and weighted AIC scores.
 * __NEW:__ can do 2 and 3 rate paramater sum of exponentials.
+* __Edit:__ sum of exponentials set up with flexible equations. Log-likelihood equation coming too high so function needs a tweak, but on the right lines. Tomorrows plan is to discuss the equation with one of the maths phds to see where I am going wrong, discuss with francis getting the git version control set up properly, and if time putting the sum of exponentials into a seperate class from the other functions and cleaning up the code.
 
 These are implimented and can be extended to any data provided if desired.
 
@@ -36,4 +37,4 @@ Imediate targets for inclusion are:
 
 plan is to use the inverse cdf method for this. A comprehensive testing method is not possible. One has to sample from a uniform distribution bound between 0,1 and pass these to the inverse of the cdf of the target distribution. Not possible to code fully but an example script in a jupyter notebook in __Notebooks/__ for exponential shows the method. This will need to be done manually for every other function you want to test from.
 
-* The sum of exponentials will need extending to cover multiple data points. Because both the likelihood and cdf are in parts this can be done by simply increasing the number of parts to the total length of the data. This will be done through a function.
+

@@ -47,7 +47,9 @@ class runmle():
                       "sumexp2"    : [loglike.LLSumExp_2r,
                                       cdf.SumExp_2r],
                       "sumexp3"    : [loglike.LLSumExp_3r,
-                                      cdf.SumExp_3r]}
+                                      cdf.SumExp_3r],
+                      "sumexp"     : [loglike.LLSumExp,
+                                      cdf.SumExp]}
         if self.method not in list(modeldict.keys()):
             msg = "'{}' Not a listed method for analysis.".format(self.method)
             raise ValueError(msg)
@@ -60,6 +62,17 @@ class runmle():
         sorted_data = -np.sort(-self.data)
         prob = np.arange(0, len(self.data), 1) / len(self.data)
         return pd.DataFrame({"SortedData":sorted_data, "Probability":prob})
+
+    def ModelDataSE(self):
+        rates = self.startest[0]
+        probs = self.startest[1]
+        self.rval = len(rates)
+        start = np.array([rates + probs])
+        model = minimize(self.ModelMap()[0],
+                         start,
+                         args=(self.data, self.rval),
+                         method = "l-bfgs-b")
+        return model
 
     def ModelData(self):
         """ModelData: Minimize the likelihood functions and return the
@@ -87,7 +100,10 @@ class runmle():
         lengths = np.linspace(max(self.data),
                               min(self.data),
                               num = len(self.data))
-        prediction = np.array(self.ModelMap()[1](model.x, lengths))
+        if self.method == "sumexp":
+            prediction = np.array(self.ModelMap()[1](model.x, lengths, self.rval))
+        else:
+            prediction = np.array(self.ModelMap()[1](model.x, lengths))
         df = pd.DataFrame({"SortedData"  : ivdata["SortedData"],
                            "Probability" : ivdata["Probability"],
                            "Lengths"     : lengths,
@@ -135,11 +151,13 @@ class runmle():
 
     def GetLogLike(self, model):
         """GetLogLike - Returns the loglikelihood for a given pramater value
-        for the model.
+        for the model. Negative is required for inversion.
 
         :param model: The model object from ModelData.
         """
-        return self.ModelMap()[0](model.x, self.data)
+        if self.method == "sumexp":
+            return (-1) * self.ModelMap()[0](model.x, self.data, self.rval)
+        return (-1) * self.ModelMap()[0](model.x, self.data)
 
     def Getci1p(self, model):
         """Getci1p - Calculates 95% CI for a single parmater log-likelihood
@@ -218,5 +236,5 @@ class runmle():
         :param model: The model from ModelData.
         """
         k = len(model.x)
-        ll = (-1) * self.GetLogLike(model)
+        ll = self.GetLogLike(model)
         return -2 * ll + 2 * k

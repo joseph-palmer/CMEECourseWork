@@ -76,3 +76,13 @@ def SumExp_3r(params, x):
           p2 * np.exp(-r2 * x) -
           p1 * np.exp(-r1 * x) + 1)
     return 1 - eq
+
+def SumExp(params, x, rval):
+    rates = params[:rval]
+    probs = params[rval:]
+    df = np.column_stack((rates[:-1], probs))
+    e1 = "({}-1)".format("+".join([str(i) for i in reversed(probs)]))
+    e2 = "np.exp(-{}*x)".format(rates[-1])
+    e3 = ["({}*np.exp(-{}*x))".format(i[1], i[0]) for i in reversed(df)]
+    e4 = "({}*{}-{})+1".format(e1, e2, "-".join(e3))
+    return 1 - eval(e4)
