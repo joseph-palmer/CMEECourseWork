@@ -61,11 +61,10 @@ def LLGamma(params, x):
     return -eq
 
 def LLSumExp_2r(params, x):
-    r1 = params[0]
-    r2 = params[1]
-    p1 = params[2]
-    eq = (len(x) * np.log((p1 * r1) * ((1 - p1) * r2)) - (r1**len(x) + r2**len(x)) * np.sum(x))
-    return -eq
+    if params[0] > 1:
+        return np.inf
+    eq = "np.log(np.prod({p}*0.5*np.exp(-0.5*x) + ((1-{p})*2)*np.exp(-2*x)))".format(p = params[0])
+    return - eval(eq)
 
 def LLSumExp_3r(params, x):
     r1 = params[0]
@@ -83,13 +82,21 @@ def LLSumExp(params, x, rval):
     rates = params[:rval]
     probs = params[rval:]
     df = np.column_stack((rates[:-1], probs))
-    if np.sum(probs) > 1:
-        return 1000000
-    e1 = "*".join(["({}*{})".format(i[0], i[1]) for i in df])
-    e2 = "1-{}".format("-".join([str(i) for i in probs]))
-    e3 = "({})*{}".format(e2, rates[-1])
-    e4 = "{}*({})".format(e1, e3)
-    e5 = "len(x)*np.log({})".format(e4)
-    e6 = "{}-({})*np.sum(x)".format(e5, "+".join(["{}**len(x)".format(i) for i in rates]))
-    eq = eval(e6)
-    return -eq
+    print("###")
+    print(params)
+    if np.sum(probs) > 1 or np.sum(probs) < 0:
+        return np.inf
+    e1 = ["{p}*{r}*np.exp(-{r}*x)".format(p = i[1], r = i[0]) for i in df]
+    e2 = "(1-{})".format("-".join([str(i) for i in probs]))
+    e3 = "{e}*{r}*np.exp(-{r}*x)".format(e = e2, r = rates[-1])
+    e4 = "np.log(np.prod({e1}+{e3}))".format(e1 = "+".join(e1), e3 = e3)
+    print(-eval(e4))
+    return -eval(e4)
+    #e1 = "*".join(["({}*{})".format(i[0], i[1]) for i in df])
+    #e2 = "1-{}".format("-".join([str(i) for i in probs]))
+    #e3 = "({})*{}".format(e2, rates[-1])
+    #e4 = "{}*({})".format(e1, e3)
+    #e5 = "len(x)*np.log({})".format(e4)
+    #e6 = "{}-({})*np.sum(x)".format(e5, "+".join(["{}**len(x)".format(i) for i in rates]))
+    #eq = eval(e6)
+    #return -eq

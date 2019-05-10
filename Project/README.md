@@ -1,6 +1,6 @@
 # MSc Computational Methods in Ecology and Evolution Project.
 ### Joseph Palmer: <joseph.palmer18@imperial.ac.uk>
-### Update Date: 09/05/2019
+### Update Date: 10/05/2019
 
 __Note__: This Project is ongoing and the contents of these folders and this read me is subject to change daily.
 
@@ -25,16 +25,11 @@ Part of the objective of this project is to produce software to impliment a sum 
 * Fits exponential, lognormal, normal and gamma distributions to data sampled from distributions using numpy.random as well as the actual bee foraging data using MLE.
 * Creates plots of these fits with associated confidence intervals.
 * Produces comparative stats of AIC and weighted AIC scores.
-* __NEW:__ can do 2 and 3 rate paramater sum of exponentials.
-* __Edit:__ sum of exponentials set up with flexible equations. Log-likelihood equation coming too high so function needs a tweak, but on the right lines. Tomorrows plan is to discuss the equation with one of the maths phds to see where I am going wrong, discuss with francis getting the git version control set up properly, and if time putting the sum of exponentials into a seperate class from the other functions and cleaning up the code.
+* Can do 2 and 3 rate paramater sum of exponentials.
+* Sum of exponentials set up with flexible equations. 
 
 These are implimented and can be extended to any data provided if desired.
 
-#### what the package will soon be able to do
-Imediate targets for inclusion are:
+#### Update of the day:
 
-* Testing frame work for sampling from any function.
-
-plan is to use the inverse cdf method for this. A comprehensive testing method is not possible. One has to sample from a uniform distribution bound between 0,1 and pass these to the inverse of the cdf of the target distribution. Not possible to code fully but an example script in a jupyter notebook in __Notebooks/__ for exponential shows the method. This will need to be done manually for every other function you want to test from.
-
-
+__10/05/2019:__ Spoke to Tin-Yu regarding the likelihood of the function. His advice was to avoid manually deriving the likelihood and log-likelihood since the computer can do it. Demonstration in class was more for analyitical solutions. Under this advice I have the function now as log(product(equation)) which seams to be working, but the results are variable. I canot get a better log-likelihood than a simple exponential on the rural data, which is serving as ideal test data for this. The function has odd behaviour. With fixed rates or 1 and 2 the prob (p) values fix to 1. With everything fixed the optimizer tends to focus more on the other paramaters and prefers to lower the p as much as it can under a 2 p model. With more paramaters it often just fails. Using the SLSQP method of minimize instead of l-bfgs-b yields the same loglikelihood as the simple exponential for 2 p model. But adding in more paramaters causes this to break. All methods are highly variable to changes in p startig values, the starting values of the rates however have little influence. I will discuss this more with vincent. In the mean time I have spoken with Francis who kindly gave me a tutorial on git flow. In addition to mainitaing test script in the CMEE course work directory I have also made a new repository for the program to go in. All backups to box have been carried out, but I need to assemble the external hard-drive at some point.

@@ -9,6 +9,7 @@ __date__ = "May-2019"
 ## imports ##
 import numpy as np
 import scipy as sp
+from scipy import integrate
 
 def ExponentialDist(params, x):
     """ExponentialDist - CDF function for exponential distribution
@@ -60,10 +61,8 @@ def SumExp_2r(params, x):
     :param params: paramaters required (rate 1 and 2, probability 1).
     :param x: data.
     """
-    r1 = params[0]
-    r2 = params[1]
-    p1 = params[2]
-    eq = (p1 - 1) * np.exp(-r2 * x) - p1 * np.exp(-r1 * x) + 1
+    p1 = params[0]
+    eq = (p1 - 1) * np.exp(-2 * x) - p1 * np.exp(-1 * x) + 1
     return 1 - eq
 
 def SumExp_3r(params, x):

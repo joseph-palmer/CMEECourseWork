@@ -20,15 +20,11 @@ def LLSumExp(params, x, rval):
     df = np.column_stack((rates[:-1], probs))
     if np.sum(probs) > 1:
         return 1000000
-    e1 = "*".join(["({}*{})".format(i[0], i[1]) for i in df])
-    e2 = "1-{}".format("-".join([str(i) for i in probs]))
-    e3 = "({})*{}".format(e2, rates[-1])
-    e4 = "{}*({})".format(e1, e3)
-    e5 = "len(x)*np.log({})".format(e4)
-    e6 = "{}-{}".format(e5, "-".join(["{}**len(x)*np.sum(x)".format(i) for i in rates]))
-    #print(e6)
-    #eq = eval(e6)
-    return e6
+    e1 = ["{p}*{r}*np.exp(-{r}*x)".format(p = i[1], r = i[0]) for i in df]
+    e2 = "(1-{})".format("-".join([str(i) for i in probs]))
+    e3 = "{e}*{r}*np.exp(-{r}*x)".format(e = e2, r = rates[-1])
+    e4 = "np.log(np.prod({e1}+{e3}))".format(e1 = "+".join(e1), e3 = e3)
+    return -eval(e4)
 
 
 params = [1, 2, 3, 4, 0, 0, 0]
@@ -92,16 +88,14 @@ for i in range(0, len(modellist)):
                   (0, 1.0),
                   (0, 1.0))
     elif modellist[i] == "sumexp2":
-        start = [0.1, 0.1, 0.1]
-        bounds = ((0, None),
-                  (0, None),
-                  (0, None))
+        start = [0.1]
+        bounds = ((0, 1),)
     elif modellist[i] == "sumexp":
         l = 3
         rates = [0.1] * l
-        param = [0.0001] * (l -1)
+        param = [0.001] * (l -1)
         start = [rates, param]
-        bounds = (((None, None),) * l) + (((None, None),) * (l - 1))
+        bounds = (((None, None),) * l) + (((0, 1),) * (l - 1))
     else:
         start = [1.1, 1.1]
     mod = runmle(data = data,
