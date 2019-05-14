@@ -10,9 +10,8 @@ __date__ = "May-2019"
 import sys
 import pandas as pd
 import numpy as np
-from mletools_V1 import cdf
-from mletools_V1.mlemodel import runmle
-
+sys.path.insert(0, "/home/joe/Documents/CMEE/mletools")
+import mlemodel
 """
 def LLSumExp(params, x, rval):
     rates = params[:rval]
@@ -56,7 +55,7 @@ rural_dist = data["Distance_Km"][data["Location"] == "ROT"]
 urban_dist = data["Distance_Km"][data["Location"] == "ZSL"]
 
 # run models one by one
-modellist = ["exponential", "sumexp2", "sumexp"]#, "normal", "lognormal", "gamma"]
+modellist = ["exponential", "sumexp", "sumexp_main"]#, "normal", "lognormal", "gamma"]
 
 # create initialised dataframe to store weighted AIC results in
 aicdata = pd.DataFrame({"Model":modellist})
@@ -90,20 +89,22 @@ for i in range(0, len(modellist)):
     elif modellist[i] == "sumexp2":
         start = [0.1]
         bounds = ((0, 1),)
-    elif modellist[i] == "sumexp":
+    elif modellist[i] == "sumexp" or modellist[i] == "sumexp_main":
         l = 3
-        rates = [0.1] * l
-        param = [0.001] * (l -1)
+        rates = [1] * l
+        param = [i for i in np.random.uniform(0, 1, l - 1)] # [0.1] * (l -1)
         start = [rates, param]
-        bounds = (((None, None),) * l) + (((0, 1),) * (l - 1))
+        bounds = (((0, np.inf),) * l) + (((0, 1),) * (l - 1))
     else:
         start = [1.1, 1.1]
-    mod = runmle(data = data,
+    mod = mlemodel.runmle(data = data,
               startest = start,
               bounds = bounds,
               method = modellist[i])
     if modellist[i] == "sumexp":
         model = mod.ModelDataSE()
+    elif modellist[i] == "sumexp_main":
+        model = mod.sumexp_model()
     else:
         model = mod.ModelData()
 
