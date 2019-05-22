@@ -65,7 +65,7 @@ aicdata["AIC"] = None
 
 # create some test data for tests
 n = 1000
-testdata = {"exponential" : np.random.exponential(1 / params[1], n),
+testdata = {"exponential" : np.random.exponential(params[1], n),
             "normal"      : np.random.normal(params[0], params[1], n),
             "lognormal"   : np.random.lognormal(params[0], params[1], n),
             "gamma"       : np.random.gamma(params[0], params[1], n),
