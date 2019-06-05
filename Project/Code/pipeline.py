@@ -11,7 +11,7 @@ import sys
 sys.path.insert(0, "/home/joe/Documents/CMEE/mletools")
 import numpy as np
 import pandas as pd
-import mlemodel
+#import mlemodel
 import warnings
 warnings.filterwarnings("error")
 
@@ -22,6 +22,10 @@ data = pd.read_csv(path)
 # subset the data by locations
 rural_dist = data["Distance_Km"][data["Location"] == "ROT"]
 urban_dist = data["Distance_Km"][data["Location"] == "ZSL"]
+
+rural_dist.to_csv(path = "../Data/test_distances.csv", index = False)
+
+exit()
 
 # run exponential model on the data to get base line
 start = [1.1]
