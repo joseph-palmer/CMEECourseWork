@@ -1,0 +1,132 @@
+\documentclass[11pt,usenames,dvipsnames]{article}
+\usepackage{lineno}
+\usepackage{graphicx}
+\usepackage[left=3cm, right=3cm, top=2cm]{geometry}
+\usepackage{float}
+\usepackage{caption}
+\usepackage[round]{natbib}
+\usepackage{pgfgantt}
+\usepackage{amsmath}
+\bibliographystyle{plainnat}
+\captionsetup[table]{skip=12pt}
+\linespread{1.3}
+\setlength{\parskip}{2em}
+\newcommand{\Lagr}{\mathcal{L}}
+\newcommand{\lagr}{\mathcal{l}}
+\begin{document}
+\begin{titlepage}
+\begin{center}
+	\large{MSC. Computational Methods in Ecology and Evolution }\\
+	\textbf{ Write up}\\[0cm]
+	\huge{\line(1,0){380}\\
+		Examining foraging distance distributions of the Western Honeybee, \textit{Apis mellifera}: A comparison between rural and urban environments\\
+	\line(1,0){380}}\\[2cm]
+\end{center}
+
+
+\begin{minipage}[t]{0.5\textwidth}
+\begin{flushleft}
+	\Large{\textbf{Author}}\\
+	\large{ Joseph Palmer\\
+		CID: 01613406}\\
+	joseph.palmer18@imperial.ac.uk\\[1cm]	
+\end{flushleft}
+\end{minipage}
+\begin{minipage}[t]{0.5\textwidth}
+\begin{flushright}
+	\Large{\textbf{Supervisors}}\\
+	\large{ Professor Vincent A.A. Jansen}\\
+	Vincent.Jansen@rhul.ac.uk\\
+	\large{Dr Elli Leadbeater}\\
+	Elli.Leadbeater@rhul.ac.uk\\
+	\large{Dr Richard J. Gill}\\
+	r.gill@imperial.ac.uk
+\end{flushright}
+\end{minipage}
+
+\vspace{1cm}
+\begin{center}
+	\large{\textbf{Imperial College London }}\\[0.2cm]
+	\large{\textit{Department of Life Sciences, Imperial College London,}\\
+		\textit{Ascot, Berkshire, SL5 7PY, United Kingdom}}\\[1cm]
+	
+	\large{\textbf{Royal Holloway University of London }}\\[0.2cm]
+	\large{\textit{School of Biological sciences, Royal Holloway University of London,\\
+			Egham Hill, Egham, Surrey, TW20 0EX, United Kingdom}}\\[1cm]
+	\textbf{April 5\textsuperscript{th} 2019}
+\end{center}
+
+\end{titlepage}
+\newpage
+\tableofcontents
+\newpage
+
+\section{Pollinator movement}
+Understanding how organisms move through an environment is a central question in ecology, with applications for land management and design. The reason for an animals movement through the environment can be usually attributed to searching, with the exception of certain escape movements. Consequentially, searching methods and mechanisms have been widely studied. One of the central questions has revolved around the evolutionary or emergence debate. Under the evolutionary hypothesis, organisms follow set methods of searching for food which are inherited. Conversely, under the emergence hypothesis organisms searching behaviour is learned through interactions with its environment. Since the late 1990's there has been a growing body of studies identifying, sometimes controversially, the presence of scale free movement, where by step lengths of distance travelled in one go follows a power law distribution. These distributions are characterised by many steps of a small size representing intensive search at a single location, dispersed with fewer steps of a larger size representing moving to a new area. These methods of searching have been shown in simulations to possess super diffusive properties and are more effective than Brownian motion at exploring areas. 
+
+
+
+\section{The importance of scale}
+When trying to understand patterns of animal movements much attention is often paid to the sum of individual variables. For example, the flight of a pollinator can be hypothetically influenced by a variety of interacting biotic and abiotic factors such as: wind speed, temperature, humidity, precipitation, light conditions, predator/competitor density and distribution. This list is not exhaustive and researchers may disagree over the extent to which each of these factors interact and influence movement on the individual scale. To this extent, these factors are influential but subjective. Constructing models based on sums of microscopic processes is inherently specific to the data used. Consequentially, the inclusion of these factors into a mechanistic model may build highly precise models which nonetheless may lack general application: Rather than explaining core features of movement they model microscopic variations. This is similar to the Ising model of ferromagetism and the self-avoiding walk used to describe real polymer behaviour in physics. Nether model display much resemblance to actual process and neglect small attributes of the respective systems. Nevertheless they do capture important aspects of the real systems. By constructing limiting models the native assumption is that the idealised process is inherently wrong by design but will capture core aspects of the underlying processes.  
+
+We hypothesise distributions of foraging distance from multiple individuals in a colony are strongly influenced by variations in individual movements. Optimal foraging theory implies an optimal foraging distance but this should vary with differences in foragers. For example, if factors such as wing length, body size, metabolic rate, etc., vary between individual foragers, so too should the optimal foraging distance. In free roaming organisms energy requirements will vary between individuals but for central place foragers the net requirements of the hive can be attributed to all members. Consequentially, we should expect the combined foraging distances of a hive to be characterised by the sum of multiple individual optimal foraging distances producing a mixture distribution. With each optimal foraging distance there is expected be some degree of error. Optimal foraging theory pushes individuals towards there optima, penalising variations above and bellow this value. For central place foragers this penalty is likely to be skewed, with a lower relative individual cost for operating under the optimum than above it. This indicates the distribution of distances gathered around the optimal would be right skewed, displaying more exponential than normal properties. As such, individual optimal foraging distances are likely to stem from an exponential distribution. For these reasons honey bee foraging distances are hypothesised to be vulnerable to the patero problem: Small parts of the data can have a large influence on the effects, thereby skewing the distribution.  
+
+The aforementioned rational discloses why honey bee hives may display foraging distributions acting at multiple scales. Alternatively variations between individuals may be small enough that differences in optima are very small. The patchy distribution of resources within the environment may also standardise optimal foraging distances between individuals if the distance between patches is sufficiently large enough to render variations in optimal foraging distance insignificant. For example, if the difference in optimal foraging distance between two individuals is 100m but patches are 1000m apart such variations may be unlikely to manifest. In addition, due to the eusocial structure of honey bee colonies the scenario of reduced penalties for operating below the optimum is also questionable.  
+
+For the aforementioned reasons there is a strong imperative to investigate the number of scales behind patterns of movement in honey bee foraging. To investigate scales occurring due both environmental and individual differences foraging distance data was decoded from XXX waggle dance observations from hives into two opposing environments: One in an argi-rural habitat, the other in an urban habitat. Using contrasting environments we aim to determine to the underlying scales honey bees in different environments move at. We also test for differences in scales operating within these colonies in order to determine the dominant scales in intra-colony foraging distance. The use of waggle dance data over other distance measuring methods has a number of advantages. Aside from having no impact on the honey bees during flight, this method ensures we collect data on the individuals experience and only use information the honey bees them selves have access to. 
+
+
+\section{Methods of examining scaling relationships}
+
+
+\section{Method proposal}
+Assuming foraging distances consist of bouts drawn from various exponential distributions differing their rates $\lambda$, the overall colony foraging distance is a concatenation of distances drawn from different exponentials with some probability $\psi$. Consequentially, these relative contributions can be expressed as a sum of exponentials weighted by this probability (equation 1).  
+
+\begin{equation}
+f(x) = \sum_{i=1}^{n-1} \psi_i \lambda_i e^{-\lambda_i x} + (1 - \sum_{i=1}^{n-1}\psi_i) \lambda_n e^{-\lambda_n x}
+\end{equation}
+
+subject to (eq 2 \& 3)
+
+\begin{equation}
+0\leq \psi_i \leq 1
+\end{equation}
+
+\begin{equation}
+0\leq \sum_{i=1}^{n-1}\psi_i \leq 1
+\end{equation}
+
+Using maximum likelihood these parameters can be numerically optimized (equation 4 \& 5).
+
+\begin{equation}
+\Lagr_{(x|\psi)} = \prod_{i=1}^{n} f(x)
+\end{equation} 
+
+\begin{equation}
+\ell_{(x|\psi)} = \sum_{i=1}^{n} \ln f(x)
+\end{equation} 
+
+The gradient function for the log-likelihood function is also given (equation 6).
+
+\begin{equation}
+\nabla h(x) = \begin{bmatrix} -\sum_{i=1}^{n} [\frac{\lambda_0 e^{-\lambda_0 x_i}}{f(x_i)} - \frac{\lambda_n e^{-\lambda_n x_i}}{f(x_i)}] \\
+... \\
+... \\
+-\sum_{i=1}^{n} [\frac{\lambda_{n-1} e^{-\lambda_{n-1} x_i}}{f(x_i)} - \frac{\lambda_n e^{-\lambda_n x_i}}{f(x_i)}] \\
+\end{bmatrix}
+\end{equation}
+
+The method described here uses likelihood methods to derive the most probable $\psi$ values for a set of fixed $\lambda$. However, it should be clear that this method is not an attempt to identify the best model fit. The use of the sum of exponentials in this setting is not to evidence a particular sum of exponentials as the best model, although that may be the case. This approach to fitting without prior justification is something we wish to diverge away from and instead produce a method to view the data in terms of scale. This is a data visualisation tool to determine the relative contributions of bouts of different scales to overall honey bee colony foraging distance. In doing so, we hope to view differences from a phenomenological standing which may indicate possible mechanisms. As such, the likelihood comparison of $x$ vs $y$ rates is irrelevant in this instance. What is important is the presence of different scales as expressed by the presence of alternative rates. From this more complex view of the data we may gain a better understanding of the key underlying processes which could influence simpler models than others focusing on microscopic variations. 
+
+
+
+\section{Honey bees as a model study organism}
+For many insects locating food resources are very much individual efforts. However, certain species use cooperative methods to maximise food acquisition. Honey bees are one such example. Upon returning from a lucrative food resource, honey bees engage in a 'waggle dance' which conveys to nest mates the location of food.   
+
+
+\end{document}
+
+
+
+
+
