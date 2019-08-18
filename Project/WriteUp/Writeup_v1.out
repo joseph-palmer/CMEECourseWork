@@ -1,0 +1,31 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Methods}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Data collection}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Calculation of distance from waggle dance observations}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Distribution fitting}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Sum of exponentials procedure}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.5}{Numerical optimisation}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.6}{Experimental error}{section.2}% 8
+\BOOKMARK [1][-]{section.3}{Results}{}% 9
+\BOOKMARK [2][-]{subsection.3.1}{Simulated data}{section.3}% 10
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Single exponential}{subsection.3.1}% 11
+\BOOKMARK [3][-]{subsubsection.3.1.2}{Multiple exponentials}{subsection.3.1}% 12
+\BOOKMARK [2][-]{subsection.3.2}{Analysis of foraging distance}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.3}{Fitting distributions using maximum likelihood}{section.3}% 14
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Full data}{subsection.3.3}% 15
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Truncated data}{subsection.3.3}% 16
+\BOOKMARK [2][-]{subsection.3.4}{Sum of exponential fitting}{section.3}% 17
+\BOOKMARK [3][-]{subsubsection.3.4.1}{Full data}{subsection.3.4}% 18
+\BOOKMARK [3][-]{subsubsection.3.4.2}{Truncated data}{subsection.3.4}% 19
+\BOOKMARK [1][-]{section.4}{Discussion}{}% 20
+\BOOKMARK [2][-]{subsection.4.1}{Synthetic Data}{section.4}% 21
+\BOOKMARK [2][-]{subsection.4.2}{Sum of exponentials fit to honey bee foraging}{section.4}% 22
+\BOOKMARK [2][-]{subsection.4.3}{Synthesis}{section.4}% 23
+\BOOKMARK [2][-]{subsection.4.4}{Distributions of honey bee foraging distances}{section.4}% 24
+\BOOKMARK [1][-]{section.5}{Appendix}{}% 25
+\BOOKMARK [2][-]{subsection.5.1}{Results interoperation ideas}{section.5}% 26
+\BOOKMARK [2][-]{subsection.5.2}{Pollinator movement}{section.5}% 27
+\BOOKMARK [2][-]{subsection.5.3}{The importance of scale}{section.5}% 28
+\BOOKMARK [2][-]{subsection.5.4}{Methods of examining scaling relationships}{section.5}% 29
+\BOOKMARK [2][-]{subsection.5.5}{Method proposal}{section.5}% 30
+\BOOKMARK [2][-]{subsection.5.6}{Honey bees as a model study organism}{section.5}% 31

@@ -180,9 +180,15 @@ plt.rcParams.update({'font.size': 42})
 path = "../Data/Distances.csv"
 data = pd.read_csv(path)
 
+# remove values bellow 1km and normalise detection difference
+# remove data bellow 1km and remove detection difference
+data = data[data["Distance_Km"] > 1.0]
+data["Distance_Km"] = data["Distance_Km"] - 1
+
 # subset the data by locations
 rural_dist = data["Distance_Km"][data["Location"] == "ROT"]
 urban_dist = data["Distance_Km"][data["Location"] == "ZSL"]
+all_dist = data["Distance_Km"]
 
 # storage dictionary for results and models
 all_models = {}
@@ -197,7 +203,7 @@ aic = int(np.around(aic, decimals=0))
 all_models["Exponential"] = model
 plot = predict_fig(rural_dist, model.x, exp_eq, "Exponential", ll, aic)
 
-plt.savefig("../Results/Exponential_rural.svg", transparent=True)
+plt.savefig("../Results/Report_plots/Exponential_rural.svg", transparent=True)
 
 # Gamma
 startest = [1.1, 1.1]
@@ -209,7 +215,7 @@ aic = int(np.around(aic, decimals=0))
 all_models["Gamma"] = model
 plot = predict_fig(rural_dist, model.x, gamma_eq, "Gamma", ll, aic)
 
-plt.savefig("../Results/Gamma_rural.svg", transparent=True)
+plt.savefig("../Results/Report_plots/Gamma_rural.svg", transparent=True)
 
 # Lognormal
 startest = [1.1, 1.1]
@@ -221,7 +227,7 @@ aic = int(np.around(aic, decimals=0))
 all_models["Lognormal"] = model
 plot = predict_fig(rural_dist, model.x, lognorm_eq, "Lognormal", ll, aic)
 
-plt.savefig("../Results/Lognormal_rural.svg", transparent=True)
+plt.savefig("../Results/Report_plots/Lognormal_rural.svg", transparent=True)
 
 # Half-normal
 startest = [1.1]
@@ -233,7 +239,7 @@ aic = int(np.around(aic, decimals=0))
 all_models["Half-normal"] = model
 plot = predict_fig(rural_dist, model.x, halfnorm_eq, "Half-normal", ll, aic)
 
-plt.savefig("../Results/Halfnormal_rural.svg", transparent=True)
+plt.savefig("../Results/Report_plots/Halfnormal_rural.svg", transparent=True)
 
 # show table of mle
 
