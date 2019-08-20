@@ -1,0 +1,23 @@
+\contentsline {section}{\numberline {1}Abstract}{3}{section.1}
+\contentsline {section}{\numberline {2}Introduction}{3}{section.2}
+\contentsline {section}{\numberline {3}Methods}{7}{section.3}
+\contentsline {subsection}{\numberline {3.1}Data collection}{7}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Calculation of distance from waggle dance observations}{7}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Distribution fitting}{8}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Sum of exponentials procedure}{9}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Numerical optimisation}{10}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}Experimental error}{11}{subsection.3.6}
+\contentsline {section}{\numberline {4}Results}{11}{section.4}
+\contentsline {subsection}{\numberline {4.1}Simulated data}{11}{subsection.4.1}
+\contentsline {subsubsection}{\numberline {4.1.1}Single exponential}{11}{subsubsection.4.1.1}
+\contentsline {subsubsection}{\numberline {4.1.2}Multiple exponentials}{12}{subsubsection.4.1.2}
+\contentsline {subsection}{\numberline {4.2}Analysis of foraging distance}{22}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Fitting distributions using maximum likelihood}{28}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}Full data}{28}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.2}Truncated data}{33}{subsubsection.4.3.2}
+\contentsline {subsection}{\numberline {4.4}Sum of exponential fitting}{38}{subsection.4.4}
+\contentsline {subsubsection}{\numberline {4.4.1}Full data}{38}{subsubsection.4.4.1}
+\contentsline {subsubsection}{\numberline {4.4.2}Truncated data}{42}{subsubsection.4.4.2}
+\contentsline {section}{\numberline {5}Discussion}{48}{section.5}
+\contentsline {subsection}{\numberline {5.1}Synthetic Data}{48}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Honey bee foraging analysis}{49}{subsection.5.2}

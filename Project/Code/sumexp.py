@@ -32,6 +32,7 @@ def sample_sumexp(*args):
 
 def sumexp_single(psi, _lambda, x):
     # single exponential function
+    # alternative psi * _lambda * np.exp(-_lambda * (x - min(x)))
     return psi * _lambda * np.exp(-_lambda * x)
 
 def sumexp_eq(psi, x):
