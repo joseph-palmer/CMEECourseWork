@@ -1,0 +1,23 @@
+\contentsline {section}{\numberline {1}Summary - remove for write up and convert to abstract}{4}{section.1}
+\contentsline {section}{\numberline {2}Abstract}{4}{section.2}
+\contentsline {section}{\numberline {3}Introduction}{5}{section.3}
+\contentsline {section}{\numberline {4}Methods}{9}{section.4}
+\contentsline {subsection}{\numberline {4.1}Data collection}{9}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Calculation of distance from waggle dance observations}{10}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Distribution fitting}{10}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Sum of exponentials procedure}{12}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}Numerical optimisation}{13}{subsection.4.5}
+\contentsline {subsection}{\numberline {4.6}Exploration of tail data}{15}{subsection.4.6}
+\contentsline {section}{\numberline {5}Results}{15}{section.5}
+\contentsline {subsection}{\numberline {5.1}Simulated data}{15}{subsection.5.1}
+\contentsline {subsubsection}{\numberline {5.1.1}Single exponential}{15}{subsubsection.5.1.1}
+\contentsline {subsubsection}{\numberline {5.1.2}Multiple exponentials}{16}{subsubsection.5.1.2}
+\contentsline {subsection}{\numberline {5.2}Analysis of foraging distance}{26}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Fitting distributions using maximum likelihood}{31}{subsection.5.3}
+\contentsline {subsubsection}{\numberline {5.3.1}Full data}{31}{subsubsection.5.3.1}
+\contentsline {subsubsection}{\numberline {5.3.2}Truncated data}{36}{subsubsection.5.3.2}
+\contentsline {subsection}{\numberline {5.4}Sum of exponential fitting}{41}{subsection.5.4}
+\contentsline {subsubsection}{\numberline {5.4.1}Full data}{41}{subsubsection.5.4.1}
+\contentsline {subsubsection}{\numberline {5.4.2}Truncated data}{45}{subsubsection.5.4.2}
+\contentsline {section}{\numberline {6}Discussion}{51}{section.6}
+\contentsline {section}{\numberline {7}Acknowledgements}{57}{section.7}
