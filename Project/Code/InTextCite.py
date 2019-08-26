@@ -33,6 +33,9 @@ all_cites = list(set([y.strip() for x in all_cites for y in x]))
 with open(bib_path, "r") as b1:
     bib_string = b1.read()
 
+# get number of cites in bib
+bib_cites = re.findall(r"abstract", bib_string)
+
 # extract bibref from bib string.
 bib_dict = {}
 for i in all_cites:
@@ -54,9 +57,11 @@ with open(newbib_path, "w") as nb:
 # show summary to user
 print("----------\n"\
       "File: {}\n"\
-      "Citations in Text: {}\n"\
-      "Cites found: {}/{}\n"\
+      "Cites found in bib: {}\n"\
+      "Cites in Text: {}\n"\
+      "Bib cites found: {}/{}\n"\
       "New bib saved as: {}".format(tex_path,
+                                    len(bib_cites),
                                     len(all_cites),
                                     len(all_cites)- len(bib_notfound),
                                     len(all_cites),
