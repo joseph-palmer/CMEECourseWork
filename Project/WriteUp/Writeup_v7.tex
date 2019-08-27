@@ -13,6 +13,7 @@
 \renewcommand{\headrulewidth}{0.5pt}
 \renewcommand{\footrulewidth}{0.05pt}
 % other packages
+\usepackage{longtable}
 \usepackage{pgfgantt}
 \usepackage{amsmath}
 \usepackage{booktabs}
@@ -94,24 +95,21 @@ All code for this project, including that used to create figures and optimise th
 \tableofcontents
 \newpage
 
-\section{Summary - remove for write up and convert to abstract}
-
-\begin{itemize}
-	\item The aim of this study is to evaluate if there is a fundamental difference in the way honey bees explore different landscapes.
-	\item To identify if honey bees behave differently in urban and agri-rural environments we looked at the scale of individual movement.
-	\item Movement at different scales indicates different underlying processes.
-	\item However, currently there are no methods to disentangle scales within a given data set. This study outlines a new method using a sum of n exponential distributions in order to identify the scales operating in the data and their relative contributions to the overall movement pattern.
-	\item In applying this method to synthetic data we demonstrate how the method works to identify known scales.
-	\item We fit the method to honey bee foraging data from two hives  in different locations, showing a single dominant scale underlying both environments.
-	\item Although the two distributions operate at different scales, the presence of a single scale indicates that despite environmental differences the foraging strategies used are the same across these two environments.
-	
-\end{itemize}
-
 \section{Abstract}
 
 \begin{linenumbers}
 Put an abstract in me!
 \end{linenumbers}
+
+\noindent
+\Large{\textbf{Keywords}}\\
+\noindent
+Foraging behaviour, Central Place pollinators, scale, L\'evy process, composite Brownian motion, animal movement.
+
+\noindent
+\Large{\textbf{Acronyms}}\\
+\noindent
+Composite Brownian motion (CBM), central place pollinator (CPP), sum of exponentials (SumExp), sequential least squares programming (SLSQP), complimentary cumulative distribution function (CCDF).
 
 \section{Introduction}
 
@@ -125,9 +123,9 @@ Typically, movement in terms of scale has centred around three main ideas: Brown
 
 The most common approach of evaluating CBM is to fit a discrete sum of exponentials with weighting to try and capture movement occurring at different scales \citep{DeJager2013, Jansen2012, Kolzsch2015, Wosniack2017}. However, this method, routed in the model fitting and selection approaches outlined in \cite{Murphy2007}, limits the number of exponentials and requires both the rate and weighting parameters to be derived. Consequently, this approach fails to fully explore movement in terms of scale as it is limited by the number of scales provided in the method \citep{Jansen2012} and, by keeping both weights and rates free, does not show the extent to which a given rate contributes to the overall movement pattern. In its current form CBM therefore does not provide the general features necessary to fully view movement in terms of scale \citep{Nathan2008, Patterson2017}. 
 
-Building from current approaches of CBM, this study extends methods outlined in \cite{Petrovskii2011} and \cite{Jansen2012} to a variably weighted sum of $n$ exponential distributions with fixed rates (SumExp). By freeing the number of exponentials and allowing only weights to vary, the relative contribution of a given rate to the overall movement pattern can be established. Subsequently, this method is able to identify the relative contributions of movements at different scales and thus identify the number of underlying processes. Although the amount of mechanistic interpenetration that can be gained from a distribution of movements alone is limited \citep{Bearup2016}, identifying the number of processes and their relative contributions to movements at a given scale provides a phenomenological description of movement. This can then be used to inform research into possible underpinning mechanisms. 
+Building from current approaches of CBM, this study extends methods outlined in \cite{Petrovskii2011} and \cite{Jansen2012} to a variably weighted sum of $n$ exponential distributions with fixed rates (SumExp). By freeing the number of exponentials and allowing only weights to vary, the relative contribution of a given rate to the overall movement pattern can be established. Subsequently, this method is able to identify the relative contributions of movements at different scales and thus identify the number of underlying processes. Although the amount of mechanistic interpretation that can be gained from a distribution of movements alone is limited \citep{Bearup2016}, identifying the number of processes and their relative contributions to movements at a given scale provides a phenomenological description of movement. This can then be used to inform research into possible underpinning mechanisms. 
 
-Central place pollinators (CPP) represent one of many animal groups which, to our knowledge, have been neglected in studies of animal movement. Under increasing anthropogenic pressures causing global pollinator declines \citep{Powney2019}, understanding how CPP explore different environments is key to developing more effective environmental practices. The lack of knowledge around pollinator movements is not surprising as studies require movement data from individuals, which is challenging to obtain due to their small size and large ranges. Conveniently, one pollinator, the western honey bee (\textit{Apis mellifera}), assists with providing such information. Representing one of the most important pollinators for both natural and agricultural ecosystems \citep{Albrecht2018}, workers conduct a 'waggle dance' to provide distance and direction information of a resource to nest mates \citep{Seeley1995}. Eves dropping on these dances therefore permits the evaluation of colony level foraging distances in terms of scale, allowing the number of underlying processes to be inferred.
+Central place pollinators (CPP) represent one of many animal groups which, to our knowledge, have been neglected in studies of animal movement. Under increasing anthropogenic pressures causing global pollinator declines \citep{Powney2019}, understanding how CPP explore different environments is key to developing more effective environmental practices. The lack of knowledge around pollinator movements is not surprising as studies require movement data from individuals, which is challenging to obtain due to their small size and large ranges. Conveniently, one pollinator, the western honey bee (\textit{Apis mellifera}), assists with providing such information. Representing one of the most important pollinators for both natural and agricultural ecosystems \citep{Albrecht2018}, workers conduct a 'waggle dance' to provide distance and direction information of a resource to nest mates \citep{Seeley1995}. Eavesdropping on these dances therefore permits the evaluation of colony level foraging distances in terms of scale, allowing the number of underlying processes to be inferred.
 
 To investigate scale in colony level foraging dynamics, foraging distances were decoded from waggle dance observations for colonies of honey bees at two sites: an agricultural-rural (agri-rural) setting and an urban green space (urban). In an expanding anthropogenic world such landscapes are becoming increasingly abundant habitats for honey bees (CITE?). By teasing out the underlying scales operating in these locations, our method allows us to evaluate if there exists a fundamental difference in how honey bees forage in different environments. 
 
@@ -166,7 +164,7 @@ D_e = K\ y
 
 \begin{linenumbers}
 \hspace{\parindent}
-In order to identify the most probable distributions explaining foraging distance, 4 distributions were chosen as candidates: Exponential, Gamma, Half-normal and Lognormal (equations ?, ?, ? and ? respectively). These distributions were chosen as they represent a sample of light (exponential and half-normal) and heavier (gamma and lognormal) tailed common distributions.
+In order to identify the most probable distributions explaining foraging distance, 4 distributions were chosen as candidates: Exponential, Gamma, Half-normal and Lognormal (equations ?, ?, ? and ? respectively). These distributions were chosen as they represent a sample of light (exponential and half-normal) and heavier (gamma and lognormal) tailed common distributions \citep{Frank2009}.
 \end{linenumbers}
 \begin{equation}
 %exponential pdf
@@ -202,14 +200,14 @@ In order to identify the most probable distributions explaining foraging distanc
 \end{equation}
 
 \begin{linenumbers}
-To determine the parameters which best fit the distributions to the data we used maximum likelihood. This was conducted in Python using the Scipy package \textit{minimize} and the Sequential Least Squares Programming (SLSQP) method. The function minimises an objective function through gradient decent. Consequentially, we provided the method with the negative log-likelihood equations for each distribution in order to identify the parameters producing the maximum log-likelihood estimate. Once the parameters with the highest likelihood are identified we fit the model to the complimentary cumulative distribution function (CCDF). This was chosen over the probability density function (PDF) as the probability of obtaining an exact value is 0, where as the CCDF allows us to view the probability of obtaining a value greater than or equal to a particular value. 
+Maximum likelihood was use to identify the most likely parameters using the python package \textit{Scipy} and the minimize function with the Sequential Least Squares Programming (SLSQP) method. As this method minimises an objective function through gradient decent, we provided the method with the negative log-likelihood equations for each distribution. Once the parameters with the highest likelihood are identified they were passed into the complimentary cumulative distribution function (CCDF) for each model. This was chosen over the probability density function as the probability of obtaining an exact value is 0, where as the CCDF allows us to view the probability of obtaining a value greater than or equal to a particular value. 
 \end{linenumbers}
 
 \subsection{Sum of exponentials procedure}
 
 \begin{linenumbers}
 \hspace{\parindent}
-The general approach to test for scale free movements has been proposed by \cite{Murphy2007} yet the presence of L\`evi processes remains controversial \citep{Pyke2015}. Following on from studies identifying composite Brownian motion, scale can be characterised by the rate parameter of the exponential distribution \citep{Petrovskii2011}. Consequently, Brownian motion is characterised by movement along a single exponential, scale free movement possesses a theoretically infinite number of rates and composite Brownian motion is described by a limited number of rates greater than 1. 
+Following from studies identifying composite Brownian motion, scale can be characterised by the rate parameter of the exponential distribution \citep{Petrovskii2011, Jansen2012}. Consequently, Brownian motion is characterised by movement along a single exponential, scale free movement possesses a theoretically infinite number of rates and composite Brownian motion is described by a limited number of rates greater than 1. 
 
 The sum of exponentials (SumExp) procedure used herein is composed of $n$ exponential functions (equation ?) summed together, each constrained by a weighting factor (equation ?, subject to equations ? and ?). Consequently, this procedure provides a continuum from Brownian to L\`evy processes \citep{Jansen2012}. In accordance with \cite{Murphy2007}, our approach uses likelihood based methods to fit the SumExp. However, unlike other studies \citep{Petrovskii2011, Jansen2012, Sakamoto2017, Gautestad2012, Zhao2016} the strength of our method comes in its ability to visualise data in terms of scale rather than arbitrarily fitting discrete scaling models.
 
@@ -242,15 +240,15 @@ subject to (eq ?, ? \& ?)
 
 \begin{linenumbers}
 \hspace{\parindent}
-In order to identify the most probable parameter values for the SumExp model we used numerical optimisation to estimate the parameters with maximum likelihood. The procedure for doing this is to take the product of Sumexp over the number of observations (equation ?) and find the peak in the resulting likelihood curve. For easier computation the log-likelihood is used herein (equation ?). The analysis was conducted in Python using the scipy.optimize package \textit{minimize} (ref) and the Sequential Least Squares Programming (SLSQP) routine (ref) to identify the minima of the negative log-likelihood function. The SLSQP method uses gradient decent to scale the likelihood curve until the model derivative is within a given tolerance of 0. As such, the gradient function of partial derivatives (equation ?) is provided to improve convergence.
+Numerical optimisation is used to estimate the most probable parameter values for the SumExp model using maximum likelihood. The procedure for doing this is to take the product of Sumexp over the number of observations (equation ?) and find the peak in the resulting likelihood curve. For easier computation the log-likelihood is used herein (equation ?). The analysis was conducted in Python using the scipy.optimize package \textit{minimize} (ref) and the Sequential Least Squares Programming (SLSQP) routine (ref) to identify the minima of the negative log-likelihood function. The SLSQP method uses gradient decent to scale the likelihood curve until the model derivative is within a given tolerance of 0. As such, the gradient function of partial derivatives (equation ?) is provided to improve convergence.
 \end{linenumbers}
 \begin{equation}
 %likelihood equation for SumExp
-\Lagr_{(\psi|x)} = \prod_{i=1}^{n} f(x)
+\Lagr_{(\psi|x)} = \prod_{i=1}^{n} SumExp
 \end{equation} 
 \begin{equation}
 %loglikelihodd equation for SumExp
-\ell_{(\psi|x)} = \sum_{i=1}^{n} \ln f(x)
+\ell_{(\psi|x)} = \sum_{i=1}^{n} \ln SumExp
 \end{equation} 
 \begin{equation}
 % gradient function of partial derivitives of SumExp. 
@@ -261,17 +259,17 @@ In order to identify the most probable parameter values for the SumExp model we 
 \end{bmatrix}
 \end{equation}
 
-The process of numerical optimisation was the most time consuming aspect of this study. With an infinite number of possible rates and weights the parameter space for this problem is extensive in $n$ dimensions. Consequently, the success of our SumExp method lies in the development of an optimisation routine which could scale such a massive parameter space without violating constrains. To achieve this I started the routine by evaluating the likelihood landscape with just two parameters. From the information yielded from this I extended the method to $n$ exponentials and implemented various constrained and non-constrained optimisation routines  over multiple combinations of parameters. From the results returned the optimiser was tweaked until it identified the values with the best likelihood. The method tolerance remains one area where the optimiser struggled and more time is required to tune this to work for all possible model instances.
-
 \begin{linenumbers}
-The optimisation procedure used involves selecting multiple rates evenly spaced over a given interval to create a SumExp of a given size. These rates are then fixed in the model but the weights are left as free parameters within their bounds and constraints. If the rates are free in the model along with the weights then the procedure would identify the most probable sum of exponentials explaining the data. Instead, by keeping the rates fixed we allow the weights to act as switches that limit the contribution of an associated rate. By varying the upper and lower bounds as well as the number of rates (resolution) the procedure can be used to explore the data in terms of scale and aid the development of more parsimonious models. 
+The process of numerical optimisation was the most time consuming aspect of this study. With an infinite number of possible rates and weights the parameter space for this problem is extensive in $n$ dimensions. Consequently, the success of our SumExp method lies in the development of an optimisation routine which could scale such a massive parameter space without violating constraints. To achieve this I first evaluated the likelihood landscape with just two parameters. From the information yielded from this I extended the method by adding in one extra rate at a time towards the target $n$ exponentials and implemented various constrained and non-constrained optimisation routines over multiple combinations of parameters. From the results returned the optimiser was tweaked until it identified the values with the best likelihood. Method tolerance remains one area where the optimiser struggled and more time is required to tune this to work for all possible model instances.
+
+The optimisation procedure used involves selecting multiple rates evenly spaced over a given interval to create a SumExp of a given size (e.g. range 1-10 with 10 values gives 1, 2,.., 10). These rates are fixed in the model but the weights are left as free parameters within their bounds and constraints. If the rates are free in the model along with the weights then the procedure would identify the most probable sum of exponentials explaining the data. Instead, by keeping the rates fixed we allow the weights to act as switches that displays the contribution of its associated rate. By varying the upper and lower bounds in addition to the number of rates (resolution) the procedure can be used to explore the data in terms of scale and aid the development of more parsimonious models. 
 \end{linenumbers}
 
 \subsection{Correction for measurement error}
 
 \begin{linenumbers}
 \hspace{\parindent}
-Honey bee waggle dances are converted into distances by measuring the duration of the waggle run with a conversion rate of approximately 1 Km per second of dance (cite). Consequentially, for short distances (waggles of \textless 1 second) it is not known if movements interoperated as waggle dances are accurate and not in fact other movements misidentified as the data was recorded by a third party. To account for this possible measurement error, data points bellow 1 Km were removed and the remaining distances corrected by subtracting one for both locations, as outlined in \cite{Petrovskii2011}. Upon this truncated data the analysis was then repeated using the same procedures outlined in the methods.
+Honey bee waggle dances are converted into distances by measuring the duration of the waggle run with a conversion rate of approximately 1 Km per second of dance (cite). Consequentially, for short distances (waggles of \textless 1 second) it is not known if movements interpreted as waggle dances are accurate and not in fact other movements misidentified as the data was recorded by a third party. To account for this possible measurement error, data points below 1 Km were removed and the remaining distances corrected by subtracting one for both locations, as outlined in \cite{Petrovskii2011}. Upon this truncated data the analysis was then repeated using the same procedures outlined in the methods.
 \end{linenumbers}
 \section{Results}
 
@@ -282,7 +280,7 @@ Honey bee waggle dances are converted into distances by measuring the duration o
 
 \begin{linenumbers}
 \hspace{\parindent}
-In order to test if the numerical method can identify the sum of exponentials with the most likely parameter estimates, we tested data sampled from a single exponential with $\lambda = 1.8$. Sampling 1,000 data points we calculated the analytical rate parameter, derived as the reciprocal of the data mean, as 1.82 with an associated maximum likelihood estimate (MLE) of -401.28. The sum of exponentials method identified a distribution with a single dominant cluster of 2 peaks at rates 1.83 and 1.85 and associated weights of 0.93 and 0.059; explaining 99\% of the observations. The remaining 1\% is explained by a peak at $\lambda = 0.86$ (figure ?). The associated MLE is -401.26. Therefore, although the likelihood is slightly improved, the added parameters indicate the single exponential is the more parsimonious model.
+In order to test if the numerical method can identify the sum of exponentials with the most likely parameter estimates we tested data sampled from a single exponential with $\lambda = 1.8$. Sampling 1,000 data points we calculated the analytical rate parameter, derived as the reciprocal of the mean, as 1.82 with an associated maximum likelihood estimate (MLE) of -401.28. The sum of exponentials method identified a distribution with a single dominant cluster of 2 peaks at rates 1.83 and 1.85 and associated weights of 0.93 and 0.059; explaining 99\% of the observations. The remaining 1\% is explained by a peak at $\lambda = 0.86$ (figure 1). The associated MLE is -401.26. Therefore, although the likelihood is slightly improved, the added parameters indicate the single exponential is the more parsimonious model.
 \end{linenumbers}
 \begin{figure}[H]
 	\centering
@@ -297,7 +295,7 @@ In order to test if the numerical method can identify the sum of exponentials wi
 \textbf{Equal weighting (50/50)}
 \begin{linenumbers}
 	
-In order to test if the method can identify data derived from processes operating at two different scales, we sampled data points from a sum of two exponentials with rates 1.8 and 4.4 and equal weights. With a sample size of 1,000 the method identified five rates in 3 district clusters with $\lambda$ approximately 1.26, 2.68 and 6.49 and associated $\psi$ of approximately 0.11, 0.78 and 0.11 (Table ?, figure ?). With 10,000 observations the rates form two main clusters around rates 1.87 and 4.6 with associated $\psi$ values of 0.55 and 0.42. At 100,000 observations the rate peaks appear close to the actual input values with $\psi$ matching the input weightings (table ?).
+In order to test if the method can identify data derived from processes operating at two different scales, we sampled data points from a sum of two exponentials with rates 1.8 and 4.4 and equal weights. With a sample size of 1,000 the method identified five rates in 3 district clusters with $\lambda$ approximately 1.26, 2.68 and 6.49 and associated $\psi$ of approximately 0.11, 0.78 and 0.11 (Table 1, figure 2). With 10,000 observations the rates form two main clusters around rates 1.87 and 4.6 with associated $\psi$ values of 0.55 and 0.42. At 100,000 observations the rate peaks appear close to the actual input values with $\psi$ matching the input weightings (table 1).
 \end{linenumbers}
 
 \begin{table}[H]
@@ -317,7 +315,7 @@ In order to test if the method can identify data derived from processes operatin
 \textbf{Unequal weighting (70/30)}
 \begin{linenumbers}
 
-Using the same parameters as above but with unequal weightings of 0.3 and 0.7 for rates 1.8 and 4.4 respectively, we again tested how the method performs with different data sizes. With a data size of 1,000 the method identified two main peaks around 1.6 and 3.85 with corresponding $\psi$ values of 0.18 and 0.73. For 10,000 observations the main peaks are at 2.02 and 4.09 with associated $\psi$ of 0.33 and 0.6 with the remainder at rates 1.0 and 9.94. With 100,000 observations the peaks lie at 1.71 and 4.39, just as with equal weighting (figure ?, table?) but the weighting is 0.3 and 0.7 respectively (figure?, table?).
+With unequal weightings of 0.3 and 0.7 for rates 1.8 and 4.4 respectively, we again tested how the method performs with different data sizes. With a data size of 1,000 the method identified two main peaks around 1.6 and 3.85 with corresponding $\psi$ values of 0.18 and 0.73. For 10,000 observations the main peaks are at 2.02 and 4.09 with associated $\psi$ of 0.33 and 0.6 with the remainder at rates 1.0 and 9.94. With 100,000 observations the peaks lie at 1.71 and 4.39, just as with equal weighting (figure 2, table1) but the weighting is 0.3 and 0.7 respectively (table 2, figure 3).
 \end{linenumbers}
 \begin{table}[H]
 	\centering
@@ -335,7 +333,7 @@ Using the same parameters as above but with unequal weightings of 0.3 and 0.7 fo
 \textbf{Five rate sum of exponentials}
 \begin{linenumbers}
 
-In order to test how the method responds to processes operating at multiple scales we sampled data from a five rate sum of exponential. As the previous results indicate the method can over fit to data, we used very different rates to represent processes with multiple scales scanning several orders of magnitude. The rates used are 1.8, 4.4, 7.5, 12.5 and 16.7 with equal weightings of 0.2. With a sample size of 1,000 the method identified 4 peaks with rates of 1.5, 2.74, 9.65 and 22.5 and corresponding $\psi$ of 0.05, 0.29, 0.38 and 0.28 (table ?, figure ?). 10,000 observations returned 3 main peaks at rates 2.15, 4.89 and 12.6 with corresponding $\psi$ values of 0.24, 0.23, and 0.48, with the remainder located at two other peaks of 1.0 and 29.9. With 100,000 observations the method identified four main peaks at rates 1.79, 4.3, 7.34 and 15.43 with corresponding $\psi$ values of 0.21, 0.14, 0.29 and 0.35 (table ? figure ?). 
+In order to test how the method responds to processes operating at multiple scales we sampled data from a five rate sum of exponential. As the previous results indicate the method can over fit to data, we used very different rates to represent processes with multiple scales scanning several orders of magnitude. The rates used are 1.8, 4.4, 7.5, 12.5 and 16.7 with equal weightings of 0.2. With a sample size of 1,000 the method identified 4 peaks with rates of 1.5, 2.74, 9.65 and 22.5 and corresponding $\psi$ of 0.05, 0.29, 0.38 and 0.28 (table 3, figure 4). 10,000 observations returned 3 main peaks at rates 2.15, 4.89 and 12.6 with corresponding $\psi$ values of 0.24, 0.23, and 0.48, with the remainder located at two other peaks of 1.0 and 29.9. With 100,000 observations the method identified four main peaks at rates 1.79, 4.3, 7.34 and 15.43 with corresponding $\psi$ values of 0.21, 0.14, 0.29 and 0.35 (table 3 figure 4). 
 \end{linenumbers}
 \begin{table}[H]
 	\centering
@@ -347,22 +345,12 @@ In order to test how the method responds to processes operating at multiple scal
 	\includegraphics[scale=1]{../Results/Plots/SyntheticData_2exp1844_5.pdf}
 	\caption{Scale spectrum of linearly selected rates for data sampled from a sum of five exponentials with $\lambda = 1.8,\ 4.4,\ 7.5,\ 12.5,\ 16.7$ and $\psi = 0.2$. Upper bound $= 30$, lower bound $= 1$, resolution $= 350$. \textbf{A}) $n = 1,000$, \textbf{B}) $n = 10,000$,  \textbf{C}) $n = 100,000$.}
 \end{figure}
-\begin{linenumbers}
-
-What is notable here is that the method was unable to identify the input rates and appropriate weights at any of the data sizes tested. Although they converged towards to the true values as sample size was increased, the procedure omitted the rate 12.5. This indicates the method struggles to identify process occurring at more than 3 or 4 scales without very large data sets, possibly due to overlaps in parameter space (figure ?).
-\end{linenumbers}
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=1]{../Results/Plots/SyntheticData_Hist_5.pdf}
-	\caption{Overlapping histograms of data sampled from exponentials with different rates. \textbf{A}) $\lambda = 1.8, 4.4$, \textbf{B}) $\lambda = 1.8, 4.4, 7.5$, \textbf{C}) $\lambda = 1.8, 4.4, 7.5, 12.5$, \textbf{D}) $\lambda = 1.8, 4.4, 7.5, 12.5, 16.7$.}
-\end{figure}
-
 
 \subsection{Analysis of foraging distance}
 
 \begin{linenumbers}
 \hspace{\parindent}
-The agri-rural data consists of 193 observations ranging from 0.016 to 5.17Km with a mean of 1.29. The urban data consists of 221 observations ranging from 0.0006 to 3.18Km with a mean of 0.85. Combined these datasets consist of 414 observations ranging from 0.0006 to 5.17Km with a mean of 1.05.
+The agri-rural data consists of 193 observations ranging from 0.016 to 5.17 Km with a mean of 1.29. The urban data consists of 221 observations ranging from 0.0006 to 3.18 Km with a mean of 0.85. Combined these datasets consist of 414 observations ranging from 0.0006 to 5.17 Km with a mean of 1.05 (figure 5).
 \end{linenumbers}
 
 \begin{figure}[H]
@@ -372,7 +360,7 @@ The agri-rural data consists of 193 observations ranging from 0.016 to 5.17Km wi
 \end{figure}
 \begin{linenumbers}
 
-With values bellow 1Km removed and the remaining data normalised by subtracting 1 from the distances, the agri-rural data consists of 107 observations ranging from 0.025 to 4.17Km with a mean of 0.85. The urban data consists of 81 observations ranging from 0.006 to 2.18Km with a mean of 0.53. Combined these datasets consist of 188 observations ranging from 0.0006 to 4.17Km with a mean of 0.71.
+With values below 1 Km removed and the remaining data normalised by subtracting 1 from the distances, the agri-rural data consists of 107 observations ranging from 0.025 to 4.17 Km with a mean of 0.85. The urban data consists of 81 observations ranging from 0.006 to 2.18 Km with a mean of 0.53. Combined these datasets consist of 188 observations ranging from 0.0006 to 4.17 Km with a mean of 0.71 (figure 6).
 \end{linenumbers}
 \begin{figure}[H]
 	\centering
@@ -381,7 +369,7 @@ With values bellow 1Km removed and the remaining data normalised by subtracting 
 \end{figure}
 \begin{linenumbers}
 
-In order to accommodate for the difference in distributions between these two data sets, foraging distances were compared using a bootstrapped hypothesis test. This was chosen as a non-parametric equivalent to the t-test as the data violates the condition of normality (figure ? histogram), whilst retaining a high degree of statistical power (ref on bootstrapping). For both the truncated and full data sets, foraging distance differed significantly between environments (Non-parametric bootstrap test: simulations = 10,000. full data: agri-rural mean = 1.29, urban mean 0.85, degrees of freedom = 192 and 220, t = 5.70, p $\textless$ 0.001; truncated data: agri-rural mean = 0.85, urban mean 0.53, degrees of freedom = 106 and 80, t = 3.34, p $\textless$ 0.01) (figure ?). 
+In order to accommodate for different distributions between these two data sets, foraging distances were compared using a bootstrapped hypothesis test. This was chosen as a non-parametric equivalent to the t-test as the data violates the condition of normality (figure 5, 6), whilst retaining a high degree of statistical power \citep{Johnson2001}. For both the truncated and full data sets, foraging distance differed significantly between environments (Non-parametric bootstrap test: simulations = 10,000. full data: agri-rural mean = 1.29, urban mean 0.85, degrees of freedom = 192 and 220, t = 5.70, p $\textless$ 0.001; truncated data: agri-rural mean = 0.85, urban mean 0.53, degrees of freedom = 106 and 80, t = 3.34, p $\textless$ 0.01) (figure 7). 
 \end{linenumbers}
 \begin{figure}[H]
 	\centering
@@ -395,11 +383,11 @@ In order to accommodate for the difference in distributions between these two da
 
 \begin{linenumbers}
 \hspace{\parindent}
-In order to determine the distribution which best describes the data, maximum likelihood methods were used to fit a number of candidate distributions. Each distribution was fit to the urban and agri-rural data and the fit assessed using the Akaike information criterion (AIC) and associated Akaike weights (AICw). For the rural data the most parsimonious model is the gamma distribution (table ?) with an AIC score seven points lower than the next best fitting model, the half-normal distribution. Using Akaike weights we can determine the probability that a given model is the best model of our candidate set. By dividing the AICw of the best model by that of the next best candidate (0.978/0.0233), the Gamma distribution is approximately 41.9 times more likely to be the best model in terms of the Kullback–Leibler discrepancy than the half-normal model.
+In order to determine the distribution which best describes the data, maximum likelihood methods were used to fit a number of candidate distributions. Each distribution was fit to the urban and agri-rural data and the fit assessed using the Akaike information criterion (AIC) and associated Akaike weights (AICw). For the rural data the most parsimonious model is the gamma distribution (table 4, figure 8) with an AIC score seven points lower than the next best fitting model, the half-normal distribution. Using Akaike weights we can determine the probability that a given model is the best model of our candidate set \citep{Burnham2004}. By dividing the AICw of the best model by that of the next best candidate (0.978/0.0233), the Gamma distribution is approximately 42 times more likely to be the best model in terms of the Kullback–Leibler discrepancy than the half-normal model.
 
-For the urban data, the best fitting model is the half-normal distribution with an AIC score 14 points lower than the next best fitting model, the gamma distribution (table ?, figure ?). The interpretation of Akaike weights indicates the half-normal is approximately 1225.5 times more likely to represent the best model in terms of the Kullback–Leibler discrepancy than the Gamma distribution.
+For the urban data, the best fitting model is the half-normal distribution with an AIC score 14 points lower than the next best fitting model, the gamma distribution (table 5, figure 9). The interpretation of Akaike weights indicates the half-normal is approximately 1226 times more likely to represent the best model in terms of the Kullback–Leibler discrepancy than the Gamma distribution.
 
-For the agri-rural and urban foraging data combined, the best fitting model is the half-normal with an AIC score 10 points lower than the next best fitting model, the gamma distribution (table ?, figure ?). The interpretation of Akaike weights indicates the half-normal is approximately 196.1 times more likely to represent the best model in terms of the Kullback–Leibler discrepancy than the Gamma distribution.
+For the agri-rural and urban foraging data combined, the best fitting model is the half-normal with an AIC score 10 points lower than the next best fitting model, the gamma distribution (table 6, figure 10). The interpretation of Akaike weights indicates the half-normal is approximately 196 times more likely to represent the best model in terms of the Kullback–Leibler discrepancy than the Gamma distribution.
 \end{linenumbers}
 
 \begin{table}[H]
@@ -440,11 +428,11 @@ For the agri-rural and urban foraging data combined, the best fitting model is t
 
 \begin{linenumbers}
 \hspace{\parindent}
-With distances lower than one Kilometre removed and the remaining distances normalised by subtracting 1, the agri-rural data shows the best fitting model is the gamma. However the difference in AIC is less than 1 point to the next best fitting model, the exponential (table ?). A comparison of the weighted AIC scores suggests the gamma is approximately 1.4 times more likely to be most parsimonious model than the exponential (table ?).
+With distances lower than one Kilometre removed and the remaining distances normalised by subtracting 1, the agri-rural data shows the best fitting model is the gamma. However the difference in AIC is less than 1 point to the next best fitting model, the exponential (table 7, figure 11). A comparison of the weighted AIC scores suggests the gamma is approximately 1.4 times more likely to be the most parsimonious model than the exponential (table 7).
 
-In contrast, the urban data shows the best model as the exponential, almost 2 AIC points lower than the next best fitting model, the gamma distribution (table ?). The comparison of AIC weights indicates the exponential is approximately 2.5 times more likely to be the best model than the gamma (table ?).
+In contrast, the urban data shows the best model as the exponential, almost 2 AIC points lower than the next best fitting model, the gamma distribution (table 8, figure 12). The comparison of AIC weights indicates the exponential is approximately 2.5 times more likely to be the best model than the gamma (table 8).
 
-For both the agri-rural and urban foraging distances combined, the best model was identified as the exponential, 2 AIC points lower than the next best fitting model, the gamma distribution (table ?). The comparison of AIC weights indicates the exponential is approximately 2.5 times more likely to be the best model than the gamma (table ?). 
+For both the agri-rural and urban foraging distances combined, the best model was identified as the exponential, 2 AIC points lower than the next best fitting model, the gamma distribution (table 9, figure 13). The comparison of AIC weights indicates the exponential is approximately 2.5 times more likely to be the best model than the gamma (table 9). 
 \end{linenumbers}
 
 \begin{table}[H]
@@ -484,12 +472,12 @@ For both the agri-rural and urban foraging distances combined, the best model wa
 \subsubsection{Full data}
 \begin{linenumbers}
 \hspace{\parindent}
-For the agri-rural data, using variations of fixed rates between 0 and 100, the method identified a single exponential with $\lambda = 0.77$ most likely contributed to the data. This matches the analytically derived single exponential rate value (figure ?, table ?). For the urban data a single peak is also identified around 1.18 again matching the analytical MLE for a single exponential (figure ?, table ?). When the data from each site is combined, the method identified a single peak at $\lambda = 0.94$ explained the data best, within 0.01 of the analytical MLE of the combined data (table ?, figure ?). 
+For the agri-rural data, using variations of fixed rates between 0 and 100, the method identified a single exponential with $\lambda = 0.77$ most likely contributed to the data (table 10, figure 14). This matches the analytically derived single exponential rate value. For the urban data a single peak is also identified around 1.18 again matching the analytical MLE for a single exponential (table 10, figure 15). When the data from each site is combined, the method identified a single peak at $\lambda = 0.94$ explained the data best, within 0.01 of the analytical MLE of the combined data (table 10, figure 16). 
 \end{linenumbers}
 
 \begin{table}[H]
 	\centering
-	\caption{Estimated rate ($\lambda$) and weight ($\psi$) sum of exponential parameters for agri-rural and urban foraging distances. Analytical $\lambda$ derived from MLE of single exponential.}
+	\caption{Estimated rate ($\lambda$) and weight ($\psi$) sum of exponential parameters for agri-rural, urban and combined foraging distances. Analytical $\lambda$ derived from MLE of single exponential as the reciprocal of the mean.}
 	\input{../Results/LatexTables/Sumexp_fulldata}
 \end{table}
 
@@ -517,9 +505,9 @@ For the agri-rural data, using variations of fixed rates between 0 and 100, the 
 
 \begin{linenumbers}
 \hspace{\parindent}
-For the agri-rural foraging data over 1Km, using variations of fixed rates between 0 and 100, the method identified a single peak around $\lambda = 1.17$ most likely contributed to the data. This matches the analytically derived single exponential rate value (figure ?, table ?). For the urban foraging data over 1Km the method identified two peaks around rates 1.86 and 46.9. The peak around 1.86 is the dominant peak, explaining 97\% of the data with the remainder produced by the secondary peak. Consequentially, the second peak is small in figure ? (figure ?, table ?). The dominant peak is 0.03 larger than the analytical MLE of a single exponential for this data, 1.189. The associated likelihoods between the sum of exponentials and the single exponential is -29.081 and -29.446 respectively, however, this is not significantly different and indicates the single exponential is the more parsimonious model (Sum of exponentials $MLE = -29.08\ AIC = 76.2, AIC_w < 0.001$, single exponential $MLE = -29.46\ AIC = 60.9, AIC_w > 0.999$, table ?). 
+For the agri-rural foraging data over 1 Km, using variations of fixed rates between 0 and 100, the method identified a single peak around $\lambda = 1.17$ most likely contributed to the data (figure 17). This matches the analytically derived single exponential rate value (table 11). For the urban foraging data over 1Km the method identified two peaks around rates 1.86 and 46.9 (figure 18). The peak around 1.86 is the dominant peak, explaining 97\% of the data with the remainder produced by the secondary peak. Consequentially, the second peak is small (figure 18, table 11). The dominant peak is 0.03 larger than the analytical MLE of a single exponential for this data, 1.189. The associated likelihoods between the sum of exponentials and the single exponential is -29.081 and -29.446 respectively, however, this is not significantly different and indicates the single exponential is the more parsimonious model (Sum of exponentials $MLE = -29.08\ AIC = 76.2, AIC_w < 0.001$, single exponential $MLE = -29.46\ AIC = 60.9, AIC_w > 0.999$, table 12). 
 
-Combined, the foraging data from both sites showed two peaks around rates 1.36 and 2.08, explaining 90\% and 10\% of the data respectively (table ?, figure ?). The likelihood for the sum of exponential and a single exponential is 0.02 higher than for the single exponential, however this is not significant indicating the single exponential is the more parsimonious model (SumExp $MLE = -124.33,\ AIC = 284.67,\ AIC_w < 0.001$, single exponential $MLE = -124.35,\ AIC = 250.69,\ AIC_w > 0.999$, table ?).
+Combined, the foraging data from both sites showed two peaks around rates 1.36 and 2.08, explaining 90\% and 10\% of the data respectively (table 11, figure 19). The likelihood for the sum of exponential and a single exponential is 0.02 higher than for the single exponential, however this is not significant indicating the single exponential is the more parsimonious model (SumExp $MLE = -124.33,\ AIC = 284.67,\ AIC_w < 0.001$, single exponential $MLE = -124.35,\ AIC = 250.69,\ AIC_w > 0.999$, table 13).
 \end{linenumbers}
 
 \begin{table}[H]
@@ -530,32 +518,32 @@ Combined, the foraging data from both sites showed two peaks around rates 1.36 a
 
 \begin{table}[H]
 	\centering
-	\caption{Model statistics for urban foraging distances greater than 1Km.}
+	\caption{Model statistics for urban foraging distances greater than 1 Km.}
 	\input{../Results/LatexTables/Sumexp_Trundata_AIC}
 \end{table}
 
 \begin{table}[H]
 	\centering
-	\caption{Model statistics for combined agri-rural and urban foraging distances greater than 1Km.}
+	\caption{Model statistics for combined agri-rural and urban foraging distances greater than 1 Km.}
 	\input{../Results/LatexTables/Sumexp_Trundata_AIC_comb}
 \end{table}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=1]{../Results/Plots/Sumexp_rural_trun.pdf}
-	\caption{\textbf{A}) Scale spectrum of agri-rural foraging distances. Single peak identified with $\lambda = 1.17$, upper bound $= 2$, lower bound $= 0$, resolution $= 350$. \textbf{B}) Complementary Cumulative Distribution Frequency (CCDF) of agri-rural foraging distances. Black line is data, blue line is sum of exponentials fit.}
+	\caption{\textbf{A}) Scale spectrum of agri-rural foraging distances greater than 1 Km. Single peak identified with $\lambda = 1.17$, upper bound $= 2$, lower bound $= 0$, resolution $= 350$. \textbf{B}) Complementary Cumulative Distribution Frequency (CCDF) of agri-rural foraging distances. Black line is data, blue line is sum of exponentials fit.}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=1]{../Results/Plots/Sumexp_urban_trun.pdf}
-	\caption{\textbf{A}) Scale spectrum of urban foraging distances. Two peaks identified around $\lambda = 1.86$ and $46.9$ with associated $\psi = 0.97$ and $0.03$, upper bound $= 50$, lower bound $= 0$, resolution $= 550$. \textbf{B}) Complementary Cumulative Distribution Frequency (CCDF) of urban foraging distances. Black line is data, blue line is sum of exponentials fit.}
+	\caption{\textbf{A}) Scale spectrum of urban foraging distances greater than 1 Km. Two peaks identified around $\lambda = 1.86$ and $46.9$ with associated $\psi = 0.97$ and $0.03$, upper bound $= 50$, lower bound $= 0$, resolution $= 550$. \textbf{B}) Complementary Cumulative Distribution Frequency (CCDF) of urban foraging distances. Black line is data, blue line is sum of exponentials fit.}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=1]{../Results/Plots/Sumexp_comb_trun.pdf}
-	\caption{\textbf{A}) Scale spectrum of combined foraging distances from agri-rural and urban sites. Two peaks identified with $\lambda = 1.36$ and $2.08$ with associated $\psi = 0.9$ and $0.1$, upper bound $=5$, lower bound $= 0$, resolution $= 350$. \textbf{B}) Complementary Cumulative Distribution Frequency (CCDF) of combined foraging distances from agri-rural and urban sites. Black line is data, blue line is sum of exponentials fit.}
+	\caption{\textbf{A}) Scale spectrum of combined foraging distances greater than 1 Km from agri-rural and urban sites. Two peaks identified with $\lambda = 1.36$ and $2.08$ with associated $\psi = 0.9$ and $0.1$, upper bound $=5$, lower bound $= 0$, resolution $= 350$. \textbf{B}) Complementary Cumulative Distribution Frequency (CCDF) of combined foraging distances from agri-rural and urban sites. Black line is data, blue line is sum of exponentials fit.}
 \end{figure}
 
 \section{Discussion}
@@ -578,9 +566,9 @@ Due to different features of agri-rural and urban landscapes it can be expected 
 
 Genetic diversity within the colony is one possible mechanism underpinning our observation. Due to haplodiploidy, female workers are related to each other by a coefficient of 0.75 \citep{Ratnieks1989}. To increase genetic diversity, queens mate with several males \citep{Jones2004}. Genetic variations have been shown to influence other behaviours, such as response thresholds for temperature regulation \citep{Jones2004} and foraging choice between pollen and nectar \citep{Fewell1993, Fewell2000}, yet to our knowledge it is not known if genetic variation influences foraging distance directly. Nevertheless, our results hint that genetic diversity does not significantly vary foraging behaviour, indicating genetic controls of foraging distances are highly conserved in honey bees. The exact manifestation of this is unclear but investigating recruitment is a prudent choice.
 
-As a method of recruitment, the waggle dance itself could serve to constrain foraging behaviour to a single scale by limiting variation between individuals. As recruitment is a multiplicative process, colony movement should converge to profitable patches in order to reduce time and energy spent searching \citep{Seeley1995}. However, some studies have questioned the effectiveness of the waggle dance as a recruitment strategy \citep{Sherman2002, Dornhaus2004, Gruter2008, Gruter2009, Schurch2013} and errors between dancers and recruits have been shown to reduce accuracy by as much as 50\% \citep{Schurch2013}. This inefficiency of the waggle dance therefore casts doubt on the overall effectiveness in guiding recruits to productive locations. Consequently, more research is required to pin point how this complex behaviour might influence colony foraging distances.
+As a method of recruitment, the waggle dance itself could serve to constrain foraging behaviour to a single scale by limiting variation between individuals. As recruitment is a multiplicative process, colony movement should converge to profitable patches in order to reduce time and energy spent searching \citep{Seeley1995}. However, some studies have questioned the effectiveness of the waggle dance as a recruitment strategy \citep{Sherman2002, Dornhaus2004, Gruter2008, Gruter2009, Schurch2013} and errors between dancers and recruits have been shown to reduce accuracy by as much as 50\% \citep{Schurch2013}. This inefficiency of the waggle dance therefore casts doubt on its overall effectiveness in guiding recruits to productive locations. Consequently, more research is required to establish how this complex behaviour might influence colony foraging distances.
 
-As this study is phenomenological, inferences about possible mechanisms for our observation of a single scale are purely speculative and to pin down exact causes of these statistical patterns requires further empirical research. Nonetheless, our findings indications of a single process underpinning colony foraging distance lay the foundation for such future studies. It would also be productive to evaluate the extent to which our findings are consistent in complex landscapes. In a mixed urban/agri-rural environment, would we observe a single scale, as in the isolated environments, or a composition of different scales? More data from urban-agri-rural gradients is needed to answer such questions, but the SumExp model developed herein, whilst requiring further calibration to tease out exact parameter values, provides the ability to dissect relatively simple foraging data in terms of scale and extract signatures of the underlying processes. The methods and optimisation routine presented here thus moves us closer towards a general method of identifying patterns in animal movement data.
+As this study is phenomenological, inferences about possible mechanisms for our observation of a single scale are purely speculative and to identify exact causes of these statistical patterns requires further empirical research. Nonetheless, our findings indications of a single process underpinning colony foraging distance lay the foundation for such future studies. It would also be productive to evaluate the extent to which our findings are consistent in complex landscapes. In a mixed urban/agri-rural environment, would we observe a single scale, as in the isolated environments, or a composition of different scales? More data from urban-agri-rural gradients is needed to answer such questions, but the SumExp model developed herein, whilst requiring further calibration to tease out exact parameter values, provides the ability to dissect relatively simple foraging data in terms of scale and extract signatures of the underlying processes. The methods and optimisation routine presented here thus moves us closer towards a general method of identifying patterns in animal movement data.
 \end{linenumbers}
 
 \section{Acknowledgements}
@@ -589,8 +577,12 @@ In addition to thanking my supervisors Richard Gill and Vincent Jansen for gener
 
 \newpage
 \section{Data and Code Availability}
-For the purposes of reproducible science, all data and code for this project is available at \textit{https://github.com/joseph-palmer/CMEECourseWork/tree/master/Project}. Please see the relevant README file given on the project GitHub page for details of how to run certain scripts.
+For the purposes of reproducible science, all data and code for this project is available at:\\ \textit{https://github.com/joseph-palmer/CMEECourseWork/tree/master/Project}
 
+\noindent
+Please see the relevant README file given on the project GitHub page for details of how to run certain scripts.
+
+\noindent
 As this data remains the property of Dr. Elli Leadbeater of Royal Holloway University of London, its use for anything other than recreating the results of this study is prohibited. For details on this data, please contact Elli Leadbeater \textit{(Elli.Leadbeater@rhul.ac.uk)}.
 
 \newpage
