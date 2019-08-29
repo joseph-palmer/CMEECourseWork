@@ -1,0 +1,24 @@
+\BOOKMARK [1][-]{section.1}{Abstract}{}% 1
+\BOOKMARK [1][-]{section.2}{Introduction}{}% 2
+\BOOKMARK [1][-]{section.3}{Methods}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Data collection}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Calculation of distance from waggle dance observations}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Distribution fitting}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.4}{Sum of exponentials procedure}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.5}{Numerical optimisation}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.6}{Correction for measurement error}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.7}{Sampling from sum of exponentials}{section.3}% 10
+\BOOKMARK [1][-]{section.4}{Results}{}% 11
+\BOOKMARK [2][-]{subsection.4.1}{Simulated data}{section.4}% 12
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Single exponential}{subsection.4.1}% 13
+\BOOKMARK [3][-]{subsubsection.4.1.2}{Multiple exponentials}{subsection.4.1}% 14
+\BOOKMARK [2][-]{subsection.4.2}{Analysis of foraging distance}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.3}{Fitting distributions using maximum likelihood}{section.4}% 16
+\BOOKMARK [3][-]{subsubsection.4.3.1}{Full data}{subsection.4.3}% 17
+\BOOKMARK [3][-]{subsubsection.4.3.2}{Truncated data}{subsection.4.3}% 18
+\BOOKMARK [2][-]{subsection.4.4}{Sum of exponential fitting}{section.4}% 19
+\BOOKMARK [3][-]{subsubsection.4.4.1}{Full data}{subsection.4.4}% 20
+\BOOKMARK [3][-]{subsubsection.4.4.2}{Truncated data}{subsection.4.4}% 21
+\BOOKMARK [1][-]{section.5}{Discussion}{}% 22
+\BOOKMARK [1][-]{section.6}{Acknowledgements}{}% 23
+\BOOKMARK [1][-]{section.7}{Data and Code Availability}{}% 24
